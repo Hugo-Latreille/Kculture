@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="J0Uayc_fJ_nXG9KXXlZn" name="Page-1">
-        <mxGraphModel dx="4623" dy="2226" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="3555" dy="1422" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -111,7 +111,7 @@
                     <mxGeometry y="120" width="140" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="50" value="User_Answer" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#a0522d;strokeColor=#6D1F00;rounded=0;fontColor=#ffffff;" parent="1" vertex="1">
-                    <mxGeometry x="-1160" y="-769" width="100" height="180" as="geometry">
+                    <mxGeometry x="-1160" y="-769" width="100" height="210" as="geometry">
                         <mxRectangle x="-1184" y="-603" width="52" height="30" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
@@ -121,14 +121,17 @@
                 <mxCell id="52" value="answer" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontStyle=0;rounded=0;" parent="50" vertex="1">
                     <mxGeometry y="60" width="100" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="95" value="#user_id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontStyle=0;rounded=0;" parent="50" vertex="1">
+                <mxCell id="174" value="is_true" style="text;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontStyle=0;rounded=0;" parent="50" vertex="1">
                     <mxGeometry y="90" width="100" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="96" value="#question_id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontStyle=0;rounded=0;" parent="50" vertex="1">
+                <mxCell id="95" value="#user_id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontStyle=0;rounded=0;" parent="50" vertex="1">
                     <mxGeometry y="120" width="100" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="163" value="#game_id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontStyle=0;rounded=0;" parent="50" vertex="1">
+                <mxCell id="96" value="#question_id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontStyle=0;rounded=0;" parent="50" vertex="1">
                     <mxGeometry y="150" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="163" value="#game_id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontStyle=0;rounded=0;" parent="50" vertex="1">
+                    <mxGeometry y="180" width="100" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="67" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0.468;entryY=0.986;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.576;exitY=-0.023;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="44" target="8" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -155,18 +158,21 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="75" value="game_has_user" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="-1560" y="-620" width="100" height="120" as="geometry">
+                    <mxGeometry x="-1560" y="-620" width="100" height="150" as="geometry">
                         <mxRectangle x="-1184" y="-603" width="52" height="30" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="76" value="id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontStyle=4;rounded=0;" parent="75" vertex="1">
                     <mxGeometry y="30" width="100" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="81" value="#user_id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontStyle=0;rounded=0;" parent="75" vertex="1">
+                <mxCell id="168" value="is_game_master" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontStyle=0;rounded=0;" parent="75" vertex="1">
                     <mxGeometry y="60" width="100" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="82" value="#game_id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontStyle=0;rounded=0;" parent="75" vertex="1">
+                <mxCell id="81" value="#user_id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontStyle=0;rounded=0;" parent="75" vertex="1">
                     <mxGeometry y="90" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="82" value="#game_id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontStyle=0;rounded=0;" parent="75" vertex="1">
+                    <mxGeometry y="120" width="100" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="83" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0.376;entryY=1.079;entryDx=0;entryDy=0;exitX=0.904;exitY=-0.014;exitDx=0;exitDy=0;exitPerimeter=0;entryPerimeter=0;" parent="1" source="9" target="84" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -212,10 +218,10 @@
                         <mxPoint x="-1494" y="-299" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="94" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;startArrow=classic;startFill=1;fillColor=#e51400;strokeColor=#FFFFFF;" parent="1" source="23" target="50" edge="1">
+                <mxCell id="94" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=classic;startFill=1;fillColor=#e51400;strokeColor=#FFFFFF;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="23" target="50" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="-1485.6" y="-469.69000000000005" as="targetPoint"/>
-                        <mxPoint x="-1484" y="-289" as="sourcePoint"/>
+                        <mxPoint x="-914" y="-314" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="164" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0.106;entryY=1.066;entryDx=0;entryDy=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryPerimeter=0;" parent="1" source="9" target="163" edge="1">
@@ -227,8 +233,8 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="165" value="&lt;br&gt;User(&lt;u&gt;id&lt;/u&gt;, pseudo, email, password, role, is_ready)&lt;br&gt;Message(&lt;u&gt;id&lt;/u&gt;, content, #user_id, #game_id)&lt;br&gt;Score(&lt;u&gt;id&lt;/u&gt;, score, #user_id, #game_id)&lt;br&gt;Game(&lt;u&gt;id&lt;/u&gt;, game_number)&lt;br&gt;GAME_HAS_USER(#user_id, #game_id)&lt;br&gt;Question(&lt;u&gt;id&lt;/u&gt;, question, level, timer, media, #answer_id)&lt;br&gt;GAME_HAS_QUESTIONS(#question_id, #game_id)&lt;br&gt;Answer(&lt;u&gt;id&lt;/u&gt;, answer)&lt;br&gt;User_answer(&lt;u&gt;id&lt;/u&gt;, answer, #user_id, #question_id, #game_id)" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;align=left;" vertex="1" parent="1">
-                    <mxGeometry x="-1609" y="-1069" width="358" height="210" as="geometry"/>
+                <mxCell id="165" value="&lt;br&gt;User(&lt;u&gt;id&lt;/u&gt;, pseudo, email, password, role, is_ready)&lt;br&gt;Message(&lt;u&gt;id&lt;/u&gt;, content, #user_id, #game_id)&lt;br&gt;Score(&lt;u&gt;id&lt;/u&gt;, score, #user_id, #game_id)&lt;br&gt;Game(&lt;u&gt;id&lt;/u&gt;, game_number)&lt;br&gt;GAME_HAS_USER(#user_id, #game_id, is_game_master)&lt;br&gt;Question(&lt;u&gt;id&lt;/u&gt;, question, level, timer, media, #answer_id)&lt;br&gt;GAME_HAS_QUESTIONS(#question_id, #game_id)&lt;br&gt;Answer(&lt;u&gt;id&lt;/u&gt;, answer)&lt;br&gt;User_answer(&lt;u&gt;id&lt;/u&gt;, answer, is_true, #user_id, #question_id, #game_id)" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="-811" y="-533" width="358" height="210" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

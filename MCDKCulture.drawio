@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="3xxxpGB8uzVEkUUVOhj-" name="Page-1">
-        <mxGraphModel dx="4383" dy="2226" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+        <mxGraphModel dx="3650" dy="1804" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -12,7 +12,7 @@
                 <mxCell id="94" value="Code_user" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontStyle=4;rounded=0;sketch=1;" parent="93" vertex="1">
                     <mxGeometry y="30" width="100" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="96" value="Pseudo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=0;sketch=1;" parent="93" vertex="1">
+                <mxCell id="96" value="pseudo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=0;sketch=1;" parent="93" vertex="1">
                     <mxGeometry y="60" width="100" height="28" as="geometry"/>
                 </mxCell>
                 <mxCell id="97" value="email" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=0;sketch=1;" parent="93" vertex="1">
@@ -74,7 +74,7 @@
                         <mxPoint x="-964" y="-714" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="159" value="Rejoint" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;fontColor=#FFFFFF;sketch=1;" parent="158" connectable="0" vertex="1">
+                <mxCell id="159" value="Rejoint&lt;br&gt;is_game_master" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;fontColor=#FFFFFF;sketch=1;" parent="158" connectable="0" vertex="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="160" value="0/N" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;fontColor=#FFFFFF;sketch=1;" parent="158" connectable="0" vertex="1">
@@ -202,15 +202,18 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="201" value="User_Answer" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#a0522d;strokeColor=#6D1F00;rounded=0;fontColor=#ffffff;sketch=1;" parent="1" vertex="1">
-                    <mxGeometry x="-936.5799999999999" y="-862" width="100" height="90" as="geometry">
+                    <mxGeometry x="-936.5799999999999" y="-862" width="100" height="120" as="geometry">
                         <mxRectangle x="-1184" y="-603" width="52" height="30" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="202" value="Code_answer" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontStyle=4;rounded=0;sketch=1;" parent="201" vertex="1">
                     <mxGeometry y="30" width="100" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="203" value="answer" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontStyle=0;rounded=0;sketch=1;" parent="201" vertex="1">
+                <mxCell id="370" value="answer" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontStyle=0;rounded=0;sketch=1;" vertex="1" parent="201">
                     <mxGeometry y="60" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="203" value="isTrue" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontStyle=0;rounded=0;sketch=1;" parent="201" vertex="1">
+                    <mxGeometry y="90" width="100" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="204" value="" style="endArrow=classic;html=1;fontColor=#FFFFFF;startArrow=classic;startFill=1;exitX=1.021;exitY=0.855;exitDx=0;exitDy=0;sketch=1;exitPerimeter=0;" parent="1" source="188" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -269,22 +272,22 @@
                 <mxCell id="288" value="0/1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;fontColor=#FFFFFF;sketch=1;" parent="1" connectable="0" vertex="1">
                     <mxGeometry x="-900.0000000000002" y="-650" as="geometry"/>
                 </mxCell>
-                <mxCell id="364" value="" style="endArrow=classic;html=1;fontColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startArrow=classic;startFill=1;sketch=1;" parent="1" source="110" edge="1">
+                <mxCell id="364" value="" style="endArrow=classic;html=1;fontColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startArrow=classic;startFill=1;sketch=1;entryX=-0.01;entryY=0.963;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="110" edge="1" target="203">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="-1084" y="-310.21000000000004" as="sourcePoint"/>
-                        <mxPoint x="-910" y="-770" as="targetPoint"/>
+                        <mxPoint x="-1029" y="-668" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="365" value="comprend" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;fontColor=#FFFFFF;sketch=1;" parent="364" connectable="0" vertex="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="367" value="&lt;span style=&quot;color: rgb(255 , 255 , 255) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 11px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-align: left ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(42 , 42 , 42) ; display: inline ; float: none&quot;&gt;1/1&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-951.9975014860734" y="-769.0028138268511" width="35" height="29" as="geometry"/>
+                    <mxGeometry x="-978.9975014860734" y="-751.0028138268511" width="35" height="29" as="geometry"/>
                 </mxCell>
                 <mxCell id="368" value="&lt;span style=&quot;color: rgb(255 , 255 , 255) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 11px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-align: left ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(42 , 42 , 42) ; display: inline ; float: none&quot;&gt;0/N&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-1145.9975014860734" y="-542.0028138268511" width="35" height="29" as="geometry"/>
+                    <mxGeometry x="-1147.9975014860734" y="-537.0028138268511" width="35" height="29" as="geometry"/>
                 </mxCell>
-                <mxCell id="369" value="&lt;div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;OBTENIR, 0N User, 11 Score&lt;/div&gt;&lt;div&gt;Score: code_score, score&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;User_answer: code_answer, answer&lt;/div&gt;&lt;div&gt;REPONDRE, 0N User, 11 User_answer&lt;/div&gt;&lt;div&gt;User: code_user, pseudo, email, password, role, is_ready&lt;/div&gt;&lt;div&gt;ENVOYER, 0N User, 11 Message&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;CORRESPONDRE, 11 User_answer, 01 Question&lt;/div&gt;&lt;div&gt;REJOINDRE, 0N User, 1N Game&lt;/div&gt;&lt;div&gt;APPARTENIR, 11 Message, 0N Game&lt;/div&gt;&lt;div&gt;Message: code_message, message&lt;/div&gt;&lt;div&gt;ATTRIBUER, 11 Score, 1N Game&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;COMPRENDRE, 11 User_answer, 0N Game&lt;/div&gt;&lt;div&gt;Game: code_game, game_number&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;Question: code_question, question, level, timer, media&lt;/div&gt;&lt;div&gt;CONTENIR, 0N Question, NN Game&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;POSSEDER, 01 Question, 11 Answer&lt;/div&gt;&lt;div&gt;Answer: code_answer, answer&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;align=left;" vertex="1" parent="1">
+                <mxCell id="369" value="&lt;div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;OBTENIR, 0N User, 11 Score&lt;/div&gt;&lt;div&gt;Score: code_score, score&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;User_answer: code_answer, answer&lt;/div&gt;&lt;div&gt;REPONDRE, 0N User, 11 User_answer&lt;/div&gt;&lt;div&gt;User: code_user, pseudo, email, password, role, is_ready&lt;/div&gt;&lt;div&gt;ENVOYER, 0N User, 11 Message&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;CORRESPONDRE, 11 User_answer, 01 Question&lt;/div&gt;&lt;div&gt;REJOINDRE, 0N User, 1N Game: is_game_master&lt;/div&gt;&lt;div&gt;APPARTENIR, 11 Message, 0N Game&lt;/div&gt;&lt;div&gt;Message: code_message, message&lt;/div&gt;&lt;div&gt;ATTRIBUER, 11 Score, 1N Game&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;COMPRENDRE, 11 User_answer, 0N Game&lt;/div&gt;&lt;div&gt;Game: code_game, game_number&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;Question: code_question, question, level, timer, media&lt;/div&gt;&lt;div&gt;CONTENIR, 0N Question, NN Game&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;POSSEDER, 01 Question, 11 Answer&lt;/div&gt;&lt;div&gt;Answer: code_answer, answer&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;div&gt;:&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;align=left;" parent="1" vertex="1">
                     <mxGeometry x="-751" y="-862" width="399" height="605" as="geometry"/>
                 </mxCell>
             </root>
