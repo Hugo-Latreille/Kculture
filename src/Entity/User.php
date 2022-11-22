@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -39,7 +41,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?\DateTimeInterface $created_at = null;
 
     #[ORM\Column(type: Types::DATETIMETZ_MUTABLE)]
-    private ?\DateTimeInterface $updated_at = null;/* a tester */
+    private ?\DateTimeInterface $updated_at = null;
+
+    #[ORM\OneToMany(mappedBy: 'userId', targetEntity: Message::class, orphanRemoval: true)]
+    private Collection $message;
+
+    #[ORM\OneToMany(mappedBy: 'userId', targetEntity: Score::class, orphanRemoval: true)]
+    private Collection $scores;
+
+    #[ORM\OneToMany(mappedBy: 'userId', targetEntity: UserAnswer::class, orphanRemoval: true)]
+    private Collection $userAnswers;
+
+    #[ORM\OneToMany(mappedBy: 'userId', targetEntity: GameHasUser::class)]
+    private Collection $game;
+
+    public function __construct()
+    {
+        $this->message = new ArrayCollection();
+        $this->scores = new ArrayCollection();
+        $this->userAnswers = new ArrayCollection();
+        $this->game = new ArrayCollection();
+    }/* a tester */
 
     public function getId(): ?int
     {
@@ -155,6 +177,126 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Message>
+     */
+    public function getMessage(): Collection
+    {
+        return $this->message;
+    }
+
+    public function addMessage(Message $message): self
+    {
+        if (!$this->message->contains($message)) {
+            $this->message->add($message);
+            $message->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Message $message): self
+    {
+        if ($this->message->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getUserId() === $this) {
+                $message->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Score>
+     */
+    public function getScores(): Collection
+    {
+        return $this->scores;
+    }
+
+    public function addScore(Score $score): self
+    {
+        if (!$this->scores->contains($score)) {
+            $this->scores->add($score);
+            $score->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScore(Score $score): self
+    {
+        if ($this->scores->removeElement($score)) {
+            // set the owning side to null (unless already changed)
+            if ($score->getUserId() === $this) {
+                $score->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserAnswer>
+     */
+    public function getUserAnswers(): Collection
+    {
+        return $this->userAnswers;
+    }
+
+    public function addUserAnswer(UserAnswer $userAnswer): self
+    {
+        if (!$this->userAnswers->contains($userAnswer)) {
+            $this->userAnswers->add($userAnswer);
+            $userAnswer->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserAnswer(UserAnswer $userAnswer): self
+    {
+        if ($this->userAnswers->removeElement($userAnswer)) {
+            // set the owning side to null (unless already changed)
+            if ($userAnswer->getUserId() === $this) {
+                $userAnswer->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, GameHasUser>
+     */
+    public function getGame(): Collection
+    {
+        return $this->game;
+    }
+
+    public function addGame(GameHasUser $game): self
+    {
+        if (!$this->game->contains($game)) {
+            $this->game->add($game);
+            $game->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGame(GameHasUser $game): self
+    {
+        if ($this->game->removeElement($game)) {
+            // set the owning side to null (unless already changed)
+            if ($game->getUserId() === $this) {
+                $game->setUserId(null);
+            }
+        }
 
         return $this;
     }
