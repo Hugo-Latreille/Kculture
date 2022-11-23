@@ -1,4 +1,4 @@
 {
-	"cSpell.words": ["BIGSERIAL", "MINVALUE", "plpgsql"],
+	"cSpell.words": ["BIGSERIAL", "MINVALUE", "plpgsql", "Timestampable"],
 	"cSpell.ignoreWords": ["Hasher"]
 }
