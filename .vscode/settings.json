@@ -1,4 +1,10 @@
 {
-	"cSpell.words": ["BIGSERIAL", "MINVALUE", "plpgsql", "Timestampable"],
+	"cSpell.words": [
+		"BIGSERIAL",
+		"inversed",
+		"MINVALUE",
+		"plpgsql",
+		"Timestampable"
+	],
 	"cSpell.ignoreWords": ["Hasher"]
 }
