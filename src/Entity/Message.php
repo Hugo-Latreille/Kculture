@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Link;
+use ApiPlatform\Metadata\GetCollection;
 use App\Entity\Trait\TimestampableEntity;
 use App\Repository\MessageRepository;
 use Doctrine\DBAL\Types\Types;
@@ -17,6 +19,19 @@ use Symfony\Component\Validator\Constraints as Assert;
     // normalizationContext: ['groups' => ['test']]
     denormalizationContext: ['groups' => ['write:Message']]
 )]
+
+#[ApiResource(
+    paginationEnabled: false,
+    uriTemplate: '/user/{id}/messages',
+    uriVariables: [
+        'id' => new Link(
+            fromClass: User::class,
+            fromProperty: 'message'
+        )
+    ],
+    operations: [new GetCollection()]
+)]
+
 class Message
 {
     use TimestampableEntity;
