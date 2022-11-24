@@ -2,13 +2,17 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Trait\TimestampableEntity;
 use App\Repository\ScoreRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ScoreRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[ApiResource(
+    paginationEnabled: false,
+)]
+
 class Score
 {
     use TimestampableEntity;

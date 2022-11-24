@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Trait\TimestampableEntity;
 use App\Repository\UserAnswerRepository;
 use Doctrine\DBAL\Types\Types;
@@ -9,6 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserAnswerRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[ApiResource(
+    paginationEnabled: false,
+)]
+
 class UserAnswer
 {
     use TimestampableEntity;

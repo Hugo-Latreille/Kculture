@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Trait\TimestampableEntity;
 use App\Repository\GameRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -10,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: GameRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[ApiResource(
+    paginationEnabled: false,
+)]
+
 class Game
 {
     use TimestampableEntity;

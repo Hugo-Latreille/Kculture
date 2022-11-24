@@ -2,13 +2,19 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Trait\TimestampableEntity;
 use App\Repository\MessageRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: MessageRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[ApiResource(
+    paginationEnabled: false,
+    normalizationContext: ['groups' => ['test']]
+)]
 class Message
 {
     use TimestampableEntity;
@@ -19,10 +25,12 @@ class Message
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups('test')]
     private ?string $message = null;
 
     #[ORM\ManyToOne(inversedBy: 'message')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups('test')]
     private ?User $userId = null;
 
     #[ORM\ManyToOne(inversedBy: 'messages')]

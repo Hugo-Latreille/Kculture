@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Trait\TimestampableEntity;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -9,11 +10,19 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+// use Symfony\Component\Serializer\Annotation\Groups;
 
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 #[ORM\HasLifecycleCallbacks]
+#[
+    ApiResource(
+        paginationEnabled: false,
+        // normalizationContext: ['groups' => ['read:Users']]
+    )
+]
+
 
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 
@@ -24,21 +33,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    // #[Groups('read:Users')]
     private ?int $id = null;
 
+    // #[Groups('read:Users')]
     #[ORM\Column(length: 255, unique: true, nullable: false)]
     private ?string $email = null;
 
     #[ORM\Column]
+    // #[Groups('read:Users')]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column(nullable: false)]
+    // #[Groups('read:Users')]
     private ?string $password = null;
 
     #[ORM\Column(length: 20, nullable: false)]
+    // #[Groups('read:Users')]
     private ?string $pseudo = null;
 
     #[ORM\Column]
