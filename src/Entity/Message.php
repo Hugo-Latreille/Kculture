@@ -8,12 +8,14 @@ use App\Repository\MessageRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MessageRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     paginationEnabled: false,
-    normalizationContext: ['groups' => ['test']]
+    // normalizationContext: ['groups' => ['test']]
+    denormalizationContext: ['groups' => ['write:Message']]
 )]
 class Message
 {
@@ -22,19 +24,22 @@ class Message
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('get:Users')]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups('test')]
+    #[Groups(['get:Users', 'write:Message'])]
+    #[Assert\NotBlank]
     private ?string $message = null;
 
     #[ORM\ManyToOne(inversedBy: 'message')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups('test')]
+    #[Groups(['get:Users', 'write:Message'])]
     private ?User $userId = null;
 
     #[ORM\ManyToOne(inversedBy: 'messages')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['get:Users', 'write:Message'])]
     private ?Game $game = null;
 
 

@@ -3,14 +3,17 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Post;
 use App\Entity\Trait\TimestampableEntity;
 use App\Repository\UserRepository;
+use App\State\UserPasswordHasherProcessor;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
-// use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -19,13 +22,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[
     ApiResource(
         paginationEnabled: false,
-        // normalizationContext: ['groups' => ['read:Users']]
+        normalizationContext: ['groups' => ['get:Users']],
+        denormalizationContext: ['groups' => ['post:User']],
+        processor: UserPasswordHasherProcessor::class
     )
 ]
 
-
 class User implements UserInterface, PasswordAuthenticatedUserInterface
-
 {
 
     use TimestampableEntity;
@@ -33,41 +36,49 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    // #[Groups('read:Users')]
+    #[Groups('get:Users')]
     private ?int $id = null;
 
-    // #[Groups('read:Users')]
     #[ORM\Column(length: 255, unique: true, nullable: false)]
+    #[Groups(['get:Users', 'post:User'])]
+    #[Assert\Email(
+        message: 'L\'email {{ value }} n\'est pas valide.',
+    )]
     private ?string $email = null;
 
     #[ORM\Column]
-    // #[Groups('read:Users')]
+    #[Groups('get:Users')]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column(nullable: false)]
-    // #[Groups('read:Users')]
+    #[Groups(['get:Users', 'post:User'])]
+    #[Assert\NotBlank]
     private ?string $password = null;
 
     #[ORM\Column(length: 20, nullable: false)]
-    // #[Groups('read:Users')]
+    #[Groups(['get:Users', 'post:User'])]
     private ?string $pseudo = null;
 
     #[ORM\Column]
     private ?bool $is_ready = false;
 
     #[ORM\OneToMany(mappedBy: 'userId', targetEntity: Message::class, orphanRemoval: true)]
+    #[Groups('get:Users')]
     private Collection $message;
 
     #[ORM\OneToMany(mappedBy: 'userId', targetEntity: Score::class, orphanRemoval: true)]
+    #[Groups('get:Users')]
     private Collection $scores;
 
     #[ORM\OneToMany(mappedBy: 'userId', targetEntity: UserAnswer::class, orphanRemoval: true)]
+    #[Groups('get:Users')]
     private Collection $userAnswers;
 
     #[ORM\OneToMany(mappedBy: 'userId', targetEntity: GameHasUser::class)]
+    #[Groups('get:Users')]
     private Collection $game;
 
     public function __construct()
