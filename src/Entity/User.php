@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Link;
-use ApiPlatform\Metadata\Get;
 use App\Entity\Trait\TimestampableEntity;
 use App\Repository\UserRepository;
 use App\State\UserPasswordHasherProcessor;
@@ -28,7 +26,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
         processor: UserPasswordHasherProcessor::class
     )
 ]
-
 
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
