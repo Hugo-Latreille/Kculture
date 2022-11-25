@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
 use App\Entity\Trait\TimestampableEntity;
 use App\Repository\UserRepository;
 use App\State\UserPasswordHasherProcessor;
@@ -26,6 +28,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
         processor: UserPasswordHasherProcessor::class
     )
 ]
+// #[GetCollection(security: "is_granted('ROLE_ADMIN')", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource')]
+#[Get(security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource')]
+
+
 
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
