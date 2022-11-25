@@ -3,6 +3,7 @@
 		"BIGSERIAL",
 		"hashers",
 		"inversed",
+		"lexik",
 		"MINVALUE",
 		"plpgsql",
 		"Timestampable"
