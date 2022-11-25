@@ -28,8 +28,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
         processor: UserPasswordHasherProcessor::class
     )
 ]
+//* TEST SECURITE : on accorde l'accés à l'admin/à l'utilisateur actuellement connecté uniquement pour son compte
 // #[GetCollection(security: "is_granted('ROLE_ADMIN')", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource')]
-#[Get(security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource')]
+// #[Get(security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource')]
 
 
 
