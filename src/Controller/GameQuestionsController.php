@@ -33,7 +33,7 @@ class GameQuestionsController extends AbstractController
         // dump($questionsIdsArray);
         shuffle($questionsIdsArray);
         $questionsIdsArray = array_slice($questionsIdsArray, 0, $nbrOfQuestions);
-        dd($questionsIdsArray);
+
 
         //? Pour chaque id du tableau, faire persister en bdd
 
