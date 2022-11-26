@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Game;
+use App\Entity\GameHasQuestions;
 use App\Entity\Question;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,26 +12,45 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class GameQuestionsController extends AbstractController
 {
-    #[Route('/game/{id}/questions', name: 'app_game_questions')]
-    public function test(int $id, ManagerRegistry $doctrine): Response
+    #[Route('/game/{GameId<\d+>}/questions/{nbrOfQuestions<\d+>}', name: 'app_game_questions')]
+    public function test(ManagerRegistry $doctrine, int $GameId, int $nbrOfQuestions = 5): Response
     {
+        $entityManager = $doctrine->getManager();
+        $game = $doctrine->getRepository(Game::class)->find($GameId);
+        if (!$game) {
+            return $this->json("La partie demandée n'existe pas", 400);
+        }
 
         $questions = $doctrine->getRepository(Question::class)->findAll();
 
-        $questionsArray = [];
+        $questionsIdsArray = [];
+
         foreach ($questions as $question) {
             $questionId = $question->getId();
-            array_push($questionsArray, $questionId);
+            array_push($questionsIdsArray, $questionId);
         }
 
-        $randomQuestions = array_rand($questionsArray, 5);
-        shuffle($randomQuestions);
-
+        // dump($questionsIdsArray);
+        shuffle($questionsIdsArray);
+        $questionsIdsArray = array_slice($questionsIdsArray, 0, $nbrOfQuestions);
+        dd($questionsIdsArray);
 
         //? Pour chaque id du tableau, faire persister en bdd
-        // https://symfony.com/doc/current/doctrine.html#fetching-objects-from-the-database
 
-        // dd($randomQuestions);
-        dd($id);
+        foreach ($questionsIdsArray as $randomQuestionId) {
+            $randomQuestion = $doctrine->getRepository(Question::class)->find($randomQuestionId);
+            // dump($randomQuestionId);
+            // dump($randomQuestion);
+
+            $gameQuestion = new GameHasQuestions();
+            $gameQuestion->setGame($game);
+            $gameQuestion->setQuestion($randomQuestion);
+            $entityManager->persist($gameQuestion);
+            dump($gameQuestion);
+        }
+        $entityManager->flush();
+
+
+        return $this->json("Les questions ont été générées", 200);
     }
 }
