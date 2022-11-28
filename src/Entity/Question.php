@@ -2,59 +2,21 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Metadata\ApiProperty;
+
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Post;
 use App\Entity\Trait\TimestampableEntity;
-use App\Controller\UploadFileController;
 use App\Repository\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Validator\Constraints as Assert;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     paginationEnabled: false,
-)]
-
-#[Vich\Uploadable]
-#[ApiResource(
-    normalizationContext: ['groups' => ['media_object:read']],
-    types: ['https://schema.org/MediaObject'],
-    operations: [
-        new Post(
-            name: 'upload',
-            uriTemplate: '/question/{id}/upload',
-            controller: UploadFileController::class,
-            deserialize: false,
-            validationContext: ['groups' => ['Default', 'media_object_create']],
-            openapiContext: [
-                'requestBody' => [
-                    'content' => [
-                        'multipart/form-data' => [
-                            'schema' => [
-                                'type' => 'object',
-                                'properties' => [
-                                    'file' => [
-                                        'type' => 'string',
-                                        'format' => 'binary'
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-
-        )
-    ]
 )]
 
 class Question
@@ -75,19 +37,6 @@ class Question
     #[ORM\Column]
     private ?int $timer = null;
 
-    //!
-    #[ApiProperty(types: ['https://schema.org/contentUrl'])]
-    #[Groups(['media_object:read'])]
-    public ?string $contentUrl = null;
-
-    #[Vich\UploadableField(mapping: "media_object", fileNameProperty: "media")]
-    #[Assert\NotNull(groups: ['media_object_create'])]
-    public ?File $file = null;
-    //!
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $media = null;
-
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: UserAnswer::class, orphanRemoval: true)]
     private Collection $userAnswers;
 
@@ -97,11 +46,15 @@ class Question
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: GameHasQuestions::class, orphanRemoval: true)]
     private Collection $gameHasQuestions;
 
+    #[ORM\OneToMany(mappedBy: 'question', targetEntity: Media::class)]
+    private Collection $media;
+
 
     public function __construct()
     {
         $this->userAnswers = new ArrayCollection();
         $this->gameHasQuestions = new ArrayCollection();
+        $this->media = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -145,7 +98,7 @@ class Question
         return $this;
     }
 
-    public function getMedia(): ?string
+    public function getMedia(): ?Collection
     {
         return $this->media;
     }
@@ -223,6 +176,28 @@ class Question
             // set the owning side to null (unless already changed)
             if ($gameHasQuestion->getQuestion() === $this) {
                 $gameHasQuestion->setQuestion(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function addMedium(Media $medium): self
+    {
+        if (!$this->media->contains($medium)) {
+            $this->media->add($medium);
+            $medium->setQuestion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMedium(Media $medium): self
+    {
+        if ($this->media->removeElement($medium)) {
+            // set the owning side to null (unless already changed)
+            if ($medium->getQuestion() === $this) {
+                $medium->setQuestion(null);
             }
         }
 
