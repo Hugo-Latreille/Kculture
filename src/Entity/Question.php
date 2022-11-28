@@ -4,9 +4,9 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use App\Entity\Trait\TimestampableEntity;
+use App\Controller\UploadFileController;
 use App\Repository\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -14,18 +14,46 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-/**
- * @Vich\Uploadable
- */
+
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     paginationEnabled: false,
+)]
+
+#[Vich\Uploadable]
+#[ApiResource(
+    normalizationContext: ['groups' => ['media_object:read']],
+    types: ['https://schema.org/MediaObject'],
     operations: [
-        new GetCollection(),
-        new Post(inputFormats: ['multipart' => ['multipart/form-data']])
+        new Post(
+            name: 'upload',
+            uriTemplate: '/question/{id}/upload',
+            controller: UploadFileController::class,
+            deserialize: false,
+            validationContext: ['groups' => ['Default', 'media_object_create']],
+            openapiContext: [
+                'requestBody' => [
+                    'content' => [
+                        'multipart/form-data' => [
+                            'schema' => [
+                                'type' => 'object',
+                                'properties' => [
+                                    'file' => [
+                                        'type' => 'string',
+                                        'format' => 'binary'
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+
+        )
     ]
 )]
 
@@ -47,21 +75,18 @@ class Question
     #[ORM\Column]
     private ?int $timer = null;
 
-    //******* CONFIG UPLOAD
+    //!
     #[ApiProperty(types: ['https://schema.org/contentUrl'])]
-    // #[Groups(['book:read'])]
+    #[Groups(['media_object:read'])]
     public ?string $contentUrl = null;
 
-    /**
-     * @Vich\UploadableField(mapping="media_object", fileNameProperty="filePath")
-     */
-    // #[Groups(['book:write'])]
+    #[Vich\UploadableField(mapping: "media_object", fileNameProperty: "media")]
+    #[Assert\NotNull(groups: ['media_object_create'])]
     public ?File $file = null;
+    //!
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $media = null;
-
-    //******* 
 
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: UserAnswer::class, orphanRemoval: true)]
     private Collection $userAnswers;
