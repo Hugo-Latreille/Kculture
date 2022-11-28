@@ -2,18 +2,31 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
 use App\Entity\Trait\TimestampableEntity;
 use App\Repository\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+/**
+ * @Vich\Uploadable
+ */
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     paginationEnabled: false,
+    operations: [
+        new GetCollection(),
+        new Post(inputFormats: ['multipart' => ['multipart/form-data']])
+    ]
 )]
 
 class Question
@@ -34,8 +47,21 @@ class Question
     #[ORM\Column]
     private ?int $timer = null;
 
+    //******* CONFIG UPLOAD
+    #[ApiProperty(types: ['https://schema.org/contentUrl'])]
+    // #[Groups(['book:read'])]
+    public ?string $contentUrl = null;
+
+    /**
+     * @Vich\UploadableField(mapping="media_object", fileNameProperty="filePath")
+     */
+    // #[Groups(['book:write'])]
+    public ?File $file = null;
+
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $media = null;
+
+    //******* 
 
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: UserAnswer::class, orphanRemoval: true)]
     private Collection $userAnswers;
