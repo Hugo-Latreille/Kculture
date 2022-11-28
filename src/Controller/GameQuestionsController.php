@@ -30,8 +30,9 @@ class GameQuestionsController extends AbstractController
             array_push($questionsIdsArray, $questionId);
         }
 
-        // dump($questionsIdsArray);
+        // dd($questionsIdsArray);
         shuffle($questionsIdsArray);
+        // dd($questionsIdsArray);
         $questionsIdsArray = array_slice($questionsIdsArray, 0, $nbrOfQuestions);
 
 
@@ -46,7 +47,7 @@ class GameQuestionsController extends AbstractController
             $gameQuestion->setGame($game);
             $gameQuestion->setQuestion($randomQuestion);
             $entityManager->persist($gameQuestion);
-            dump($gameQuestion);
+            // dump($gameQuestion);
         }
         $entityManager->flush();
 
