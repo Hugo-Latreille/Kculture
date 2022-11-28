@@ -2,17 +2,28 @@
 
 namespace App\Serializer;
 
-use App\Entity\MediaObject;
+use App\Entity\Media;
 use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Vich\UploaderBundle\Storage\StorageInterface;
 
-final class MediaObjectNormalizer implements ContextAwareNormalizerInterface, NormalizerAwareInterface
+// interface ContextAwareNormalizerInterface extends NormalizerInterface
+// {
+//   /**
+//    * {@inheritdoc}
+//    *
+//    * @param array $context options that normalizers have access to
+//    */
+//   public function supportsNormalization(mixed $data, string $format = null, array $context = []): bool;
+// }
+
+final class MediaNormalizer implements ContextAwareNormalizerInterface, NormalizerAwareInterface
 {
   use NormalizerAwareTrait;
 
-  private const ALREADY_CALLED = 'MEDIA_OBJECT_NORMALIZER_ALREADY_CALLED';
+  private const ALREADY_CALLED = 'MEDIA_NORMALIZER_ALREADY_CALLED';
 
   public function __construct(private StorageInterface $storage)
   {
@@ -24,6 +35,7 @@ final class MediaObjectNormalizer implements ContextAwareNormalizerInterface, No
 
     $object->contentUrl = $this->storage->resolveUri($object, 'file');
 
+
     return $this->normalizer->normalize($object, $format, $context);
   }
 
@@ -33,6 +45,6 @@ final class MediaObjectNormalizer implements ContextAwareNormalizerInterface, No
       return false;
     }
 
-    return $data instanceof MediaObject;
+    return $data instanceof Media;
   }
 }

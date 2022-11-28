@@ -12,5 +12,5 @@
 		"uniqueid",
 		"vich"
 	],
-	"cSpell.ignoreWords": ["Denormalizer", "Hasher", "denormalize"]
+	"cSpell.ignoreWords": ["Denormalizer", "Hasher", "denormalize", "openapi"]
 }

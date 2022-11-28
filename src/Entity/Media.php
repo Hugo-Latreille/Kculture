@@ -15,10 +15,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-#[ORM\Entity(repositoryClass: MediaRepository::class)]
 #[Vich\Uploadable]
+#[ORM\Entity(repositoryClass: MediaRepository::class)]
 #[ApiResource(
-    normalizationContext: ['groups' => ['media_object:read']],
+    paginationEnabled: false,
+    normalizationContext: ['groups' => ['media:read']],
     types: ['https://schema.org/MediaObject'],
     operations: [
         new Get(),
@@ -53,10 +54,11 @@ class Media
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['media:read'])]
     private ?int $id = null;
 
     #[ApiProperty(types: ['https://schema.org/contentUrl'])]
-    #[Groups(['media_object:read'])]
+    #[Groups(['media:read'])]
     public ?string $contentUrl = null;
 
     #[Vich\UploadableField(mapping: "media_object", fileNameProperty: "filePath")]
@@ -64,6 +66,7 @@ class Media
     public ?File $file = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['media:read'])]
     private ?string $filePath = null;
 
     #[ORM\ManyToOne(inversedBy: 'media')]

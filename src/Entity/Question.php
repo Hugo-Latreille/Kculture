@@ -4,6 +4,7 @@ namespace App\Entity;
 
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\ApiProperty;
 use App\Entity\Trait\TimestampableEntity;
 use App\Repository\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -47,6 +48,7 @@ class Question
     private Collection $gameHasQuestions;
 
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Media::class)]
+    #[ApiProperty(types: ['https://schema.org/image'])]
     private Collection $media;
 
 
