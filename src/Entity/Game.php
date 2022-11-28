@@ -9,11 +9,13 @@ use App\Repository\GameRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: GameRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     paginationEnabled: false,
+    normalizationContext: ['groups' => ['get:Games']]
 )]
 
 class Game
@@ -23,24 +25,31 @@ class Game
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('get:Games')]
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Groups('get:Games')]
     private ?int $game_number = null;
 
     #[ORM\OneToMany(mappedBy: 'game', targetEntity: Message::class, orphanRemoval: true)]
+    #[Groups('get:Games')]
     private Collection $messages;
 
     #[ORM\OneToMany(mappedBy: 'game', targetEntity: Score::class, orphanRemoval: true)]
+    #[Groups('get:Games')]
     private Collection $scores;
 
     #[ORM\OneToMany(mappedBy: 'game', targetEntity: UserAnswer::class, orphanRemoval: true)]
+    #[Groups('get:Games')]
     private Collection $userAnswers;
 
     #[ORM\OneToMany(mappedBy: 'game', targetEntity: GameHasUser::class)]
+    #[Groups('get:Games')]
     private Collection $gameHasUsers;
 
     #[ORM\OneToMany(mappedBy: 'game', targetEntity: GameHasQuestions::class, orphanRemoval: true)]
+    #[Groups('get:Games')]
     private Collection $gameHasQuestions;
 
 
