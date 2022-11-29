@@ -28,7 +28,6 @@ class QuestionFixtures extends Fixture implements DependentFixtureInterface
     $question1 = new Question();
     $question1->setQuestion("Quel est le nombre ?");
     $question1->setAnswer($this->getReference(AnswerFixtures::ANSWER1_REFERENCE));
-    $question1->setMedia("/image54931351.png");
     $question1->setLevel(1);
     $question1->setTimer(30);
     $manager->persist($question1);

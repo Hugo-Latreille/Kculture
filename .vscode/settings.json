@@ -6,8 +6,11 @@
 		"inversed",
 		"lexik",
 		"MINVALUE",
+		"Origname",
 		"plpgsql",
-		"Timestampable"
+		"Timestampable",
+		"uniqueid",
+		"vich"
 	],
-	"cSpell.ignoreWords": ["Hasher"]
+	"cSpell.ignoreWords": ["Denormalizer", "Hasher", "denormalize", "openapi"]
 }
