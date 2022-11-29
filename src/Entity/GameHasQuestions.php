@@ -14,6 +14,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     paginationEnabled: false,
+    normalizationContext: ['groups' => ['get:GameHasQuestions']]
 )]
 #[ApiFilter(SearchFilter::class, properties: ['game' => 'exact'])]
 
@@ -29,10 +30,12 @@ class GameHasQuestions
 
     #[ORM\ManyToOne(inversedBy: 'gameHasQuestions')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups('get:GameHasQuestions')]
     private ?Game $game = null;
 
     #[ORM\ManyToOne(inversedBy: 'gameHasQuestions')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups('get:GameHasQuestions')]
     private ?Question $question = null;
 
     public function getId(): ?int

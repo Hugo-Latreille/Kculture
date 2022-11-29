@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
@@ -32,15 +33,18 @@ class Question
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['question:read'])]
+    #[Groups(['question:read', 'get:GameHasQuestions'])]
+    #[Assert\NotBlank]
     private ?string $question = null;
 
     #[ORM\Column]
     #[Groups(['question:read'])]
+    #[Assert\NotBlank]
     private ?int $level = null;
 
     #[ORM\Column]
     #[Groups(['question:read'])]
+    #[Assert\NotBlank]
     private ?int $timer = null;
 
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: UserAnswer::class, orphanRemoval: true)]

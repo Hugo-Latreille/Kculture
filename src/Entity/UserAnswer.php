@@ -3,16 +3,21 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use App\Entity\Trait\TimestampableEntity;
 use App\Repository\UserAnswerRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserAnswerRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     paginationEnabled: false,
 )]
+#[ApiFilter(SearchFilter::class, properties: ['userId' => 'exact', 'question' => 'exact', 'game' => 'exact'])]
+//? Route filtrée : https://localhost:8000/api/user_answers?userId=25&question=44&game=11
 
 class UserAnswer
 {
@@ -24,6 +29,7 @@ class UserAnswer
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['question:read'])]
     private ?string $answer = null;
 
     #[ORM\Column(nullable: true)]
@@ -31,6 +37,7 @@ class UserAnswer
 
     #[ORM\ManyToOne(inversedBy: 'userAnswers')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['question:read'])]
     private ?User $userId = null;
 
     #[ORM\ManyToOne(inversedBy: 'userAnswers')]

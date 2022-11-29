@@ -17,13 +17,11 @@ class GamesFixtures extends Fixture
   public function load(ObjectManager $manager): void
   {
     $game1 = new Game();
-    $game1->setGameNumber(1);
     $manager->persist($game1);
 
     $this->addReference(self::GAME_REFERENCE, $game1);
 
     $game2 = new Game();
-    $game2->setGameNumber(2);
     $manager->persist($game2);
 
     $this->addReference(self::GAME2_REFERENCE, $game2);

@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+
 #[ORM\Entity(repositoryClass: GameRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
@@ -25,12 +26,8 @@ class Game
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups('get:Games')]
+    #[Groups(['get:Games', 'get:GameHasQuestions'])]
     private ?int $id = null;
-
-    #[ORM\Column]
-    #[Groups('get:Games')]
-    private ?int $game_number = null;
 
     #[ORM\OneToMany(mappedBy: 'game', targetEntity: Message::class, orphanRemoval: true)]
     #[Groups('get:Games')]
@@ -53,9 +50,11 @@ class Game
     private Collection $gameHasQuestions;
 
     #[ORM\Column(nullable: true)]
+    #[Groups('get:Games')]
     private ?bool $is_open = true;
 
     #[ORM\Column(nullable: true)]
+    #[Groups('get:Games')]
     private ?bool $is_corrected = false;
 
 
@@ -73,17 +72,6 @@ class Game
         return $this->id;
     }
 
-    public function getGameNumber(): ?int
-    {
-        return $this->game_number;
-    }
-
-    public function setGameNumber(int $game_number): self
-    {
-        $this->game_number = $game_number;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Message>

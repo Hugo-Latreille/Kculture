@@ -3,15 +3,22 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use App\Entity\Trait\TimestampableEntity;
 use App\Repository\ScoreRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ScoreRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     paginationEnabled: false,
 )]
+#[ApiFilter(OrderFilter::class, properties: ['score' => 'ASC'])]
+#[ApiFilter(SearchFilter::class, properties: ['game' => 'exact'])]
+//? Route filtrée : https://localhost:8000/api/scores?order[score]=asc&game=25
 
 class Score
 {
@@ -23,6 +30,7 @@ class Score
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Groups('get:Games')]
     private ?int $score = null;
 
     #[ORM\ManyToOne(inversedBy: 'scores')]
