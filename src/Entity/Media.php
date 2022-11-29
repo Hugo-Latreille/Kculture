@@ -57,11 +57,11 @@ class Media
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['media:read'])]
+    #[Groups(['media:read', 'question:read'])]
     private ?int $id = null;
 
     #[ApiProperty(types: ['https://schema.org/contentUrl'])]
-    #[Groups(['media:read'])]
+    #[Groups(['media:read', 'question:read'])]
     public ?string $contentUrl = null;
 
     #[Vich\UploadableField(mapping: "media_object", fileNameProperty: "filePath")]
@@ -72,6 +72,7 @@ class Media
     private ?string $filePath = null;
 
     #[ORM\ManyToOne(inversedBy: 'media')]
+    #[Groups(['media:read'])]
     private ?Question $question = null;
 
     public function getId(): ?int

@@ -11,13 +11,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     paginationEnabled: false,
+    normalizationContext: ['groups' => ['question:read']]
 )]
 
 class Question
@@ -30,26 +31,33 @@ class Question
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['question:read'])]
     private ?string $question = null;
 
     #[ORM\Column]
+    #[Groups(['question:read'])]
     private ?int $level = null;
 
     #[ORM\Column]
+    #[Groups(['question:read'])]
     private ?int $timer = null;
 
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: UserAnswer::class, orphanRemoval: true)]
+    #[Groups(['question:read'])]
     private Collection $userAnswers;
 
     #[ORM\ManyToOne(inversedBy: 'questions')]
+    #[Groups(['question:read'])]
     private ?Answer $answer = null;
 
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: GameHasQuestions::class, orphanRemoval: true)]
+    #[Groups(['question:read'])]
     private Collection $gameHasQuestions;
 
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Media::class)]
     #[ORM\JoinColumn(nullable: true)]
     #[ApiProperty(types: ['https://schema.org/MediaObject'])]
+    #[Groups(['question:read'])]
     private Collection $media;
     // public ?Media $media = null;
 
