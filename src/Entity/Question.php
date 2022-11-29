@@ -18,7 +18,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     paginationEnabled: false,
-    normalizationContext: ['groups' => ['question:read']]
+    normalizationContext: ['groups' => ['question:read']],
+    // denormalizationContext:['groups' => ['question:write']]
 )]
 
 class Question
