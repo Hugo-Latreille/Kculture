@@ -52,6 +52,12 @@ class Game
     #[Groups('get:Games')]
     private Collection $gameHasQuestions;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $is_open = true;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $is_corrected = false;
+
 
     public function __construct()
     {
@@ -227,6 +233,30 @@ class Game
                 $gameHasQuestion->setGame(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIsOpen(): ?bool
+    {
+        return $this->is_open;
+    }
+
+    public function setIsOpen(?bool $is_open): self
+    {
+        $this->is_open = $is_open;
+
+        return $this;
+    }
+
+    public function isIsCorrected(): ?bool
+    {
+        return $this->is_corrected;
+    }
+
+    public function setIsCorrected(?bool $is_corrected): self
+    {
+        $this->is_corrected = $is_corrected;
 
         return $this;
     }
