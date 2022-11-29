@@ -48,8 +48,10 @@ class Question
     private Collection $gameHasQuestions;
 
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Media::class)]
-    #[ApiProperty(types: ['https://schema.org/image'])]
+    #[ORM\JoinColumn(nullable: true)]
+    #[ApiProperty(types: ['https://schema.org/MediaObject'])]
     private Collection $media;
+    // public ?Media $media = null;
 
 
     public function __construct()

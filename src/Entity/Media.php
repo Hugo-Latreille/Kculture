@@ -4,8 +4,10 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Controller\UploadFileController;
 use App\Repository\MediaRepository;
@@ -45,7 +47,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
                     ]
                 ]
             ]
-        )
+        ),
+        new Delete()
     ]
 )]
 
@@ -66,7 +69,6 @@ class Media
     public ?File $file = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(['media:read'])]
     private ?string $filePath = null;
 
     #[ORM\ManyToOne(inversedBy: 'media')]
