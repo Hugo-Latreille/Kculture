@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Api\UrlGeneratorInterface;
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
@@ -52,6 +55,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     ]
 )]
 
+
 class Media
 {
     #[ORM\Id]
@@ -62,6 +66,7 @@ class Media
 
     #[ApiProperty(types: ['https://schema.org/contentUrl'])]
     #[Groups(['media:read', 'question:read'])]
+    #[ApiFilter(SearchFilter::class, strategy: 'ipartial')]
     public ?string $contentUrl = null;
 
     #[Vich\UploadableField(mapping: "media_object", fileNameProperty: "filePath")]

@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Trait\TimestampableEntity;
 use App\Repository\AnswerRepository;
@@ -15,7 +18,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: AnswerRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
-    paginationEnabled: false
+    paginationEnabled: false,
+    normalizationContext: ['groups' => ['answer:read']],
 )]
 
 class Answer
@@ -25,14 +29,18 @@ class Answer
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['answer:read'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank]
-    #[Groups(['question:read'])]
+    #[Groups(['question:read', 'answer:read'])]
+    #[ApiProperty(types: ["http://schema.org/name"])]
+    #[ApiFilter(SearchFilter::class, strategy: 'ipartial')]
     private ?string $answer = null;
 
     #[ORM\OneToMany(mappedBy: 'answer', targetEntity: Question::class)]
+    #[Groups(['answer:read'])]
     private Collection $questions;
 
     public function __construct()

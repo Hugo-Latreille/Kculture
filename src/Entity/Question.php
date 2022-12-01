@@ -2,7 +2,8 @@
 
 namespace App\Entity;
 
-
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\ApiProperty;
 use App\Entity\Trait\TimestampableEntity;
@@ -30,11 +31,14 @@ class Question
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['question:read'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['question:read', 'get:GameHasQuestions'])]
+    #[Groups(['question:read', 'get:GameHasQuestions', 'answer:read', 'media:read'])]
     #[Assert\NotBlank]
+    #[ApiProperty(types: ["https://schema.org/name"])]
+    #[ApiFilter(SearchFilter::class, strategy: 'ipartial')]
     private ?string $question = null;
 
     #[ORM\Column]

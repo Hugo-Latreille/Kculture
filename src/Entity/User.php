@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
@@ -27,8 +28,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[
     ApiResource(
         paginationEnabled: false,
-        normalizationContext: ['groups' => ['get:Users']],
-        denormalizationContext: ['groups' => ['post:User']],
+        // normalizationContext: ['groups' => ['get:Users']],
+        // denormalizationContext: ['groups' => ['post:User']],
         processor: UserPasswordHasherProcessor::class
     )
 ]
@@ -39,7 +40,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 // #[Delete(security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource')]
 // #[Patch(security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource')]
 // #[Put(security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource')]
-
 
 
 
@@ -70,10 +70,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column(nullable: false)]
     #[Groups(['get:Users', 'post:User'])]
-    #[Assert\NotBlank]
+    #[Assert\Regex('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/')]
     private ?string $password = null;
 
     #[ORM\Column(length: 20, nullable: false)]
+    #[ApiProperty(types: ["https://schema.org/name"])]
     #[Groups(['get:Users', 'post:User'])]
     private ?string $pseudo = null;
 

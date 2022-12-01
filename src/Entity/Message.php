@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\GetCollection;
@@ -9,15 +10,15 @@ use App\Entity\Trait\TimestampableEntity;
 use App\Repository\MessageRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: MessageRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     paginationEnabled: false,
     // normalizationContext: ['groups' => ['test']]
-    denormalizationContext: ['groups' => ['write:Message']]
+    // denormalizationContext: ['groups' => ['write:Message']]
 )]
 
 #[ApiResource(
@@ -39,11 +40,12 @@ class Message
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups('get:Users')]
+    // #[Groups('get:Users')]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['get:Users', 'write:Message'])]
+    #[ApiProperty(types: ["https://schema.org/name"])]
+    #[Groups(['get:Users', 'write:Message', 'get:Games'])]
     #[Assert\NotBlank]
     private ?string $message = null;
 

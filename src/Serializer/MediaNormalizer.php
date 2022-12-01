@@ -33,8 +33,9 @@ final class MediaNormalizer implements ContextAwareNormalizerInterface, Normaliz
   {
     $context[self::ALREADY_CALLED] = true;
 
-    $object->contentUrl = $this->storage->resolveUri($object, 'file');
+    $object->contentUrl = 'https://localhost:8000' . $this->storage->resolveUri($object, 'file');
 
+    // dd($object->contentUrl);
 
     return $this->normalizer->normalize($object, $format, $context);
   }

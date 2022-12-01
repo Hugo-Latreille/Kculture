@@ -4,14 +4,17 @@ namespace App\Entity\Trait;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 trait TimestampableEntity
 {
 
   #[ORM\Column(type: Types::DATETIMETZ_MUTABLE)]
+  #[Groups(['answer:read', 'get:Users', 'media:read', 'question:read'])]
   private ?\DateTimeInterface $created_at = null;
 
   #[ORM\Column(type: Types::DATETIMETZ_MUTABLE)]
+  #[Groups(['answer:read', 'get:Users', 'media:read', 'question:read'])]
   private ?\DateTimeInterface $updated_at = null;
 
   public function getCreatedAt(): ?\DateTimeInterface
