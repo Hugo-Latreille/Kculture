@@ -8,6 +8,7 @@ use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Operations;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Patch;
 use App\Entity\Trait\TimestampableEntity;
@@ -30,9 +31,20 @@ use Symfony\Component\Serializer\Annotation\Groups;
         paginationEnabled: false,
         // normalizationContext: ['groups' => ['get:Users']],
         // denormalizationContext: ['groups' => ['post:User']],
-        processor: UserPasswordHasherProcessor::class
+        // processor: UserPasswordHasherProcessor::class,
+        operations: [
+            new Get(),
+            new GetCollection(),
+            new Post(processor: UserPasswordHasherProcessor::class),
+            new Delete(),
+            new Patch(),
+            new Put()
+        ]
+
     )
 ]
+
+
 //? TEST SECURITE : on accorde l'accès à l'admin/à l'utilisateur actuellement connecté uniquement pour son compte
 // #[GetCollection(security: "is_granted('ROLE_ADMIN')", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource')]
 // #[Get(security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource')]
@@ -93,7 +105,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Groups('get:Users')]
     private Collection $userAnswers;
 
-    #[ORM\OneToMany(mappedBy: 'userId', targetEntity: GameHasUser::class)]
+    #[ORM\OneToMany(mappedBy: 'userId', targetEntity: GameHasUser::class, orphanRemoval: true)]
     #[Groups('get:Users')]
     private Collection $game;
 
