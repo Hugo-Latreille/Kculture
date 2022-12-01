@@ -31,7 +31,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
         paginationEnabled: false,
         // normalizationContext: ['groups' => ['get:Users']],
         // denormalizationContext: ['groups' => ['post:User']],
-        // processor: UserPasswordHasherProcessor::class,
         operations: [
             new Get(),
             new GetCollection(),

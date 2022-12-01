@@ -41,7 +41,7 @@ trait TimestampableEntity
     return $this;
   }
 
-  // !TEST
+
   #[ORM\PrePersist]
   #[ORM\PreUpdate]
   public function updatedTimestamps()
