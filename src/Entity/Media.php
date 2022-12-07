@@ -21,6 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[Vich\Uploadable]
+#[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: MediaRepository::class)]
 #[ApiResource(
     paginationEnabled: false,

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Put;
@@ -11,6 +12,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Operations;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use App\Entity\Trait\TimestampableEntity;
 use App\Repository\UserRepository;
 use App\State\UserPasswordHasherProcessor;
@@ -36,12 +38,15 @@ use Symfony\Component\Serializer\Annotation\Groups;
             new GetCollection(),
             new Post(processor: UserPasswordHasherProcessor::class),
             new Delete(),
-            new Patch(),
-            new Put()
+            new Patch(processor: UserPasswordHasherProcessor::class),
+            new Put(processor: UserPasswordHasherProcessor::class)
         ]
 
     )
 ]
+
+#[ApiFilter(SearchFilter::class, properties: ['email' => 'exact'])]
+//? Route filtrée : https://localhost:8000/api/users?email=
 
 
 //? TEST SECURITE : on accorde l'accès à l'admin/à l'utilisateur actuellement connecté uniquement pour son compte
