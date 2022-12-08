@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Doctrine\Orm\Filter\BooleanFilter;
 use App\Entity\Trait\TimestampableEntity;
 use App\Repository\GameRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -18,6 +19,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
     paginationEnabled: false,
     normalizationContext: ['groups' => ['get:Games']]
 )]
+
+#[ApiFilter(BooleanFilter::class, properties: ['is_open'])]
+//? Route filtrée : https://localhost:8000/api/games?is_open=true
 
 class Game
 {

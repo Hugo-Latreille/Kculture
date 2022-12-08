@@ -37,10 +37,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
         operations: [
             new GetCollection(security: "is_granted('ROLE_USER')", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource'),
             new Get(security: "is_granted('ROLE_USER')", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource'),
-            new Post(processor: UserPasswordHasherProcessor::class),
+            new Post(processor: UserPasswordHasherProcessor::class, validationContext: ['groups' => ['postValidation']]),
             new Delete(security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource'),
             new Patch(processor: UserPasswordHasherProcessor::class, security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource'),
-            new Put(processor: UserPasswordHasherProcessor::class, security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource')
+            new Put(processor: UserPasswordHasherProcessor::class, security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource', validationContext: ['groups' => ['postValidation']])
         ]
 
     )
@@ -48,16 +48,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiFilter(SearchFilter::class, properties: ['email' => 'exact'])]
 //? Route filtrée : https://localhost:8000/api/users?email=
-
-
-//? TEST SECURITE : on accorde l'accès à l'admin/à l'utilisateur actuellement connecté uniquement pour son compte
-// #[GetCollection(security: "is_granted('ROLE_ADMIN')", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource')]
-// #[Get(security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource')]
-// #[Post]
-// #[Delete()]
-// #[Patch(security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource')]
-// #[Put(security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource')]
-
 
 
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -87,7 +77,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column(nullable: false)]
     #[Groups(['get:Users', 'post:User'])]
-    #[Assert\Regex('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/')]
+    #[Assert\Regex('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/', groups: ['postValidation'])]
     private ?string $password = null;
 
     #[ORM\Column(length: 20, nullable: false)]
