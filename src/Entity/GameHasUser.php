@@ -2,16 +2,27 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Link;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use App\Entity\Trait\TimestampableEntity;
 use App\Repository\GameHasUserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 #[ORM\Entity(repositoryClass: GameHasUserRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     paginationEnabled: false,
+    normalizationContext: ['groups' => ['get:GameHasUsers']],
 )]
+
+#[ApiFilter(SearchFilter::class, properties: ['game' => 'exact'])]
+//? Route filtrée : https://localhost:8000/api/game_has_users?game=
+
+
 
 class GameHasUser
 {
@@ -19,17 +30,21 @@ class GameHasUser
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['get:Games', 'get:GameHasUsers'])]
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Groups(['get:Games', 'get:GameHasUsers'])]
     private ?bool $is_game_master = null;
 
     #[ORM\ManyToOne(inversedBy: 'game')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['get:Games', 'get:GameHasUsers'])]
     private ?User $userId = null;
 
     #[ORM\ManyToOne(inversedBy: 'gameHasUsers')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['get:Games', 'get:GameHasUsers'])]
     private ?Game $game = null;
 
     public function getId(): ?int

@@ -13,6 +13,7 @@ use ApiPlatform\Metadata\Operations;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\Link;
 use App\Entity\Trait\TimestampableEntity;
 use App\Repository\UserRepository;
 use App\State\UserPasswordHasherProcessor;
@@ -39,7 +40,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
             new Get(security: "is_granted('ROLE_USER')", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource'),
             new Post(processor: UserPasswordHasherProcessor::class, validationContext: ['groups' => ['postValidation']]),
             new Delete(security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource'),
-            new Patch(processor: UserPasswordHasherProcessor::class, security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource'),
+            new Patch(security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource'),
             new Put(processor: UserPasswordHasherProcessor::class, security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource', validationContext: ['groups' => ['postValidation']])
         ]
 
@@ -48,6 +49,19 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiFilter(SearchFilter::class, properties: ['email' => 'exact'])]
 //? Route filtrée : https://localhost:8000/api/users?email=
+
+// //! subresource /game_has_users/{gameId}/users ou /userId/user
+// #[ApiResource(
+//     paginationEnabled: false,
+//     uriTemplate: '/game_has_users/{gameHasUserId}/user',
+//     uriVariables: [
+//         'gameHasUserId' => new Link(
+//             fromClass: GameHasUser::class,
+//             fromProperty: 'userId'
+//         )
+//     ],
+//     operations: [new GetCollection()]
+// )]
 
 
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -58,18 +72,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups('get:Users')]
+    #[Groups(['get:Users', 'get:GameHasUsers'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255, unique: true, nullable: false)]
-    #[Groups(['get:Users', 'post:User'])]
+    #[Groups(['get:Users', 'post:User', 'get:GameHasUsers'])]
     #[Assert\Email(
         message: 'L\'email {{ value }} n\'est pas valide.',
     )]
     private ?string $email = null;
 
     #[ORM\Column]
-    #[Groups(['get:Users', 'post:User'])]
+    #[Groups(['get:Users', 'post:User', 'get:GameHasUsers'])]
     private array $roles = [];
 
     /**
@@ -82,7 +96,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 20, nullable: false)]
     #[ApiProperty(types: ["https://schema.org/name"])]
-    #[Groups(['get:Users', 'post:User'])]
+    #[Groups(['get:Users', 'post:User', 'get:GameHasUsers'])]
     private ?string $pseudo = null;
 
     #[ORM\Column]
@@ -105,6 +119,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $game;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups('get:GameHasUsers')]
+
     private ?string $avatar = null;
 
     public function __construct()

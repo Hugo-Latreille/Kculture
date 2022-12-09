@@ -10,11 +10,11 @@ trait TimestampableEntity
 {
 
   #[ORM\Column(type: Types::DATETIMETZ_MUTABLE)]
-  #[Groups(['answer:read', 'get:Users', 'media:read', 'question:read'])]
+  #[Groups(['answer:read', 'get:Users', 'media:read', 'question:read', "get:GameHasUsers"])]
   private ?\DateTimeInterface $created_at = null;
 
   #[ORM\Column(type: Types::DATETIMETZ_MUTABLE)]
-  #[Groups(['answer:read', 'get:Users', 'media:read', 'question:read'])]
+  #[Groups(['answer:read', 'get:Users', 'media:read', 'question:read', "get:GameHasUsers"])]
   private ?\DateTimeInterface $updated_at = null;
 
   public function getCreatedAt(): ?\DateTimeInterface

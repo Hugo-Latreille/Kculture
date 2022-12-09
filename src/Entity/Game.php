@@ -30,7 +30,7 @@ class Game
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['get:Games', 'get:GameHasQuestions'])]
+    #[Groups(['get:Games', 'get:GameHasQuestions', 'get:GameHasUsers'])]
     private ?int $id = null;
 
     #[ORM\OneToMany(mappedBy: 'game', targetEntity: Message::class, orphanRemoval: true)]
