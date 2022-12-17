@@ -15,9 +15,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     paginationEnabled: false,
+    normalizationContext: ['groups' => ['get:Scores']]
 )]
-#[ApiFilter(OrderFilter::class, properties: ['score' => 'ASC'])]
-#[ApiFilter(SearchFilter::class, properties: ['game' => 'exact'])]
+#[ApiFilter(OrderFilter::class, properties: ['score' => 'DESC'])]
+#[ApiFilter(SearchFilter::class, properties: ['game' => 'exact', "userId" => "exact"])]
 //? Route filtrée : https://localhost:8000/api/scores?order[score]=asc&game=25
 
 class Score
@@ -27,14 +28,16 @@ class Score
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['get:Scores'])]
     private ?int $id = null;
 
     #[ORM\Column]
-    #[Groups('get:Games')]
+    #[Groups(['get:Games', 'get:Scores'])]
     private ?int $score = null;
 
     #[ORM\ManyToOne(inversedBy: 'scores')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['get:Scores'])]
     private ?User $userId = null;
 
     #[ORM\ManyToOne(inversedBy: 'scores')]

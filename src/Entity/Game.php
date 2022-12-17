@@ -42,15 +42,15 @@ class Game
     private Collection $scores;
 
     #[ORM\OneToMany(mappedBy: 'game', targetEntity: UserAnswer::class, orphanRemoval: true)]
-    #[Groups('get:Games')]
+    #[Groups(['get:Games', 'get:GameHasUsers', 'get:GameHasQuestions'])]
     private Collection $userAnswers;
 
     #[ORM\OneToMany(mappedBy: 'game', targetEntity: GameHasUser::class)]
-    #[Groups('get:Games')]
+    #[Groups('get:Games', 'get:GameHasQuestions')]
     private Collection $gameHasUsers;
 
     #[ORM\OneToMany(mappedBy: 'game', targetEntity: GameHasQuestions::class, orphanRemoval: true)]
-    #[Groups('get:Games')]
+    #[Groups(['get:Games', 'get:GameHasUsers'])]
     private Collection $gameHasQuestions;
 
     #[ORM\Column(nullable: true)]

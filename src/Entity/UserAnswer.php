@@ -15,6 +15,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     paginationEnabled: false,
+    normalizationContext: ['groups' => ['get:userAnswers']]
 )]
 #[ApiFilter(SearchFilter::class, properties: ['userId' => 'exact', 'question' => 'exact', 'game' => 'exact'])]
 //? Route filtrée : https://localhost:8000/api/user_answers?userId=25&question=44&game=11
@@ -26,22 +27,25 @@ class UserAnswer
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['get:userAnswers'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['question:read'])]
+    #[Groups(['question:read', 'get:userAnswers'])]
     private ?string $answer = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['get:userAnswers'])]
     private ?bool $is_true = null;
 
     #[ORM\ManyToOne(inversedBy: 'userAnswers')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['question:read'])]
+    #[Groups(['question:read', 'get:userAnswers'])]
     private ?User $userId = null;
 
     #[ORM\ManyToOne(inversedBy: 'userAnswers')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['question:read'])]
     private ?Question $question = null;
 
     #[ORM\ManyToOne(inversedBy: 'userAnswers')]

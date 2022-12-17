@@ -34,7 +34,7 @@ class Answer
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank]
-    #[Groups(['question:read', 'answer:read'])]
+    #[Groups(['question:read', 'answer:read', 'get:GameHasQuestions'])]
     #[ApiProperty(types: ["http://schema.org/name"])]
     #[ApiFilter(SearchFilter::class, strategy: 'ipartial')]
     private ?string $answer = null;

@@ -30,16 +30,16 @@ class GameHasUser
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['get:Games', 'get:GameHasUsers'])]
+    #[Groups(['get:Games', 'get:GameHasUsers', 'get:GameHasQuestions'])]
     private ?int $id = null;
 
     #[ORM\Column]
-    #[Groups(['get:Games', 'get:GameHasUsers'])]
+    #[Groups(['get:Games', 'get:GameHasUsers', 'get:GameHasQuestions'])]
     private ?bool $is_game_master = null;
 
     #[ORM\ManyToOne(inversedBy: 'game')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['get:Games', 'get:GameHasUsers'])]
+    #[Groups(['get:Games', 'get:GameHasUsers', 'get:GameHasQuestions'])]
     private ?User $userId = null;
 
     #[ORM\ManyToOne(inversedBy: 'gameHasUsers')]

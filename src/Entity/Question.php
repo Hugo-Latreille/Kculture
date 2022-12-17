@@ -31,7 +31,7 @@ class Question
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['question:read'])]
+    #[Groups(['question:read', 'get:GameHasQuestions'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -42,12 +42,12 @@ class Question
     private ?string $question = null;
 
     #[ORM\Column]
-    #[Groups(['question:read'])]
+    #[Groups(['question:read', 'get:GameHasQuestions'])]
     #[Assert\NotBlank]
     private ?int $level = null;
 
     #[ORM\Column]
-    #[Groups(['question:read'])]
+    #[Groups(['question:read', 'get:GameHasQuestions'])]
     #[Assert\NotBlank]
     private ?int $timer = null;
 
@@ -56,7 +56,7 @@ class Question
     private Collection $userAnswers;
 
     #[ORM\ManyToOne(inversedBy: 'questions')]
-    #[Groups(['question:read'])]
+    #[Groups(['question:read', 'get:GameHasQuestions'])]
     private ?Answer $answer = null;
 
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: GameHasQuestions::class, orphanRemoval: true)]
@@ -66,7 +66,7 @@ class Question
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Media::class)]
     #[ORM\JoinColumn(nullable: true)]
     #[ApiProperty(types: ['https://schema.org/MediaObject'])]
-    #[Groups(['question:read'])]
+    #[Groups(['question:read', 'get:GameHasQuestions'])]
     private Collection $media;
     // public ?Media $media = null;
 

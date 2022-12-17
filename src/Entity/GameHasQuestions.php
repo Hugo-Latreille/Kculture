@@ -30,12 +30,12 @@ class GameHasQuestions
 
     #[ORM\ManyToOne(inversedBy: 'gameHasQuestions')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups('get:GameHasQuestions')]
+    #[Groups(['get:GameHasQuestions', 'get:GameHasUsers'])]
     private ?Game $game = null;
 
     #[ORM\ManyToOne(inversedBy: 'gameHasQuestions')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups('get:GameHasQuestions')]
+    #[Groups(['get:GameHasQuestions', 'get:GameHasUsers'])]
     private ?Question $question = null;
 
     public function getId(): ?int

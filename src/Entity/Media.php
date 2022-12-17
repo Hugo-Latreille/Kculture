@@ -70,7 +70,7 @@ class Media
     private ?int $id = null;
 
     #[ApiProperty(types: ['https://schema.org/contentUrl'])]
-    #[Groups(['media:read', 'question:read'])]
+    #[Groups(['media:read', 'question:read', 'get:GameHasQuestions'])]
     #[ApiFilter(SearchFilter::class, strategy: 'ipartial')]
     public ?string $contentUrl = null;
 
