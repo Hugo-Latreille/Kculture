@@ -22,6 +22,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 )]
 
 #[ApiResource(
+    mercure: true,
     paginationEnabled: false,
     uriTemplate: '/user/{id}/messages',
     uriVariables: [
