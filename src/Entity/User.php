@@ -40,7 +40,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
             new Get(security: "is_granted('ROLE_USER')", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource'),
             new Post(processor: UserPasswordHasherProcessor::class, validationContext: ['groups' => ['postValidation']]),
             new Delete(security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource'),
-            new Patch(security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource'),
+            new Patch(processor: UserPasswordHasherProcessor::class, security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource'),
             new Put(processor: UserPasswordHasherProcessor::class, security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource', validationContext: ['groups' => ['postValidation']])
         ]
 
@@ -91,8 +91,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column(nullable: false)]
     #[Groups(['get:Users', 'post:User'])]
-    #[Assert\Regex('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/', groups: ['postValidation'])]
     private ?string $password = null;
+
+    #[Assert\Regex('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/', groups: ['postValidation'])]
+    // #[Groups(['get:Users', 'post:User'])]
+    private ?string $plainPassword = null;
 
     #[ORM\Column(length: 20, nullable: false)]
     #[ApiProperty(types: ["https://schema.org/name"])]
@@ -191,13 +194,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(?string $painPassword): self
+    {
+        $this->plainPassword = $painPassword;
+
+        return $this;
+    }
+
+
+
+
     /**
      * @see UserInterface
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        $this->plainPassword = null;
     }
 
     public function getPseudo(): ?string

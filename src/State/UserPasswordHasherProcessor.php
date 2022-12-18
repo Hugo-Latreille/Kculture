@@ -6,29 +6,25 @@ use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class UserPasswordHasherProcessor implements ProcessorInterface
+final class UserPasswordHasherProcessor implements ProcessorInterface
 {
-
-    public function __construct(private ProcessorInterface $persistProcessor, UserPasswordHasherInterface $passwordHasher)
+    public function __construct(private readonly ProcessorInterface $processor, private readonly UserPasswordHasherInterface $passwordHasher)
     {
-        $this->persistProcessor = $persistProcessor;
-        $this->passwordHasher = $passwordHasher;
     }
 
-
-    public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = [])
+    public function process($data, Operation $operation, array $uriVariables = [], array $context = [])
     {
-        if (!$data->getPassword()) {
-            return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
+        if (!$data->getPlainPassword()) {
+            return $this->processor->process($data, $operation, $uriVariables, $context);
         }
 
         $hashedPassword = $this->passwordHasher->hashPassword(
             $data,
-            $data->getPassword()
+            $data->getPlainPassword()
         );
         $data->setPassword($hashedPassword);
-        // $data->eraseCredentials();
+        $data->eraseCredentials();
 
-        return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
+        return $this->processor->process($data, $operation, $uriVariables, $context);
     }
 }

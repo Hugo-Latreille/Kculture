@@ -20,7 +20,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     normalizationContext: ['groups' => ['get:Games']]
 )]
 
-#[ApiFilter(BooleanFilter::class, properties: ['is_open'])]
+#[ApiFilter(BooleanFilter::class, properties: ['is_open', 'is_corrected'])]
 //? Route filtrée : https://localhost:8000/api/games?is_open=true
 
 class Game
@@ -58,7 +58,7 @@ class Game
     private ?bool $is_open = true;
 
     #[ORM\Column(nullable: true)]
-    #[Groups('get:Games')]
+    #[Groups(['get:Games', 'get:GameHasUsers'])]
     private ?bool $is_corrected = false;
 
 

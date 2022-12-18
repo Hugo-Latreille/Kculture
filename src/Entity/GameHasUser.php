@@ -19,7 +19,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     normalizationContext: ['groups' => ['get:GameHasUsers']],
 )]
 
-#[ApiFilter(SearchFilter::class, properties: ['game' => 'exact'])]
+#[ApiFilter(SearchFilter::class, properties: ['game' => 'exact', 'userId' => 'exact'])]
 //? Route filtrée : https://localhost:8000/api/game_has_users?game=
 
 

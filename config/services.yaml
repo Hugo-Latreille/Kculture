@@ -22,7 +22,7 @@ services:
 
   App\State\UserPasswordHasherProcessor:
     bind:
-      $persistProcessor: "@api_platform.doctrine.orm.state.persist_processor"
+      $processor: "@api_platform.doctrine.orm.state.persist_processor"
 
   App\OpenApi\JwtDecorator:
     decorates: "api_platform.openapi.factory"
