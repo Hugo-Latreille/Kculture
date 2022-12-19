@@ -72,7 +72,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['get:Users', 'get:GameHasUsers', 'get:userAnswers', 'get:Scores'])]
+    #[Groups(['get:Users', 'get:GameHasUsers', 'get:userAnswers', 'get:Scores', 'get:Messages'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255, unique: true, nullable: false)]
@@ -99,7 +99,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 20, nullable: false)]
     #[ApiProperty(types: ["https://schema.org/name"])]
-    #[Groups(['get:Users', 'post:User', 'get:GameHasUsers', 'get:userAnswers', 'get:Scores'])]
+    #[Groups(['get:Users', 'post:User', 'get:GameHasUsers', 'get:userAnswers', 'get:Scores', 'get:Messages'])]
     private ?string $pseudo = null;
 
     #[ORM\Column]
@@ -122,7 +122,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $game;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    #[Groups(['get:GameHasUsers', 'get:userAnswers', 'get:Scores'])]
+    #[Groups(['get:GameHasUsers', 'get:userAnswers', 'get:Scores', 'get:Messages'])]
     private ?string $avatar = null;
 
     public function __construct()

@@ -14,6 +14,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: UserAnswerRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
+    mercure: true,
     paginationEnabled: false,
     normalizationContext: ['groups' => ['get:userAnswers']]
 )]
