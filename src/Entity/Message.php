@@ -16,13 +16,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: MessageRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
+    mercure: true,
     paginationEnabled: false,
     // normalizationContext: ['groups' => ['test']]
     // denormalizationContext: ['groups' => ['write:Message']]
 )]
 
 #[ApiResource(
-    mercure: true,
     paginationEnabled: false,
     uriTemplate: '/user/{id}/messages',
     uriVariables: [

@@ -3,15 +3,23 @@
 		"BIGSERIAL",
 		"gesdinet",
 		"hashers",
+		"healthz",
 		"inversed",
 		"ipartial",
 		"lexik",
 		"MINVALUE",
 		"Origname",
 		"plpgsql",
+		"redir",
 		"Timestampable",
 		"uniqueid",
 		"vich"
 	],
-	"cSpell.ignoreWords": ["Denormalizer", "Hasher", "denormalize", "openapi"]
+	"cSpell.ignoreWords": [
+		"Denormalizer",
+		"Hasher",
+		"denormalize",
+		"openapi",
+		"zstd"
+	]
 }
