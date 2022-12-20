@@ -126,6 +126,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Groups(['get:GameHasUsers', 'get:userAnswers', 'get:Scores', 'get:Messages'])]
     private ?string $avatar = null;
 
+    #[ORM\Column]
+    private ?bool $is_verified = false;
+
     public function __construct()
     {
         $this->message = new ArrayCollection();
@@ -371,6 +374,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function isIsVerified(): ?bool
+    {
+        return $this->is_verified;
+    }
+
+    public function setIsVerified(bool $is_verified): self
+    {
+        $this->is_verified = $is_verified;
 
         return $this;
     }
