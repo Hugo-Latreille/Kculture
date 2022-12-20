@@ -24,6 +24,11 @@ services:
     bind:
       $processor: "@api_platform.doctrine.orm.state.persist_processor"
 
+  App\State\UserMailerProcessor:
+    bind:
+      $processor: "@api_platform.doctrine.orm.state.persist_processor"
+      $removeProcessor: "@api_platform.doctrine.orm.state.remove_processor"
+
   App\OpenApi\JwtDecorator:
     decorates: "api_platform.openapi.factory"
     arguments: ["@.inner"]

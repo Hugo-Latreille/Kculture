@@ -16,6 +16,7 @@ use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Metadata\Link;
 use App\Entity\Trait\TimestampableEntity;
 use App\Repository\UserRepository;
+use App\State\UserMailerProcessor;
 use App\State\UserPasswordHasherProcessor;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -38,7 +39,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
         operations: [
             new GetCollection(security: "is_granted('ROLE_USER')", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource'),
             new Get(security: "is_granted('ROLE_USER')", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource'),
-            new Post(processor: UserPasswordHasherProcessor::class, validationContext: ['groups' => ['postValidation']]),
+            new Post(processor: UserMailerProcessor::class, validationContext: ['groups' => ['postValidation']]),
             new Delete(security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource'),
             new Patch(processor: UserPasswordHasherProcessor::class, security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource'),
             new Put(processor: UserPasswordHasherProcessor::class, security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource', validationContext: ['groups' => ['postValidation']])
