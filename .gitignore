@@ -6,6 +6,7 @@
 /public/bundles/
 /var/
 /vendor/
+.mercure.db
 
 ###< symfony/framework-bundle ###
 
