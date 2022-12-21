@@ -1,0 +1,5 @@
+api_platform:
+  #   show_webby: false
+  resource: .
+  type: api_platform
+  prefix: /api

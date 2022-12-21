@@ -1,0 +1,15 @@
+<h1>Bonjour
+	{{ username }}!</h1>
+
+<p>
+	Vous venez de vous inscrire à QuaziQuiz avec l'email suivant:
+</p>
+<p>
+	<code>{{ email.to[0].address }}</code>
+</p>
+<p>Veuillez valider votre inscription en cliquant sur le lien suivant:
+</p>
+<p>
+	<a href="{{ absolute_url(path('verify_user', {token: token})) }}">{{ absolute_url(path('verify_user', {token: token})) }}</a>
+</p>
+<p>Ce lien expirera dans trois heures.</p>
