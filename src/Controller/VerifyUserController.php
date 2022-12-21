@@ -32,7 +32,7 @@ class VerifyUserController extends AbstractController
       if ($user && !$user->isIsVerified()) {
         $user->setIsVerified(true);
         $em->flush($user);
-        return new RedirectResponse('http://localhost:5173/login');
+        return new RedirectResponse('http://localhost:5174/login');
       }
     }
     // Ici un problème se pose dans le token
