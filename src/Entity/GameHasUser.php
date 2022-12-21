@@ -15,6 +15,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: GameHasUserRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
+    mercure: true,
     paginationEnabled: false,
     normalizationContext: ['groups' => ['get:GameHasUsers']],
 )]

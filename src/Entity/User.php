@@ -16,6 +16,7 @@ use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Metadata\Link;
 use App\Entity\Trait\TimestampableEntity;
 use App\Repository\UserRepository;
+use App\State\UserMailerProcessor;
 use App\State\UserPasswordHasherProcessor;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -38,7 +39,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
         operations: [
             new GetCollection(security: "is_granted('ROLE_USER')", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource'),
             new Get(security: "is_granted('ROLE_USER')", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource'),
-            new Post(processor: UserPasswordHasherProcessor::class, validationContext: ['groups' => ['postValidation']]),
+            new Post(processor: UserMailerProcessor::class, validationContext: ['groups' => ['postValidation']]),
             new Delete(security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource'),
             new Patch(processor: UserPasswordHasherProcessor::class, security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource'),
             new Put(processor: UserPasswordHasherProcessor::class, security: "is_granted('ROLE_ADMIN') or object == user", securityMessage: 'Seuls les ADMINS peuvent accéder à cette ressource', validationContext: ['groups' => ['postValidation']])
@@ -72,7 +73,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['get:Users', 'get:GameHasUsers', 'get:userAnswers', 'get:Scores'])]
+    #[Groups(['get:Users', 'get:GameHasUsers', 'get:userAnswers', 'get:Scores', 'get:Messages'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255, unique: true, nullable: false)]
@@ -99,7 +100,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 20, nullable: false)]
     #[ApiProperty(types: ["https://schema.org/name"])]
-    #[Groups(['get:Users', 'post:User', 'get:GameHasUsers', 'get:userAnswers', 'get:Scores'])]
+    #[Groups(['get:Users', 'post:User', 'get:GameHasUsers', 'get:userAnswers', 'get:Scores', 'get:Messages'])]
     private ?string $pseudo = null;
 
     #[ORM\Column]
@@ -122,8 +123,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $game;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    #[Groups(['get:GameHasUsers', 'get:userAnswers', 'get:Scores'])]
+    #[Groups(['get:GameHasUsers', 'get:userAnswers', 'get:Scores', 'get:Messages'])]
     private ?string $avatar = null;
+
+    #[ORM\Column]
+    private ?bool $is_verified = false;
 
     public function __construct()
     {
@@ -370,6 +374,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function isIsVerified(): ?bool
+    {
+        return $this->is_verified;
+    }
+
+    public function setIsVerified(bool $is_verified): self
+    {
+        $this->is_verified = $is_verified;
 
         return $this;
     }
