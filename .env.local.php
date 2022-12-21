@@ -11,7 +11,7 @@ return array(
   'JWT_PUBLIC_KEY' => '%kernel.project_dir%/config/jwt/public.pem',
   'JWT_PASSPHRASE' => '',
   'MERCURE_URL' => '	https://n1f0rt.stackhero-network.com/.well-known/mercure',
-  'MERCURE_PUBLIC_URL' => '	https://n1f0rt.stackhero-network.com',
+  'MERCURE_PUBLIC_URL' => '	https://n1f0rt.stackhero-network.com/.well-known/mercure',
   'MERCURE_JWT_SECRET' => '!ChangeMenfsdnfosdSDFSDfojfnze56448949sdfsdfZEFzepklf54984!',
   'MAILER_DSN' => 'gmail://hugo.latreille%40gmail.com:tcqafasbdqylnwdr@default',
   'DATABASE_URL' => 'postgresql://quasiquiz:quasiquiz@localhost:5432/quasiquiz?serverVersion=15&charset=utf8',
