@@ -8,6 +8,7 @@
 /var/
 /vendor/
 /mercure/
+/mercure/mercure.db
 
 
 ###< symfony/framework-bundle ###
