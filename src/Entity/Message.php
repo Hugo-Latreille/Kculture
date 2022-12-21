@@ -62,7 +62,7 @@ class Message
 
     #[ORM\ManyToOne(inversedBy: 'messages')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['get:Users', 'write:Message'])]
+    #[Groups(['get:Users', 'write:Message', 'get:Messages'])]
     private ?Game $game = null;
 
 

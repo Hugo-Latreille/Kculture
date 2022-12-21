@@ -35,12 +35,12 @@ class GameHasUser
     private ?int $id = null;
 
     #[ORM\Column]
-    #[Groups(['get:Games', 'get:GameHasUsers', 'get:GameHasQuestions'])]
+    #[Groups(['get:Games', 'get:GameHasUsers', 'get:GameHasQuestions', 'get:Messages'])]
     private ?bool $is_game_master = null;
 
     #[ORM\ManyToOne(inversedBy: 'game')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['get:Games', 'get:GameHasUsers', 'get:GameHasQuestions'])]
+    #[Groups(['get:Games', 'get:GameHasUsers', 'get:GameHasQuestions', 'get:Messages'])]
     private ?User $userId = null;
 
     #[ORM\ManyToOne(inversedBy: 'gameHasUsers')]

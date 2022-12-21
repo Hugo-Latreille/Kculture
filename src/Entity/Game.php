@@ -47,7 +47,7 @@ class Game
     private Collection $userAnswers;
 
     #[ORM\OneToMany(mappedBy: 'game', targetEntity: GameHasUser::class)]
-    #[Groups('get:Games', 'get:GameHasQuestions')]
+    #[Groups(['get:Games', 'get:GameHasQuestions', 'get:Messages'])]
     private Collection $gameHasUsers;
 
     #[ORM\OneToMany(mappedBy: 'game', targetEntity: GameHasQuestions::class, orphanRemoval: true)]
