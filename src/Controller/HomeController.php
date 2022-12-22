@@ -13,14 +13,4 @@ class HomeController extends AbstractController
     {
         return $this->redirect('/api');
     }
-
-    // #[Route('/', name: 'app_home')]
-    // public function index(): Response
-    // {
-    //     $projectDir = $this->getParameter('kernel.project_dir');
-    //     $absolutePath = $projectDir . '/public/index.html';
-
-
-    //     return $this->render($absolutePath);
-    // }
 }
