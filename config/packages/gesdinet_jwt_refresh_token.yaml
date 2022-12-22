@@ -4,9 +4,9 @@ gesdinet_jwt_refresh_token:
   ttl: 2592000
   cookie:
     enabled: true
-    same_site: lax # default value
+    same_site: none # default value
     path: / # default value
-    domain: null # default value
+    # domain: null # default value
     http_only: true # default value
-    # secure: true # default value
+    secure: true # default value
     remove_token_from_body: true # def
