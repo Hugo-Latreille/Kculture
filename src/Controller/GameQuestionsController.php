@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class GameQuestionsController extends AbstractController
 {
     #[Route('/game/{GameId<\d+>}/questions/{nbrOfQuestions<\d+>}', name: 'app_game_questions')]
-    public function test(ManagerRegistry $doctrine, int $GameId, int $nbrOfQuestions = 3): Response
+    public function test(ManagerRegistry $doctrine, int $GameId, int $nbrOfQuestions = 11): Response
     {
         $entityManager = $doctrine->getManager();
         $game = $doctrine->getRepository(Game::class)->find($GameId);
