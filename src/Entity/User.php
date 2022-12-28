@@ -33,6 +33,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\HasLifecycleCallbacks]
 #[
     ApiResource(
+        mercure: true,
         paginationEnabled: false,
         // normalizationContext: ['groups' => ['get:Users']],
         // denormalizationContext: ['groups' => ['post:User']],
