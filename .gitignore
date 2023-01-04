@@ -2,11 +2,11 @@
 /.env.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
-/public/media/
 /var/
 /vendor/
 /mercure/
 /mercure/mercure.db
+/public/media
 
 
 ###< symfony/framework-bundle ###

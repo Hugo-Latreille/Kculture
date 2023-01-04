@@ -1,0 +1,877 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.7
+-- https://www.phpmyadmin.net/
+--
+-- Hôte : localhost:3306
+-- Généré le : mer. 04 jan. 2023 à 11:44
+-- Version du serveur :  10.6.11-MariaDB
+-- Version de PHP : 7.4.33
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données : `rikv4208_quasiquiz`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `answer`
+--
+
+CREATE TABLE `answer` (
+  `id` int(11) NOT NULL,
+  `answer` longtext NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `answer`
+--
+
+INSERT INTO `answer` (`id`, `answer`, `created_at`, `updated_at`) VALUES
+(1, 'Bruxelles', '2022-12-23 16:02:25', '2022-12-23 16:02:25'),
+(2, 'Vrai', '2022-12-23 16:02:33', '2022-12-23 16:02:33'),
+(3, 'Un cachalot', '2022-12-23 16:02:45', '2022-12-23 16:02:45'),
+(4, 'Le volcan de Tambora (1815)', '2022-12-23 16:04:01', '2022-12-23 16:04:01'),
+(5, 'La voiture DE Julie', '2022-12-23 16:04:09', '2022-12-23 16:04:09'),
+(6, 'Bien sûr, bien sûr', '2022-12-23 16:04:23', '2022-12-23 16:04:23'),
+(7, 'Jean-Pierre Michaël ( Johnny Depp, Brad Pitt, Keanue Reeves, Christian Bale, …)', '2022-12-23 16:04:47', '2022-12-23 16:04:47'),
+(8, 'Edvard Munch', '2022-12-23 16:04:53', '2022-12-23 16:04:53'),
+(9, 'Le Pape François', '2022-12-23 16:05:10', '2022-12-23 16:05:10'),
+(10, 'Un Blobfish', '2022-12-23 17:34:11', '2022-12-23 17:34:11'),
+(11, 'Le monde de Ralph', '2022-12-23 17:39:58', '2022-12-23 17:39:58'),
+(12, 'Un petit fien.', '2022-12-24 07:16:14', '2022-12-24 07:16:14'),
+(13, 'Jonathan', '2022-12-24 07:16:24', '2022-12-24 07:16:24'),
+(14, 'L\'hymne national Suisse', '2022-12-26 09:29:50', '2022-12-26 09:29:50'),
+(15, 'Un éléphant rose !', '2022-12-26 09:51:45', '2023-01-03 15:13:05'),
+(16, 'Le chiffre 8', '2022-12-26 09:53:22', '2022-12-26 09:53:22'),
+(17, 'Amazon', '2023-01-03 15:12:31', '2023-01-03 15:12:31');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `doctrine_migration_versions`
+--
+
+CREATE TABLE `doctrine_migration_versions` (
+  `version` varchar(191) NOT NULL,
+  `executed_at` datetime DEFAULT NULL,
+  `execution_time` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+
+--
+-- Déchargement des données de la table `doctrine_migration_versions`
+--
+
+INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
+('DoctrineMigrations\\Version20221223100654', '2022-12-23 10:53:37', 703);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `game`
+--
+
+CREATE TABLE `game` (
+  `id` int(11) NOT NULL,
+  `is_open` tinyint(1) DEFAULT NULL,
+  `is_corrected` tinyint(1) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `game`
+--
+
+INSERT INTO `game` (`id`, `is_open`, `is_corrected`, `created_at`, `updated_at`) VALUES
+(1, 0, 0, '2022-12-23 11:16:11', '2022-12-23 15:34:12'),
+(2, 0, 0, '2022-12-23 16:08:56', '2022-12-23 16:09:01'),
+(3, 0, 1, '2022-12-23 16:30:49', '2022-12-23 16:58:49'),
+(4, 0, 0, '2022-12-23 17:03:15', '2022-12-23 21:12:30'),
+(5, 0, 1, '2022-12-23 21:16:39', '2022-12-23 21:18:36'),
+(6, 0, 0, '2022-12-23 21:20:45', '2022-12-23 21:20:49'),
+(7, 0, 0, '2022-12-23 21:22:51', '2022-12-23 21:22:57'),
+(8, 0, 0, '2022-12-24 08:14:52', '2022-12-24 08:23:26'),
+(9, 0, 1, '2022-12-24 09:21:35', '2022-12-24 09:27:43'),
+(10, 0, 0, '2022-12-24 10:28:13', '2022-12-24 10:28:20'),
+(11, 0, 0, '2022-12-24 13:10:59', '2022-12-26 09:54:28'),
+(12, 0, 0, '2022-12-26 10:33:32', '2022-12-26 16:22:00'),
+(13, 0, 0, '2022-12-26 16:22:58', '2022-12-26 16:23:02'),
+(14, 0, 0, '2022-12-26 16:23:07', '2022-12-26 16:26:27'),
+(15, 0, 0, '2022-12-26 16:27:38', '2022-12-26 16:42:19'),
+(16, 0, 1, '2022-12-26 17:56:19', '2022-12-26 18:03:26'),
+(17, 0, 0, '2022-12-26 18:41:19', '2022-12-26 18:41:33'),
+(18, 0, 0, '2022-12-26 19:00:43', '2022-12-26 19:00:56'),
+(19, 0, 1, '2022-12-26 20:38:47', '2022-12-26 21:32:55'),
+(20, 0, 1, '2022-12-27 07:17:33', '2022-12-27 07:32:12'),
+(21, 0, 0, '2022-12-27 07:38:54', '2022-12-27 09:45:09'),
+(22, 0, 0, '2022-12-27 09:45:15', '2022-12-27 09:46:53'),
+(23, 0, 0, '2022-12-27 09:47:58', '2022-12-27 09:48:18'),
+(24, 0, 0, '2022-12-27 09:48:36', '2022-12-27 10:02:36'),
+(25, 0, 0, '2022-12-27 10:12:47', '2022-12-27 10:12:55'),
+(26, 0, 0, '2022-12-27 11:07:12', '2022-12-27 11:07:19'),
+(27, 0, 0, '2022-12-27 11:45:25', '2022-12-27 11:45:25'),
+(28, 0, 1, '2022-12-27 12:05:04', '2022-12-27 12:08:34'),
+(29, 0, 1, '2022-12-27 12:30:11', '2022-12-27 12:43:34'),
+(30, 0, 1, '2022-12-27 14:08:20', '2022-12-27 14:09:42'),
+(31, 0, 0, '2022-12-27 14:14:37', '2022-12-27 14:14:37'),
+(32, 0, 0, '2022-12-27 14:17:09', '2022-12-27 14:17:09'),
+(33, 0, 0, '2022-12-27 14:19:22', '2022-12-27 14:19:22'),
+(34, 0, 0, '2022-12-27 14:21:44', '2022-12-27 14:21:44'),
+(35, 0, 0, '2022-12-27 14:32:03', '2022-12-27 14:32:03'),
+(36, 0, 0, '2022-12-27 14:33:11', '2022-12-27 14:33:11'),
+(37, 0, 0, '2022-12-27 14:35:47', '2022-12-27 14:35:47'),
+(38, 0, 0, '2022-12-27 14:42:09', '2022-12-27 14:42:09'),
+(39, 0, 0, '2022-12-27 14:42:58', '2022-12-27 14:42:58'),
+(40, 0, 0, '2022-12-27 15:04:29', '2022-12-27 15:04:29'),
+(41, 0, 1, '2022-12-27 15:08:06', '2022-12-27 15:11:03'),
+(42, 0, 0, '2022-12-27 15:15:06', '2022-12-27 15:15:06'),
+(43, 0, 1, '2022-12-27 19:09:34', '2022-12-27 19:16:47'),
+(44, 0, 1, '2022-12-27 20:34:06', '2022-12-27 20:44:43'),
+(45, 0, 1, '2022-12-27 20:44:55', '2022-12-27 20:47:58'),
+(46, 0, 1, '2022-12-27 20:49:23', '2022-12-27 20:52:47'),
+(47, 0, 0, '2022-12-27 20:52:52', '2022-12-27 20:53:05'),
+(50, 0, 0, '2022-12-28 08:17:00', '2022-12-28 08:23:13'),
+(51, 0, 0, '2022-12-28 08:58:41', '2022-12-28 08:58:41'),
+(52, 0, 0, '2022-12-28 10:56:31', '2022-12-28 10:56:31'),
+(53, 0, 0, '2022-12-28 10:59:22', '2022-12-28 10:59:22'),
+(54, 0, 0, '2022-12-28 11:01:30', '2022-12-28 11:01:30'),
+(55, 0, 0, '2022-12-28 11:04:20', '2022-12-28 11:04:20'),
+(56, 0, 1, '2022-12-28 11:21:13', '2022-12-28 11:24:53'),
+(57, 0, 0, '2022-12-28 13:41:26', '2022-12-28 13:41:26'),
+(58, 0, 0, '2022-12-30 14:28:49', '2022-12-30 14:28:49'),
+(59, 0, 1, '2022-12-30 14:30:26', '2022-12-30 14:38:49'),
+(66, 0, 0, '2022-12-30 16:38:04', '2022-12-30 16:39:31'),
+(67, 0, 0, '2022-12-30 16:55:22', '2022-12-30 16:55:22'),
+(68, 0, 0, '2023-01-02 08:53:36', '2023-01-02 08:53:36'),
+(69, 0, 0, '2023-01-02 18:36:31', '2023-01-02 18:36:31'),
+(71, 0, 0, '2023-01-02 18:59:31', '2023-01-02 18:59:40'),
+(72, 0, 0, '2023-01-02 19:00:23', '2023-01-02 19:02:29'),
+(73, 0, 0, '2023-01-02 20:09:17', '2023-01-02 20:09:31'),
+(74, 0, 0, '2023-01-02 20:09:45', '2023-01-02 20:10:02'),
+(75, 0, 0, '2023-01-03 15:19:19', '2023-01-03 15:19:31'),
+(76, 0, 1, '2023-01-04 09:29:38', '2023-01-04 09:35:49');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `game_has_questions`
+--
+
+CREATE TABLE `game_has_questions` (
+  `id` int(11) NOT NULL,
+  `game_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `game_has_questions`
+--
+
+INSERT INTO `game_has_questions` (`id`, `game_id`, `question_id`, `created_at`, `updated_at`) VALUES
+(202, 50, 3, '2022-12-28 08:23:14', '2022-12-28 08:23:14'),
+(203, 50, 9, '2022-12-28 08:23:14', '2022-12-28 08:23:14'),
+(204, 56, 2, '2022-12-28 11:21:54', '2022-12-28 11:21:54'),
+(205, 56, 6, '2022-12-28 11:21:54', '2022-12-28 11:21:54'),
+(206, 56, 12, '2022-12-28 11:21:54', '2022-12-28 11:21:54'),
+(207, 56, 3, '2022-12-28 11:21:54', '2022-12-28 11:21:54'),
+(208, 56, 5, '2022-12-28 11:21:54', '2022-12-28 11:21:54'),
+(209, 56, 1, '2022-12-28 11:21:54', '2022-12-28 11:21:54'),
+(210, 59, 13, '2022-12-30 14:35:23', '2022-12-30 14:35:23'),
+(211, 59, 10, '2022-12-30 14:35:23', '2022-12-30 14:35:23'),
+(212, 59, 2, '2022-12-30 14:35:23', '2022-12-30 14:35:23'),
+(213, 59, 9, '2022-12-30 14:35:23', '2022-12-30 14:35:23'),
+(214, 59, 8, '2022-12-30 14:35:23', '2022-12-30 14:35:23'),
+(215, 66, 11, '2022-12-30 16:39:31', '2022-12-30 16:39:31'),
+(216, 66, 4, '2022-12-30 16:39:31', '2022-12-30 16:39:31'),
+(217, 66, 2, '2022-12-30 16:39:31', '2022-12-30 16:39:31'),
+(218, 66, 12, '2022-12-30 16:39:31', '2022-12-30 16:39:31'),
+(219, 66, 3, '2022-12-30 16:39:31', '2022-12-30 16:39:31'),
+(220, 66, 9, '2022-12-30 16:39:31', '2022-12-30 16:39:31'),
+(221, 66, 5, '2022-12-30 16:39:31', '2022-12-30 16:39:31'),
+(222, 66, 8, '2022-12-30 16:39:31', '2022-12-30 16:39:31'),
+(223, 66, 13, '2022-12-30 16:39:31', '2022-12-30 16:39:31'),
+(224, 66, 14, '2022-12-30 16:39:31', '2022-12-30 16:39:31'),
+(225, 66, 16, '2022-12-30 16:39:31', '2022-12-30 16:39:31'),
+(226, 66, 6, '2022-12-30 16:39:31', '2022-12-30 16:39:31'),
+(227, 66, 15, '2022-12-30 16:39:31', '2022-12-30 16:39:31'),
+(228, 66, 7, '2022-12-30 16:39:31', '2022-12-30 16:39:31'),
+(229, 66, 10, '2022-12-30 16:39:31', '2022-12-30 16:39:31'),
+(230, 66, 1, '2022-12-30 16:39:31', '2022-12-30 16:39:31'),
+(231, 75, 1, '2023-01-03 15:19:31', '2023-01-03 15:19:31'),
+(232, 75, 4, '2023-01-03 15:19:31', '2023-01-03 15:19:31'),
+(233, 75, 16, '2023-01-03 15:19:31', '2023-01-03 15:19:31'),
+(234, 75, 6, '2023-01-03 15:19:31', '2023-01-03 15:19:31'),
+(235, 75, 17, '2023-01-03 15:19:31', '2023-01-03 15:19:31'),
+(236, 75, 14, '2023-01-03 15:19:31', '2023-01-03 15:19:31'),
+(237, 75, 10, '2023-01-03 15:19:31', '2023-01-03 15:19:31'),
+(238, 75, 9, '2023-01-03 15:19:31', '2023-01-03 15:19:31'),
+(239, 75, 7, '2023-01-03 15:19:31', '2023-01-03 15:19:31'),
+(240, 75, 15, '2023-01-03 15:19:31', '2023-01-03 15:19:31'),
+(241, 75, 8, '2023-01-03 15:19:31', '2023-01-03 15:19:31'),
+(242, 75, 2, '2023-01-03 15:19:31', '2023-01-03 15:19:31'),
+(243, 75, 5, '2023-01-03 15:19:31', '2023-01-03 15:19:31'),
+(244, 75, 12, '2023-01-03 15:19:31', '2023-01-03 15:19:31'),
+(245, 75, 13, '2023-01-03 15:19:31', '2023-01-03 15:19:31'),
+(246, 75, 11, '2023-01-03 15:19:31', '2023-01-03 15:19:31'),
+(247, 75, 3, '2023-01-03 15:19:31', '2023-01-03 15:19:31'),
+(248, 76, 8, '2023-01-04 09:33:12', '2023-01-04 09:33:12'),
+(249, 76, 6, '2023-01-04 09:33:12', '2023-01-04 09:33:12'),
+(250, 76, 14, '2023-01-04 09:33:12', '2023-01-04 09:33:12'),
+(251, 76, 12, '2023-01-04 09:33:12', '2023-01-04 09:33:12'),
+(252, 76, 1, '2023-01-04 09:33:12', '2023-01-04 09:33:12');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `game_has_user`
+--
+
+CREATE TABLE `game_has_user` (
+  `id` int(11) NOT NULL,
+  `user_id_id` int(11) NOT NULL,
+  `game_id` int(11) NOT NULL,
+  `is_game_master` tinyint(1) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `game_has_user`
+--
+
+INSERT INTO `game_has_user` (`id`, `user_id_id`, `game_id`, `is_game_master`, `created_at`, `updated_at`) VALUES
+(130, 16, 68, 1, '2023-01-02 08:53:37', '2023-01-02 08:53:37'),
+(140, 4, 75, 1, '2023-01-03 15:19:19', '2023-01-03 15:19:19'),
+(141, 18, 76, 1, '2023-01-04 09:29:38', '2023-01-04 09:29:38'),
+(143, 5, 76, 0, '2023-01-04 09:32:03', '2023-01-04 09:32:03');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `media`
+--
+
+CREATE TABLE `media` (
+  `id` int(11) NOT NULL,
+  `question_id` int(11) DEFAULT NULL,
+  `file_path` varchar(255) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `media`
+--
+
+INSERT INTO `media` (`id`, `question_id`, `file_path`, `created_at`, `updated_at`) VALUES
+(2, 8, '63a5d0cc761e8_lecri.jpg', '2022-12-23 16:01:16', '2022-12-23 16:08:07'),
+(3, 9, '63a5d0d4925de_pape.jpg', '2022-12-23 16:01:24', '2022-12-23 16:08:34'),
+(4, 7, '63a5d0d9a9d19_Jack Sparrow.mp4', '2022-12-23 16:01:29', '2022-12-23 16:07:43'),
+(5, 6, '63a5d0e1509ba_biensur.gif', '2022-12-23 16:01:37', '2022-12-23 16:07:21'),
+(6, 5, '63a5d0e6a770d_julie.gif', '2022-12-23 16:01:42', '2022-12-23 16:07:04'),
+(7, 4, '63a5d0ebd29a3_son.jpg', '2022-12-23 16:01:47', '2022-12-23 16:06:46'),
+(8, 3, '63a5d0f080437_audiosubmarine.mp3', '2022-12-23 16:01:52', '2022-12-23 16:06:25'),
+(9, 2, '63a5d0f7c2d50_suisse.jpg', '2022-12-23 16:01:59', '2022-12-23 16:05:58'),
+(10, 1, '63a5d0fc38771_bruxelles.jpg', '2022-12-23 16:02:04', '2022-12-23 16:05:36'),
+(11, 10, '63a5e67fedb6a_blop.png', '2022-12-23 17:33:51', '2022-12-23 17:34:41'),
+(12, 11, '63a5e7e11a683_ralph.png', '2022-12-23 17:39:45', '2022-12-23 17:41:03'),
+(13, 14, '63a9697ba992e_hymne_suisse.mp3', '2022-12-26 09:29:31', '2022-12-26 09:30:20'),
+(14, 15, '63a96e6cc6856_pink-circle.png', '2022-12-26 09:50:36', '2022-12-26 09:51:23'),
+(15, 16, '63a96f058aeb9_enigme.png', '2022-12-26 09:53:09', '2022-12-26 09:54:11'),
+(16, 17, '63b445e9ea2fb_cadabra.gif', '2023-01-03 15:12:41', '2023-01-03 15:13:50');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `message`
+--
+
+CREATE TABLE `message` (
+  `id` int(11) NOT NULL,
+  `user_id_id` int(11) NOT NULL,
+  `game_id` int(11) NOT NULL,
+  `message` longtext NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `message`
+--
+
+INSERT INTO `message` (`id`, `user_id_id`, `game_id`, `message`, `created_at`, `updated_at`) VALUES
+(5, 4, 8, 'test', '2022-12-24 08:23:19', '2022-12-24 08:23:19'),
+(7, 4, 11, 'test 2', '2022-12-25 14:32:26', '2022-12-25 14:32:26'),
+(26, 5, 21, 'Hey ', '2022-12-27 09:41:09', '2022-12-27 09:41:09'),
+(27, 5, 21, 'Hey ', '2022-12-27 09:41:09', '2022-12-27 09:41:09'),
+(28, 5, 21, 'Yo', '2022-12-27 09:42:32', '2022-12-27 09:42:32'),
+(31, 5, 24, 'bla', '2022-12-27 09:51:24', '2022-12-27 09:51:24'),
+(32, 5, 24, 'https://www.youtube.com/watch?v=Re1xaUvQ9R8', '2022-12-27 09:56:48', '2022-12-27 09:56:48'),
+(34, 5, 41, 'Coucou 👍', '2022-12-27 15:08:56', '2022-12-27 15:08:56'),
+(36, 6, 43, 'coucou min amour', '2022-12-27 19:10:46', '2022-12-27 19:10:46'),
+(37, 6, 43, 'C LE VOLCAAAN', '2022-12-27 19:10:58', '2022-12-27 19:10:58'),
+(39, 6, 43, 'NON CEST PAS VRAI ERNST', '2022-12-27 19:11:32', '2022-12-27 19:11:32'),
+(40, 6, 43, '<3', '2022-12-27 19:12:54', '2022-12-27 19:12:54'),
+(41, 5, 45, 'Blablabla', '2022-12-27 20:48:51', '2022-12-27 20:48:51'),
+(42, 5, 45, 'Dirais Dracula ', '2022-12-27 20:49:01', '2022-12-27 20:49:01'),
+(43, 5, 45, 'Dirait avec un T putain. ', '2022-12-27 20:49:15', '2022-12-27 20:49:15'),
+(45, 4, 59, 'coucou 🥰', '2022-12-30 14:34:35', '2022-12-30 14:34:35'),
+(46, 13, 59, 'cucu😘', '2022-12-30 14:34:52', '2022-12-30 14:34:52'),
+(47, 5, 76, 'Yo !', '2023-01-04 09:30:39', '2023-01-04 09:30:39'),
+(48, 18, 76, 'Hey !', '2023-01-04 09:30:52', '2023-01-04 09:30:52');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `messenger_messages`
+--
+
+CREATE TABLE `messenger_messages` (
+  `id` bigint(20) NOT NULL,
+  `body` longtext NOT NULL,
+  `headers` longtext NOT NULL,
+  `queue_name` varchar(190) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `available_at` datetime NOT NULL,
+  `delivered_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `question`
+--
+
+CREATE TABLE `question` (
+  `id` int(11) NOT NULL,
+  `answer_id` int(11) DEFAULT NULL,
+  `question` longtext NOT NULL,
+  `level` int(11) NOT NULL,
+  `timer` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `question`
+--
+
+INSERT INTO `question` (`id`, `answer_id`, `question`, `level`, `timer`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Quelle est cette ville ?', 2, 20, '2022-12-23 16:05:36', '2022-12-23 16:05:36'),
+(2, 2, 'Vrai ou Faux, la Suisse n’a pas de capitales officielles ?', 2, 20, '2022-12-23 16:05:58', '2022-12-23 16:05:58'),
+(3, 3, 'Quelle est l’origine de ce son ? (son enregistré depuis un sous-marin)', 3, 35, '2022-12-23 16:06:25', '2022-12-23 16:06:25'),
+(4, 4, 'De quoi provenait le bruit le plus fort que la Terre ait connue ? (320 dB) ', 3, 20, '2022-12-23 16:06:46', '2022-12-26 09:57:35'),
+(5, 5, 'On dit : “la voiture de Julie” ou “la voiture à julie” ?', 1, 15, '2022-12-23 16:07:04', '2022-12-23 16:07:04'),
+(6, 6, 'Biensur ou bien sûr ?', 1, 15, '2022-12-23 16:07:21', '2022-12-23 16:07:21'),
+(7, 7, 'A qui appartient cette voix ?', 3, 30, '2022-12-23 16:07:43', '2022-12-23 16:07:43'),
+(8, 8, 'Qui a peint Le Cri ? ', 2, 20, '2022-12-23 16:08:07', '2022-12-23 16:08:07'),
+(9, 9, 'Laquelle de ces personnes a été videur de boîte de nuit dans sa jeunesse ?', 2, 20, '2022-12-23 16:08:34', '2022-12-23 16:08:34'),
+(10, 10, 'Quel est le nom de cet animal ?', 1, 15, '2022-12-23 17:34:41', '2022-12-23 17:34:41'),
+(11, 11, 'De quel dessin animé est tiré cette image ?', 2, 25, '2022-12-23 17:41:03', '2022-12-23 17:41:03'),
+(12, 12, 'Qu\'est ce qu\'un Canife ?', 1, 15, '2022-12-24 07:16:53', '2022-12-24 07:16:53'),
+(13, 13, 'Qu\'est-ce qui est jaune et qui attend ?', 1, 15, '2022-12-24 07:17:27', '2022-12-24 07:17:27'),
+(14, 14, 'Quel est cet hymne national ?', 3, 25, '2022-12-26 09:30:20', '2022-12-26 09:30:20'),
+(15, 15, 'Illusion d\'optique : que cache ce cercle rose ?', 2, 25, '2022-12-26 09:51:23', '2022-12-26 09:51:54'),
+(16, 16, 'Tel quel, je suis un peu. Tourne-moi, je suis tout. Coupe-moi et je ne suis rien. Qui suis-je ?', 3, 30, '2022-12-26 09:54:11', '2022-12-26 09:54:11'),
+(17, 17, 'Quelle entreprise se nommait à l\'origine \"Cadabra\" ?', 2, 20, '2023-01-03 15:13:50', '2023-01-03 15:13:50');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `refresh_tokens`
+--
+
+CREATE TABLE `refresh_tokens` (
+  `id` int(11) NOT NULL,
+  `refresh_token` varchar(128) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `valid` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `refresh_tokens`
+--
+
+INSERT INTO `refresh_tokens` (`id`, `refresh_token`, `username`, `valid`) VALUES
+(2, '05e96d12d00ebc02a8e15523ad3e0df0877f3bc7e7b1be7104376501cf26be63e29f2f020339e77ec8a7f4352293420e92e58c699380b44ddc8165ad26419069', 'hugo.latreille@gmail.com', '2023-01-22 11:37:33'),
+(6, '6a434561ca59eafd6dcafed1c50e901f884d00dc17020e67ed1e4280193e8550b84fcf0fb90ee2a3b2694dde9cb09221d530880c1040b532139319c29a5faa5e', 'hugo.latreille@gmail.com', '2023-01-22 15:36:22'),
+(8, '83169b2e3adab6e54501bffd80ca69a2033b1dc4af280bdaa6d369aeb85637dee08a15943485ca9058cfdb484583505c8c7286d6703d7eea576ca309947e5ff3', 'hugo.latreille@gmail.com', '2023-01-22 17:33:32'),
+(9, '36261508de64e836dadff138ee377e2aff255e4a6919b967a10c1bb97c77ee0c4dc9200078e88b8ad0d98475a3846774baff740ed9a3a4eb965ab08ac428afdc', 'hugo.latreille@gmail.com', '2023-01-23 06:48:43'),
+(10, '76f2cf896ac9c0032c625f4c012a7b5fe3db923cdde7f999d9be9df77eb2d545abded61d1a8c7f79aed320995b2a0f35ecdaf737363c958fec558b050f435e7e', 'hugo.latreille@gmail.com', '2023-01-23 07:13:09'),
+(11, '35050ed8daca3a56a941e1de95f04bd906e8aadc78f3dcc3bd081838c1e9cd94b4328388cf20956242c17f945de8238f04eb3ba627399483188b4e1762d5a01b', 'hugo.latreille@gmail.com', '2023-01-23 07:20:20'),
+(12, '7ff40d0a34b8c7842b781d0d12c7593df26ee7320f3700c2f8d05d123220faa5fda4d8c42026f3f722c474bef9ba6ebf16f958c3885918463932b2302c79036c', 'hugo.latreille@gmail.com', '2023-01-23 07:22:05'),
+(13, '826e3ca55f4add1273cd25e236677d733a98c521792b8e075d77ac7c933b601a524b06f89adf0b6623b6fd49bd54b440d168e6a077553eed07c1b82a6b67bd2c', 'hugo.latreille@gmail.com', '2023-01-23 07:26:29'),
+(14, 'ca178e95fb29b05596fd46527d23fd5bd64d2f729d9e3ec689fde68b466c139ce3439c54448dc70861b6cca038cc88873f1136a5ea752d683d168334b9eec050', 'hugo.latreille@gmail.com', '2023-01-23 07:31:08'),
+(15, '9ac6cf7f9f204b89da483642f59c01a3623b39f0933d6bdba93ce9848b935ab51763e18b974efb93f1ae7127940d19466770dc3c61d144ef357a06259248face', 'hugo.latreille@gmail.com', '2023-01-23 07:31:30'),
+(16, '74325d9f55ce4be96c40b7164a315851ed84e6281143a3a34f4fb83685137e5903adda647a903754dc13055da978774a6b79ef7f6434050ebc1113a88af6a52e', 'hugo.latreille@gmail.com', '2023-01-23 07:34:27'),
+(17, 'cfa79e01c292944ca4862d6a66775419140f40b77d3d162e93da59c3e2ab2f34ed8b886f231838fbffba1d5247d5fa8c30f841473dcc00ffde34ed66b6dc5adc', 'hugo.latreille@gmail.com', '2023-01-23 08:02:16'),
+(18, '19168b3d1a5f93a71d13b4d19418b46f466aa0ce7e05d98e3c1e4521892cf22d7a5d23fe7783b23e7cb8d61e7ccef663bd5b4fe8a46dc5e4426d2986f8d55566', 'hugo.latreille@gmail.com', '2023-01-23 10:28:10'),
+(24, 'ee9606e9235c6e82463b7b718815a127c676c51d49dc874bf3ed0660cb3848fa9d91b9ac5450c64de7f3b13767fdf2bd7f65964d0a07629edf4fb0052d82e7d1', 'huneo@hotmail.com', '2023-01-24 14:31:25'),
+(25, '9375782bad13f4b24d8824d1ec32a510ea8de3f158a49f49000bbd24cb650cbdd3a3ff3988f1072067feef8ee1d7a5b7c2bbe5885eff7dfed386c8bed87d3365', 'huneo@hotmail.com', '2023-01-24 14:32:06'),
+(26, '5c159b5195d5332029e53e5fe6c119f0d8d8ee8b11b02d5290dbdd1629b9f5e81c6796f801750b40a30fd0f85ad553b35deb28bda1ac102ffe77376d301b71d3', 'hugo.latreille@gmail.com', '2023-01-24 17:35:16'),
+(28, 'f7d2241191930c99654d80a5db0dee2958a0fec2b2771c9d562438e6c2ceaf2ba52c4ed5c9f2a770b80b5f687e8b873887b1d71ad100b5bcd4bc3a60ccbeaa12', 'hugo.latreille@gmail.com', '2023-01-25 09:10:42'),
+(29, '2ff20e4fc8f6fd4c47095bb0bc80b5fe75afcddb9f6eeaa8f8c56cc81863ae9b7b1324b630d7a3fd238fe5e075822b257b3b0d1295c260034b3ae3c8c0f96f40', 'hugo.latreille@gmail.com', '2023-01-25 09:57:18'),
+(67, '273ee744fbb6bf1dee67242266a221bdfbcb3685434d2cb0542924732c5207c60235bf4ed1ad735a4a702a1314dad2b55e7f22273e988da5d58e34d1001825c7', 'leducmateo@gmail.com', '2023-01-26 14:43:22'),
+(69, '6afa7e12986e420b3133296a5342c988bf300db49416e58c53557bfb0fa3677ccd95fc1233d418d5205d01e0f854859fb8d7fae9c32af68ba7ac0796bdf77bbb', 'hugo.latreille@gmail.com', '2023-01-26 15:13:21'),
+(70, '3cd5ae29b4f123b9f9e4baf0d3ec653b6c35363ac16604e0a52272612d12bf87b881ddae2dd76bcb290590d6b83bfe6b4fda7658bfede6da21c8ff8ef20a4a2f', 'l.montezin@gmail.com', '2023-01-26 19:09:31'),
+(114, 'cb968bcc51530f92e19c54e4d2f17ae32fa2126ebec0623ce42c6e200eec0e6a5d798d948d055df1e21bc228a7ffcda619976b5610c8bf88124c1fd0216b7c5b', 'latastecharlelie@gmail.com', '2023-01-29 14:33:29'),
+(121, 'fa368ea23f5f176554a007668270197eb24bc618b658db1c3ad54bb3a94db1b07832986e68b2cf0871fad9d1292ff2d35519fbf9d226d3fa98687bb9a35888d8', 'hugo.latreille@gmail.com', '2023-01-29 14:44:29'),
+(143, '78a157e562d9df3d22f9a546317ff58069bed672776f965e2458be22eb8f0c0a409cd4deff1881d6d5cf79f3e6cf89cf8e58b9fbdc1b4f13abf67fadd85cfcc1', 'huneo@hotmail.com', '2023-02-01 19:01:28'),
+(146, 'c105364cdd04442823056a61c122a4dd998e38a0814d3a0abd1282cf5cba7907a2f37e40b69c6fd6b9f3b95e5da55ac3076068d30728640fdcb1317f221c448e', 'huneo@hotmail.com', '2023-02-02 14:43:28'),
+(148, '4c061a27fd02296ccfdf4d7da804b64245c3893ed80d0d0583b8936c2d5c4c4c7046db3802d7d9ea32010805a40df71636aa22233103286e42903edeedad19cf', 'mateo.le.duc@hotmail.fr', '2023-02-03 09:29:36'),
+(149, '66ee54bc7781e940ac461ee0910d4de319fd5bbe3949f891429d0c4eb7286c6aa417258b3a5c8278c8a5a0facfff0df6526542314f70a1519a7d203c62a8492b', 'leducmateo@gmail.com', '2023-02-03 09:32:02');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `score`
+--
+
+CREATE TABLE `score` (
+  `id` int(11) NOT NULL,
+  `user_id_id` int(11) NOT NULL,
+  `game_id` int(11) NOT NULL,
+  `score` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `score`
+--
+
+INSERT INTO `score` (`id`, `user_id_id`, `game_id`, `score`, `created_at`, `updated_at`) VALUES
+(10, 5, 24, 0, '2022-12-27 11:36:07', '2022-12-27 11:36:07'),
+(11, 4, 28, 5, '2022-12-27 12:08:05', '2022-12-27 12:08:23'),
+(14, 4, 29, 2, '2022-12-27 12:43:14', '2022-12-27 12:43:33'),
+(17, 5, 41, 2, '2022-12-27 15:10:32', '2022-12-27 15:11:03'),
+(18, 6, 43, 9, '2022-12-27 19:14:03', '2022-12-27 19:16:43'),
+(20, 5, 44, 2, '2022-12-27 20:44:15', '2022-12-27 20:44:42'),
+(21, 5, 45, 0, '2022-12-27 20:47:31', '2022-12-27 20:47:57'),
+(22, 5, 46, 2, '2022-12-27 20:52:11', '2022-12-27 20:52:47'),
+(23, 5, 47, 5, '2022-12-27 20:55:10', '2022-12-27 20:55:48'),
+(26, 4, 56, 3, '2022-12-28 11:24:11', '2022-12-28 11:24:52'),
+(27, 4, 59, 8, '2022-12-30 14:37:24', '2022-12-30 14:38:48'),
+(28, 13, 59, 2, '2022-12-30 14:37:43', '2022-12-30 14:38:45'),
+(29, 5, 76, 9, '2023-01-04 09:35:11', '2023-01-04 09:35:46'),
+(30, 18, 76, 5, '2023-01-04 09:35:16', '2023-01-04 09:35:49');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `roles` longtext NOT NULL COMMENT '(DC2Type:json)',
+  `password` varchar(255) NOT NULL,
+  `pseudo` varchar(20) NOT NULL,
+  `is_ready` tinyint(1) NOT NULL,
+  `avatar` longtext DEFAULT NULL,
+  `is_verified` tinyint(1) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id`, `email`, `roles`, `password`, `pseudo`, `is_ready`, `avatar`, `is_verified`, `created_at`, `updated_at`) VALUES
+(4, 'huneo@hotmail.com', '[]', '$2y$13$0zP8FFnpCO4wTTLd3ghcruPudH7jc0Q.FPIwnnS0CcCaZfLGEni9O', 'Coucou', 0, 'PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMzEgMjMxIj48cGF0aCBkPSJNMzMuODMsMzMuODNhMTE1LjUsMTE1LjUsMCwxLDEsMCwxNjMuMzQsMTE1LjQ5LDExNS40OSwwLDAsMSwwLTE2My4zNFoiIHN0eWxlPSJmaWxsOiNkMTAwODQ7Ii8+PHBhdGggZD0ibTExNS41IDUxLjc1YTYzLjc1IDYzLjc1IDAgMCAwLTEwLjUgMTI2LjYzdjE0LjA5YTExNS41IDExNS41IDAgMCAwLTUzLjcyOSAxOS4wMjcgMTE1LjUgMTE1LjUgMCAwIDAgMTI4LjQ2IDAgMTE1LjUgMTE1LjUgMCAwIDAtNTMuNzI5LTE5LjAyOXYtMTQuMDg0YTYzLjc1IDYzLjc1IDAgMCAwIDUzLjI1LTYyLjg4MSA2My43NSA2My43NSAwIDAgMC02My42NS02My43NSA2My43NSA2My43NSAwIDAgMC0wLjA5OTYxIDB6IiBzdHlsZT0iZmlsbDojZjVkNGE2OyIvPjxwYXRoIGQ9Im0xMTYgMjAzLjEzYy0wLjEyIDAtMC4yNSAwLjEyLTAuNDkgMC4xMnMtMC4yNS0wLjEyLTAuNDktMC4xMnptLTI3LjI5LThjMC44Ny0wLjI1IDEuNzItMC40NyAyLjU2LTAuNjlhMzIuMzcgMzIuMzcgMCAwIDAgMC4zIDguNTcgMjEuNSAyMS41IDAgMCAwIDcgNi44OGM2LjQxLTYgMTYuOC02LjY0IDE2LjgtNi42NHMxMC41IDAuNTggMTcgNi42OWEyMS42MSAyMS42MSAwIDAgMCA2LjkzLTYuNjYgMzIuMzQgMzIuMzQgMCAwIDAgMC4zNS04Ljg0bDIuMTMgMC41NmExMTQuNzkgMTE0Ljc5IDAgMCAxIDM4IDE2LjUgMTE1LjUzIDExNS41MyAwIDAgMS0xMjguNDYgMCAxMTQuNjQgMTE0LjY0IDAgMCAxIDM3LjM4LTE2LjM3eiIgc3R5bGU9ImZpbGw6I0ZGQkEzMjsiLz48cGF0aCBkPSJtMTI2LjE1IDIwNi0zLjkyIDcuODNoLTEzLjQ2bC0zLjkyLTcuODNhMzYuNTkgMzYuNTkgMCAwIDEgMTAuNjUtMi43IDM1LjY2IDM1LjY2IDAgMCAxIDEwLjY1IDIuN3oiIHN0eWxlPSJmaWxsOiM0ODQ4NDg7Ii8+PHBhdGggZD0ibTEyNC41NCAyMzAuNjUtMi4xOC0xNi43NGgtMTMuNDdsLTIuMTkgMTYuNzZjMi45IDAuMjIgNS44NCAwLjMzIDguOCAwLjMzczYuMDYtMC4xMiA5LTAuMzV6IiBzdHlsZT0iZmlsbDojNGU0ZTRlOyIvPjxwYXRoIGQ9Im0xMzQuODQgMTg2czAuODYgOS44LTE5LjM0IDE3LjI2YzAgMCAxNS43OSAwLjg2IDIwLjU3IDExLjc2IDAuMTIgMC40OSA5LjMtMjMuMjYtMS4yMy0yOXoiIHN0eWxlPSJmaWxsOiNmZmY7Ii8+PHBhdGggZD0ibTk2LjE2IDE4NmMtMTAuNDEgNS43Ni0xLjM1IDI5LjM5LTEuMSAyOSA0LjY1LTEwLjc4IDIwLjU2LTExLjc2IDIwLjU2LTExLjc2LTIwLjMyLTcuNDUtMTkuNDYtMTcuMjQtMTkuNDYtMTcuMjR6IiBzdHlsZT0iZmlsbDojZmZmOyIvPjxwYXRoIGQ9Im00My44OTEgNzcuODM2Yy01LjExMjQgMjguMjM3IDIuMTM0NyA2MS4wMDQgMjQuNzkyIDgxLjMzMi02LjIzNjItMTIuNTAzLTkuNTM2Mi0zMy45NDgtOS40ODg3LTQ1LjQ1OC0wLjUwMjAzLTM3LjQ3MyA0MS40MzktNDYuMzM1IDU2LjE0OS0xNy42MTQgMTguOC0zMS4yIDUyLjgyNS0xNi44NzIgNTQuMDYyIDEzLjcxNCAwLjU2MDE4IDEzLjg0NC0wLjQzNTY4IDI1LjU5OC03LjA5NjIgNDguOTY2IDE4LjM3Mi0xMi40NyAyOC4wMTItNTMuOTU5IDIzLjU0NS04MC45NDEtNDcuNDg2LTIuMjU1Mi05NC44MzEtMi41NzI0LTE0MS45NiAweiIgc3R5bGU9ImZpbGw6I0QyMDAxQjsiLz48cGF0aCBkPSJtMTExLjI2IDEyLjc4MmMtMTguNTA4IDAuMDc5MS0zMi41OTQgMy42MTYzLTMyLjU5NCAzLjYxNjMgMjQuNTEzIDUuNjAwMiAzMi44MDcgMTAuNTA0IDMxLjc0MyAxOS44MzUtMC44NzIyNyA5LjcwMi0xMS4wOTIgMTAuODc1LTIwLjgxMSAxMS41NTQtNS4yNTQ4IDAuMzY0MTQtMTAuOTQ5IDAuNzE1MjMtMTYuMzkxIDEuNzUyNS0xMS44NjIgMi4yODE4LTE5Ljk0NiA0LjM3MzYtMjQuNDQ3IDExLjk1Ni0xLjcwMTIgMi44NjYyLTMuNzk0NSAxMC40MjgtNC44Njg5IDE2LjM0aDE0MS45NmMtNS43MjQyLTM4LjU2My0zMi41NTctNjUuMDczLTc0LjU5NS02NS4wNTR6IiBzdHlsZT0iZmlsbDpub25lOyIvPjxwYXRoIGQ9Im03My4yOTIgNDQuNzdjLTExLjc4OCAyLjI4MTYtMTguOTIzIDUuNTQ0NC0yMy4zOTQgMTMuMTI2LTIuODQ4NCA2Ljc1ODYtNC44NDU0IDEzLjIzOC02LjAwNzIgMTkuOTM5aDE0MS45NmMtMS45NzcyLTE0LjU3Ni02Ljg2NzctMjguMjQ4LTE5LjI3Ny0zMi4wOTgtMjguODM0LTYuMzMwOC02My43NzQtNi4zNTUzLTkzLjI4NS0wLjk2NzYxeiIgc3R5bGU9ImZpbGw6bm9uZTsiLz48cGF0aCBkPSJtMTY1Ljk1IDM1LjY0MmMtMTEuMTc4IDIxLjgyOS05MS44OSAxOS4zNi0xMDMuOTggMi4zMDExLTkuNzAzIDEyLjI2Ny0xNS42MDUgMjUuODgzLTE4LjA3OSAzOS44OTJoMTQxLjk2Yy0zLjAwOTYtMTcuMTU4LTkuNzQyNC0zMi42ODgtMTkuOTAyLTQyLjE5M3oiIHN0eWxlPSJmaWxsOiNEMjAwMUI7Ii8+PHBhdGggZD0ibTc4LjczIDExMWExMC45IDEwLjkgMCAwIDEgMTUuMTkgMG00My4xNiAwYTEwLjkgMTAuOSAwIDAgMSAxNS4xOSAwIiBzdHlsZT0iZmlsbDpub25lO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6Ni4xOTk5cHg7c3Ryb2tlOiMwMDA7Ii8+PHBhdGggZD0ibTc5LjgwNCAxMjMuNzRoNy4wN201Ny4yNzMgMGg3LjA1IiBzdHlsZT0iZmlsbDpub25lO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NS45OTk4cHg7c3Ryb2tlOiNmZjgzM2I7Ii8+PHBhdGggZD0ibTExOC41NyAxNjUuMTRhOC42NiA4LjY2IDAgMCAwLTIuNzYtNC4yM2gtMC42MmE4IDggMCAwIDAtMi43NiA0LjIyYy0wLjUyIDEuODkgMi4wNyAxMC42MSAyLjc2IDEyLjUzaDAuNjJjMC42NC0xLjc2IDMuMTktMTAuODIgMi43Ni0xMi41MnoiIHN0eWxlPSJmaWxsOiMxOTE5MTk7Ii8+PHBhdGggZD0ibTEwMi44MSAxNTIuMjRhMi40OTIxIDIuNDkyMSAwIDEgMSAxLjE5LTQuODRsMC4yMSAwLjA2YTM3LjEgMzcuMSAwIDAgMCA1LjQzIDEuMTIgNDQuNTIgNDQuNTIgMCAwIDAgMTEuNzYgMCAzNy4xIDM3LjEgMCAwIDAgNS40My0xLjEyIDIuNDkwMyAyLjQ5MDMgMCAwIDEgMS41OSA0LjcybC0wLjIxIDAuMDZhNDMuMDggNDMuMDggMCAwIDEtNi4xNSAxLjI5IDQ4LjU1IDQ4LjU1IDAgMCAxLTEzLjA4IDAgNDIuNzkgNDIuNzkgMCAwIDEtNi4xNy0xLjI5eiIgc3R5bGU9ImZpbGw6IzE5MTkxOTsiLz48L3N2Zz4=', 1, '2022-12-24 08:05:05', '2023-01-03 15:25:44'),
+(5, 'leducmateo@gmail.com', '[]', '$2y$13$3g5gMmjeroyjOVs0YL1mD.nEXnFqG98AR4BIQ.Foog0MCWFxVbNP.', 'Mateo', 1, 'PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMzEgMjMxIj48cGF0aCBkPSJNMzMuODMsMzMuODNhMTE1LjUsMTE1LjUsMCwxLDEsMCwxNjMuMzQsMTE1LjQ5LDExNS40OSwwLDAsMSwwLTE2My4zNFoiIHN0eWxlPSJmaWxsOiNGRjk4MDA7Ii8+PHBhdGggZD0ibTExNS41IDUxLjc1YTYzLjc1IDYzLjc1IDAgMCAwLTEwLjUgMTI2LjYzdjE0LjA5YTExNS41IDExNS41IDAgMCAwLTUzLjcyOSAxOS4wMjcgMTE1LjUgMTE1LjUgMCAwIDAgMTI4LjQ2IDAgMTE1LjUgMTE1LjUgMCAwIDAtNTMuNzI5LTE5LjAyOXYtMTQuMDg0YTYzLjc1IDYzLjc1IDAgMCAwIDUzLjI1LTYyLjg4MSA2My43NSA2My43NSAwIDAgMC02My42NS02My43NSA2My43NSA2My43NSAwIDAgMC0wLjA5OTYxIDB6IiBzdHlsZT0iZmlsbDojZmVlM2M1OyIvPjxwYXRoIGQ9Im04OC4xOCAxOTQuMTFjLTQuMjA3OSAxLjAyMS04LjM1NDUgMi4yNzkyLTEyLjQyIDMuNzY5NXYyNi4wNzJhMTE1LjUgMTE1LjUgMCAwIDAgNzkuNDggMHYtMjYuMDcyYy00LjA4NTgtMS40OTA0LTguMjUyOS0yLjc0ODYtMTIuNDgtMy43Njk1djguNzA1MWMwIDkuMzg4OC03LjYxMTIgMTctMTcgMTdoLTIwLjU4Yy05LjM4ODggMC0xNy03LjYxMTItMTctMTd2LTguNzA1MXoiIHN0eWxlPSJmaWxsOiNmZjE0ZTQ7Ii8+PHBhdGggZD0ibTEyNC4yMiAxMy42MWMtMTkuNzgzIDAtMzYuOTQ1IDguMDg4Ny0zOS42OTUgMjQuMTA2LTE1LjMzMiAwLjIzNTM5LTMxLjgzMSAyLjc3MTItNDEuNjYzIDE1Ljc4Mi02LjAyMzggNy45NjA0LTcuMDQwMiAxOS45MDEtNi44NDc2IDMxLjcyNCAwLjQ2MDA3IDI4LjUwMyAxMC43NDIgNjQuMjI4LTQuMzAxMiA4OS43MTQgMTYuNTg0IDUuNzc3NyA0My4wODYgMTAuNzQyIDczLjU5IDExLjY2MnYtOC42NTU4Yy0xLjg1MS0wLjM1MzA4LTMuNjU5Mi0wLjc4MTA1LTUuNDM1My0xLjI3MzItMzAuOTUzLTguNDYzMi01MC42NzItMzYuNjM1LTQ3LjI1OS02OC42NjkgMS41NTE0LTEwLjYwMyA0LjYyMjEtMTkuNjY1IDEwLjAyNS0yNy42OSA1LjM4MTgtNy45OTI1IDEzLjI2Ny0xNS43MTcgMjMuODkyLTIxLjQxIDAuNDA2NTggMC43Mjc1NyAxLjk5MDEgMy41ODQzIDIuNDA3NCA0LjMwMTIgNy41MDAzIDEyLjc3NSAxNy45ODYgMjMuODQ5IDMzLjE1NyAyNi44NjYgMTIuNDMzIDIuNDYwOSAyMy44NDkgMy40NjY2IDM2LjM0NiAxLjE1NTUgNC4yNTg0LTAuNzgxMDYgMTAuNjY3LTIuMzk2NyAxNC44NTEtMi40MTgxIDE0Ljg2MSAzMy40MDQtMS4wODA2IDc1LjAzNS00MC42NjggODcuNDU3LTIuMjI1NSAwLjcwNjE2LTQuNTI1OCAxLjMxNi02Ljg5MDQgMS44MTg5IDAgMi43MDctMC4wNDI4IDUuNjQ5My0wLjA2NDIgOC41Mjc0IDIzLjYwMy0wLjcyNzU3IDQ4LjY4Mi00LjA0NDQgNzIuODc0LTExLjIzNC0xOC41MjEtMzIuMTUyIDAuODEzMTUtODkuMDgzLTEwLjAzNi0xMjEuNDYtOS4wNzMxLTI2Ljk3My0zOC44NS00MC4zMTUtNjQuMjgyLTQwLjMwNXoiIHN0eWxlPSJmaWxsOiMwMDA7Ii8+PHBhdGggZD0ibTMzLjE0NyAxNzIuMzJjLTIuNjUzNSA1LjExNDMtNi4wODggOS45NTA0LTEwLjEgMTIuNDExIDcuODQyNyAxMC40NTMgMTcuMzg3IDE5LjUxNiAyOC4yNTcgMjYuNzgxIDE2LjAzOC0xMC43MzEgMzUuNjI5LTE3LjA1NSA1NC0xOC42MDZ2LTkuMDA4OWMtMzAuMDY1LTAuOTQxNTUtNTYuMTA4LTUuODg0Ny03Mi4xNTctMTEuNTc3em0xNjQuMDYgMC41NTYzN2MtMjMuNzMxIDcuMDcyMy00OC4zNjEgMTAuMzI1LTcxLjUyNSAxMS4wNDItMC4wMzIxIDMuMTI0Mi0wLjA1MzUgNi4yMzc3LTAuMDEwNyA5LjA1MTcgMTkuMjI3IDEuNzIyNiAzNy45MDggNy44NTM0IDUzLjk4OSAxOC41NDIgMC4wMTA3IDAgMC4wMTA3IDAgMC4wMjE0IDAuMDEwNyAxMC43MzEtNy4xNjg2IDIwLjE3OS0xNi4wODEgMjcuOTU4LTI2LjM3NC00LjI3OTgtMi4zOTY3LTcuODMyLTYuOTY1My0xMC40MzItMTIuMjcyeiIgc3R5bGU9ImZpbGw6bm9uZTsiLz48cGF0aCBkPSJtNTAuMDIgNDYuNWMtMi45Mjk3IDEuOTE0My02LjEzMTMgMy44ODI2LTEwLjE1NCA3Ljk4MDUtMTQuMDkxIDE0LjM1OS0xNi4xNDUgMjcuNzAxLTYuMTQwNiA0NC4wMTggNC4yMDQ5IDYuODU4MyA2LjE0MTQgMTMuNzA2LTAuMjQ2MDkgMjAuNS03LjcxNDMgOC4xOTU3LTIxLjU1OSA0LjI5MTItMjEuNTM3IDE2LjA2MSAwLjAyMTQgOC42MTMgMTUuMDYzIDcuOTE3OCAyMi41MzEgMTMuOTg0IDMuNzY2MiAzLjA3MDcgNS4wODM2IDguMzk5MiAyLjA2NjQgMTIuNTA4LTQuMjE1NiA1Ljc0NTYtMTYuMDA2IDcuMzcxNS0yMi42MjkgOC45MzM2IDUuODgxMSAxMC44NDMgMTMuNDUgMjAuNjM4IDIyLjM1NSAyOS4wMzNsMC4wMDM5IDAuMDIzNCAwLjAwNTktMC4wMTM3YzJlLTMgMmUtMyAwLjAwMzggNGUtMyAwLjAwNTkgNmUtMyAwLjAwMzQtMC4wMTEyIDAuMDA2My0wLjAyMTkgMC4wMDk4LTAuMDMzMiAxNC43NzUtMTIuMjE4IDIwLjI2OC0yMC45NjUgNDkuNDYxLTI4LjQzNC0xNy40MDQtMTAuMjU4LTMwLjY4LTI3LjEyMi0yNC4xNDMtMzUuMzQgNC40MTIzLTUuNTQ0NCA1LjY2MTItNy44NjMzIDYuNDA2Mi0xMi4wNzggMi4zNTgyLTEzLjMzOS0xMC4yMDgtMjIuMzM1LTkuMjM2My0zMi43MTUgMS45NDMyLTguMjM0NiAxMS4zNzktMTEuMTczIDE2Ljk0Ny0xNS4xMTUgNS40NTc3LTMuOTA4MiA5LjgwMTQtOC43Njk1IDEwLjc5OS0xNi45MTgtMTMuNTU4LTQuODg5Ni0xNy42MDktNS44NjE3LTM2LjUwNi0xMi40em0xNDAuODcgMTkuMzU3Yy0zLjQ0MDQtMC45MTI0My0yMy4zMTEgMTIyLjQzIDQuNDEyMSAxMzMuMTQgOC45NjYxLTguNTgwOSAxNi41NTItMTguNTg0IDIyLjQwNC0yOS42NTggMC0wLjMxMDI5LTI1LjEzMy0zLjk5MjItMjUuOTc5LTE0LjAxOC0wLjEwNjk5LTEuMTc2OSAwLjExODIyLTEuNDg1NSAwLjg2NzE4LTIuNTAyIDYuNjc2NC05LjIxMjIgMzAuNzE2LTExLjQxNiAyOS42NDYtMjMuNDk2LTAuMjc4MTgtMy4xNTYzLTQuMTYxNy01LjIzMzQtNi43NDAyLTYuNDUzMS0xMi4xNTUtNS43NjctMzIuOTQyLTkuNjQ5NC0xNS4wMzEtMjQuNTQzIDkuMjEyMi03LjM1MDUgMTAuNDMtOC40MzIzIDAuNTk3NjYtMTQuNjkxLTkuNDU4My02LjAyMzgtOS4zOTQtMTEuOTkzLTkuNzU3OC0xNi4zMjYtMC4wNzY3LTAuOTMwMzUtMC4yMjA4OS0xLjQwMDMtMC40MTk5Mi0xLjQ1MzF6IiBzdHlsZT0iZmlsbDpub25lOyIvPjxwYXRoIGQ9Im0xMzMuODMgMzkuOTA5Yy0xMS4zMyAxLjM5My05LjU0OTIgMTYuMjA0LTJlLTMgMTYuNjQzLTQuNTEwMiAxMC43MTcgOS4wMTY1IDE2LjE4MSAxNC40NDEgOC4zMTI1IDYuNTYyIDguNjc2NSAxOC41OTYgMC45NDc1MSAxNC40NTctOC4zMTI1IDExLjcxOC0xLjUzODEgOS4yNzY5LTE2LjA5OSAwLTE2LjY0MyA0LjUwMy0xMC44NjctOS40ODgzLTE2LjEwMS0xNC40NTctOC4zMzAxLTYuODgzMi05LjA0MTEtMTguNTA5LTAuNDczMjEtMTQuNDM5IDguMzMwMXoiIHN0eWxlPSJmaWxsOiNGRkNDMDA7Ii8+PHBhdGggZD0ibTE1My44NiA0OC4yMjJjMC0zLjA1MjgtMi41MTg0LTUuNTY0OC01LjU3OTEtNS41NjQ4LTMuMDc4MyAwLTUuNTc5MyAyLjUxMi01LjU3OTMgNS41NjQ4IDAgMy4wNzAzIDIuNTAxIDUuNTY0OCA1LjU3OTMgNS41NjQ4IDMuMDYwNiAwIDUuNTc5MS0yLjQ5NDYgNS41NzkxLTUuNTY0OHoiIHN0eWxlPSJmaWxsOnJlZDsiLz48cGF0aCBkPSJtMTQ1LjM4IDk1LjYyOGMtNS4xNjAxIDIuMjU5Ny0xMS4wMyAyLjI1OTctMTYuMTkgMG0tNDcuMjkgMS43NWM1LjE3NTUtMi4yNjk0IDExLjA2NS0yLjI2OTQgMTYuMjQgMCIgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlLXdpZHRoOjUuOTk5OHB4O3N0cm9rZTojNzk1NTQ4OyIvPjxwYXRoIGQ9Im05MC4wMTYgMTA2LjI4Yy00LjQ1MDYtMC4wMTA1LTYuNjkwMiA1LjM2NTctMy41NTA4IDguNTE5NSAzLjEzOTQgMy4xNTM5IDguNTI1MiAwLjkzODg3IDguNTM1Mi0zLjUxMTcgMC4wMDYzLTIuNzUyMi0yLjIyMDQtNC45ODk4LTQuOTcyNy00Ljk5NjFsLTAuMDExNzE5LTAuMDExNzJ6bTQ3LjI4MSAwYy00LjQ1MDYtMC4wMTA1LTYuNjkwMiA1LjM2NTctMy41NTA4IDguNTE5NSAzLjEzOTQgMy4xNTM5IDguNTI1MiAwLjkzODg3IDguNTM1Mi0zLjUxMTcgNmUtMyAtMi43NTIyLTIuMjIwNC00Ljk4OTgtNC45NzI3LTQuOTk2MWwtMC4wMTE3MS0wLjAxMTcyeiIgc3R5bGU9ImZpbGw6IzAwMDsiLz48cGF0aCBkPSJtMTE1LjUgMTUzLjkzYTE0IDE0IDAgMCAxLTEwLjUtNC42OSAzLjQyMDkgMy40MjA5IDAgMCAxIDUtNC42N2wwLjA4IDAuMDggMC4wOCAwLjA5YTcuMzUgNy4zNSAwIDAgMCAxMC4zOSAwLjM3bDAuMzctMC4zN2EzLjQyMDYgMy40MjA2IDAgMSAxIDUuMjMgNC40MWwtMC4wOCAwLjA5YTE0IDE0IDAgMCAxLTEwLjUzIDQuNjl6IiAvPjxwYXRoIGQ9Im0xMTUuMjcgMTI3LjMyYy03LjY2MjctMC4wMy0xNS4yNTEgMS40NDE5LTIwLjY0NiA1LjE0NjUtNy42MiA1LjMzLTkuOTA1MyAxMS41MTItMTQuMTI3IDE4LjEwOS0zLjQzNzkgNS4yNDQ3LTkuMzI2IDEwLjAyNC0xMy40NjcgNi4zMzQgMjUuNDI1IDI5Ljc1NSA3MS40MDkgMjkuNzg2IDk2Ljg3NSAwLjA2NjQtNi44MTA0IDMuOTMwNS0xMS41NDUtMi40Ny0xMy41MDgtNi40MDA0LTEwLjY5Ny0xNy42MDUtMTQuMTE1LTIyLjY1Ni0zNS4xMjctMjMuMjU2em0tMC4yNjc1OCA4LjM5ODRjNy40NTcgMC4wODAyIDE0Ljk4NiAxLjI5NjYgMTcuMTQ2IDUuOTUyMiAyLjU3NjUgMTEuMzE5LTcuNTg3OCAxNy40NTQtMTYuNjgxIDE3LjUxNS02LjA5LTAuMDUtMTIuMi0yLjM4MDItMTUuMjYtNy43NDAyLTYuMzYtMTEuMTYgMy42MzQ5LTE1LjYwNyAxNC43OTUtMTUuNzI3eiIgc3R5bGU9ImZpbGw6IzRhMzczNzsiLz48L3N2Zz4=', 1, '2022-12-27 09:39:37', '2023-01-04 09:32:02'),
+(6, 'l.montezin@gmail.com', '[]', '$2y$13$hV5KhJgb4Zym1KFFYQzaE.2/CxgHQN4i1qQtED49Gu0AktU.BvFHa', 'lulu93', 0, 'PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMzEgMjMxIj48cGF0aCBkPSJNMzMuODMsMzMuODNhMTE1LjUsMTE1LjUsMCwxLDEsMCwxNjMuMzQsMTE1LjQ5LDExNS40OSwwLDAsMSwwLTE2My4zNFoiIHN0eWxlPSJmaWxsOiNmZjJjMmM7Ii8+PHBhdGggZD0ibTExNS41IDUxLjc1YTYzLjc1IDYzLjc1IDAgMCAwLTEwLjUgMTI2LjYzdjE0LjA5YTExNS41IDExNS41IDAgMCAwLTUzLjcyOSAxOS4wMjcgMTE1LjUgMTE1LjUgMCAwIDAgMTI4LjQ2IDAgMTE1LjUgMTE1LjUgMCAwIDAtNTMuNzI5LTE5LjAyOXYtMTQuMDg0YTYzLjc1IDYzLjc1IDAgMCAwIDUzLjI1LTYyLjg4MSA2My43NSA2My43NSAwIDAgMC02My42NS02My43NSA2My43NSA2My43NSAwIDAgMC0wLjA5OTYxIDB6IiBzdHlsZT0iZmlsbDojZjJjMjgwOyIvPjxwYXRoIGQ9Im0xNDEuNzUgMTk0Ljk4YTExNC43OSAxMTQuNzggMCAwIDEgMzggMTYuNDk4IDExNS41MyAxMTUuNTIgMCAwIDEtMTI4LjQ2IDAgMTE0Ljc5IDExNC43OCAwIDAgMSAzOC0xNi40OThsMTUuNzEgMTUuNzQ4aDIxeiIgc3R5bGU9ImZpbGw6IzAwMDsiLz48cGF0aCBkPSJtNzAgMjAwLjg4djIwLjc3Yy0yLjIyLTAuOTUzMjUtNC4zOTk5LTEuOTY5OC02LjUzOTktMy4wNDk2aC0wLjEwMDg4di0xNC42MjFjMi4xNy0xLjEgNC4zOS0yLjEzOTkgNi42NC0zLjA5OTZ6IiBzdHlsZT0iZmlsbDojNDM1MzYzOyIvPjxwYXRoIGQ9Im0xNjEgMjAwLjg4djIwLjc3YzEuOS0wLjgwOTg2IDMuNzcwMi0xLjY3OTggNS42MjAxLTIuNTg5OGwwLjA5ODktMC4wNDk0IDAuODIwMDUtMC40MDk5N2gwLjEwMDg4di0xNC42MjFjLTIuMTctMS4xLTQuMzktMi4xMzk5LTYuNjQwMi0zLjA5OTZ6IiBzdHlsZT0iZmlsbDojNDM1MzYzOyIvPjxwb2x5Z29uIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIC45OTk4NyA0ZS01IC0zZS01KSIgcG9pbnRzPSI5Ny4zMiAyMDEuOTMgMTE1LjUgMjIzLjcyIDEzMy42OCAyMDEuOTMiIHN0eWxlPSJmaWxsOiMwMDA7Ii8+PHBhdGggZD0ibTExMS4yIDIzMC44OCAxLjMxLTE2LjkwOGMwLjMyOTkyIDEuMjc5OCA1LjYzOTkgMS4yNzk4IDUuOTk5OSAwbDEuMzIwMSAxNi45MzhjLTEuNDMwMSAwLjA0OTQtMi44NjAxIDAuMDg5LTQuMyAwLjA4OXMtMi44NyAwLTQuMy0wLjA4OXoiIHN0eWxlPSJmaWxsOm5vbmU7Ii8+PHBhdGggZD0ibTExNS40OSAyMDEuNzl2MC4wNjkybC03LjU1IDEyLjY3OC03LjAwMDEgMTEuODA5LTE5LjE5LTI2LjQ4N2MwLjYwOTk5LTAuNDI5OTUgMS4yMi0wLjg5OTg1IDEuODAwMS0xLjM4OTlhNTIgNTEuOTkzIDAgMCAwIDEwLjA3LTEwLjYxOWwyMS43OSAxMy44Nzh6IiBzdHlsZT0iZmlsbDojZTdlY2YyOyIvPjxwYXRoIGQ9Im0xNDkuMjQgMTk5Ljg2LTE5LjA4IDI2LjUxNy03LjAwMDEtMTEuODA5LTcuNTctMTIuNjc4LTAuMDU5My0wLjEwMDg2IDIxLjk0LTEzLjk5OGE1Mi4yMSA1Mi4yMDMgMCAwIDAgMTAuMDggMTAuNjk5YzAuNTgwMTMgMC40NzAwOSAxLjE1MDIgMC45MjAwMiAxLjczMDEgMS4zMzk5eiIgc3R5bGU9ImZpbGw6I2U3ZWNmMjsiLz48cGF0aCBkPSJtNjkuODM0IDMzLjgyNmMtOC4yMDAxLTAuMDYyNi0xNi40NDQgMi42NzUzLTIzLjE1MiA3LjcwMzgtOC41Mjk4IDYuOTg5OS0xMi4xNTkgMTkuNjEtMTIuMzI5IDMyLjY4LTAuMjA0MSAxNS40NzYgMS42MDkyIDM0Ljc1MiAxLjc0NjQgNTEuOTE1IDAuMTA0MTQgMTMuMDQ3IDAuNTM0ODUgMjUuOTg0LTIuOTE5NyAzMy45OTUtMi40OTk0IDUuODEtOS4wOTU1IDkuNjAwNi0xNi4xOTYgMTIuMzExIDcuOTU5OSAyLjgzMDEgMjUuMDA5IDIuODA5NCAzMy41OCAxLjUzOTMgMTAuOC0xLjU5IDE3LjIzOC02LjUyOTQgMTcuMTU5LTIyLjY5OS0wLjA5MTEtMTUuOTMtMS4zODk0LTI5LjIzLTEuNTU5LTQ1LjgzLTAuMzIwOC0xMS45ODMtMS41NjktMjQuMjkxIDQuOTc3NC0zMy45ODcgNC4yMTM5LTYuMTI2NSAxMC40NTItMTAuNTIxIDE3LjExNi0xMy41ODggMy45MjkyLTEuODU3NSA4LjAzODQtMy4zMDgzIDEyLjI2My00LjMyOTctNi44NzE4LTEzLjU3NC0xOC43MzItMTkuNjE4LTMwLjY4Ny0xOS43MDl6IiBzdHlsZT0iZmlsbDojZmZmNTEwOyIvPjxwYXRoIGQ9Im05MC44IDc2LjI0NmMxMS45MTgtMTcuMTI1IDMxLjk5Ni0yMy4yMTggNDkuNzQzLTE3LjQ4OCAxMS44MSAzLjk0OTYgMjAuNjkyIDEzLjM4OSAyMi4zMTMgMjguMjM3IDAuNTEwNTEgNi4yMDk4IDAuNjM0MTMgMTIuNDQ1IDAuMzcwMDcgMTguNjctMC4yMzk3MyAxMS4yLTAuNzI5NDYgMjMuODItMS4wOTk1IDM0LjA4LTAuODIwMDUgMjIuNDMgMC4wNTkzIDM1LjEgMjQuNTg5IDM2LjMgOC41NjM1IDAuMzIxMjIgMTcuMTM3LTAuMjI4NDUgMjUuNTktMS42NDA1aC0wLjAxOThjLTEwLjc0LTMuMzc5OS0xNy45OC0xNS42MDktMTkuMy0yNi4yODktMS4yOS0xMC40MS0wLjYwOTgtMjMuNDMtMC43ODk4LTM4LjA5MS0wLjE3MDEtMTQuOTYgMS4wMzk4LTI5LjgxOSAwLjI4MDA4LTQyLjA4OS0xLjQxNC0yMi43NzctMTQuOTQ3LTM4LjUwNS0zNC4xMjYtNDUuMTUyLTI3LjgxMy03LjM1LTUxLjA4MyAwLjA5MS02MS42NzIgMTcuMzQzLTUuNDY5OCA4LjkxMTItNy43NDEzIDIwLjA3LTUuODc4OCAzNi4xMjF6IiBzdHlsZT0iZmlsbDojZmZmNTEwOyIvPjxwYXRoIGQ9Im0xMzEuNjQgMTE0LjA5IDcuNTgwMS03LjU4MDEgNy41ODAxIDcuNTgwMW0tNjIuNiAwIDcuNTgwMS03LjU4MDEgNy41Nzk5IDcuNTgwMSIgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlLXdpZHRoOjYuNDk5OHB4O3N0cm9rZTojMDAwOyIvPjxwYXRoIGQ9Im0xMDAuMzUgMTQzLjg1YTcuNjcgNy42NyAwIDAgMCA3LjU4IDcuN3YwYTcuNjYgNy42NiAwIDAgMCA3LjU3LTcuNyA3LjY2IDcuNjYgMCAwIDAgNy41NyA3Ljd2MGE3LjY3IDcuNjcgMCAwIDAgNy41OC03LjciIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS13aWR0aDo2LjM5OThweDtzdHJva2U6IzAwMDsiLz48L3N2Zz4=', 1, '2022-12-27 19:08:27', '2022-12-27 19:09:32'),
+(13, 'latastecharlelie@gmail.com', '[]', '$2y$13$PoexF9R/AYEVQBTqIOFTqOZl2R00Ey9yCScKO/udSd5cI4B.0Ygne', 'Fandehugo13', 0, 'PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMzEgMjMxIj48cGF0aCBkPSJNMzMuODMsMzMuODNhMTE1LjUsMTE1LjUsMCwxLDEsMCwxNjMuMzQsMTE1LjQ5LDExNS40OSwwLDAsMSwwLTE2My4zNFoiIHN0eWxlPSJmaWxsOiNGRkMxMDc7Ii8+PHBhdGggZD0ibTExNS41IDUxLjc1YTYzLjc1IDYzLjc1IDAgMCAwLTEwLjUgMTI2LjYzdjE0LjA5YTExNS41IDExNS41IDAgMCAwLTUzLjcyOSAxOS4wMjcgMTE1LjUgMTE1LjUgMCAwIDAgMTI4LjQ2IDAgMTE1LjUgMTE1LjUgMCAwIDAtNTMuNzI5LTE5LjAyOXYtMTQuMDg0YTYzLjc1IDYzLjc1IDAgMCAwIDUzLjI1LTYyLjg4MSA2My43NSA2My43NSAwIDAgMC02My42NS02My43NSA2My43NSA2My43NSAwIDAgMC0wLjA5OTYxIDB6IiBzdHlsZT0iZmlsbDojZmZjZThiOyIvPjxwYXRoIGQ9Im0xNDEuNzUgMTk0Ljk4YTExNC43OSAxMTQuNzggMCAwIDEgMzggMTYuNDk4IDExNS41MyAxMTUuNTIgMCAwIDEtMTI4LjQ2IDAgMTE0Ljc5IDExNC43OCAwIDAgMSAzOC0xNi40OThsMTUuNzEgMTUuNzQ4aDIxeiIgc3R5bGU9ImZpbGw6IzAwMDsiLz48cGF0aCBkPSJtNzAgMjAwLjg4djIwLjc3Yy0yLjIyLTAuOTUzMjUtNC4zOTk5LTEuOTY5OC02LjUzOTktMy4wNDk2aC0wLjEwMDg4di0xNC42MjFjMi4xNy0xLjEgNC4zOS0yLjEzOTkgNi42NC0zLjA5OTZ6IiBzdHlsZT0iZmlsbDojNDM1MzYzOyIvPjxwYXRoIGQ9Im0xNjEgMjAwLjg4djIwLjc3YzEuOS0wLjgwOTg2IDMuNzcwMi0xLjY3OTggNS42MjAxLTIuNTg5OGwwLjA5ODktMC4wNDk0IDAuODIwMDUtMC40MDk5N2gwLjEwMDg4di0xNC42MjFjLTIuMTctMS4xLTQuMzktMi4xMzk5LTYuNjQwMi0zLjA5OTZ6IiBzdHlsZT0iZmlsbDojNDM1MzYzOyIvPjxwb2x5Z29uIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIC45OTk4NyA0ZS01IC0zZS01KSIgcG9pbnRzPSI5Ny4zMiAyMDEuOTMgMTE1LjUgMjIzLjcyIDEzMy42OCAyMDEuOTMiIHN0eWxlPSJmaWxsOiMwMDA7Ii8+PHBhdGggZD0ibTExMS4yIDIzMC44OCAxLjMxLTE2LjkwOGMwLjMyOTkyIDEuMjc5OCA1LjYzOTkgMS4yNzk4IDUuOTk5OSAwbDEuMzIwMSAxNi45MzhjLTEuNDMwMSAwLjA0OTQtMi44NjAxIDAuMDg5LTQuMyAwLjA4OXMtMi44NyAwLTQuMy0wLjA4OXoiIHN0eWxlPSJmaWxsOm5vbmU7Ii8+PHBhdGggZD0ibTExNS40OSAyMDEuNzl2MC4wNjkybC03LjU1IDEyLjY3OC03LjAwMDEgMTEuODA5LTE5LjE5LTI2LjQ4N2MwLjYwOTk5LTAuNDI5OTUgMS4yMi0wLjg5OTg1IDEuODAwMS0xLjM4OTlhNTIgNTEuOTkzIDAgMCAwIDEwLjA3LTEwLjYxOWwyMS43OSAxMy44Nzh6IiBzdHlsZT0iZmlsbDojZTdlY2YyOyIvPjxwYXRoIGQ9Im0xNDkuMjQgMTk5Ljg2LTE5LjA4IDI2LjUxNy03LjAwMDEtMTEuODA5LTcuNTctMTIuNjc4LTAuMDU5My0wLjEwMDg2IDIxLjk0LTEzLjk5OGE1Mi4yMSA1Mi4yMDMgMCAwIDAgMTAuMDggMTAuNjk5YzAuNTgwMTMgMC40NzAwOSAxLjE1MDIgMC45MjAwMiAxLjczMDEgMS4zMzk5eiIgc3R5bGU9ImZpbGw6I2U3ZWNmMjsiLz48cGF0aCBkPSJtMTA4LjM3IDIyLjAxOWMtNi4yNjk4LTEyLjgyOS0xNy4xNTEtMTMuMzk2LTE4Ljk0OSAxLjE3NjktMTEuNDQ4LTkuNDU4My0yNi4wMjEtNC40ODMtMjAuMzYxIDEyLjQyMi0xMi4yNTEtNy45MjgyLTI0LjkxOSAxLjc3NjEtMTcuMDc2IDIwLjg1My0yNy4wOCAyLjM2NDYtMjIuNzE1IDI0LjcyNi0xMC4xMTEgMzEuNDM1LTkuOTAwMiAzLjM1NjYtMTAuNzAxIDkuNDAwNi04LjQ2NCAxNC40OTcgMi42NTc0IDQuNzg0MiA5LjAxMjYgNi40NzM3IDExLjU0NSA5LjY1MTktNi42MjQgMC41OTQxOS04LjQxMTIgNS42MDExLTUuNzQwNCA5LjUxOTIgMS42ODk2IDIuNDc4NyA1LjI3NTYgNC4yMjE4IDguNTk3MSA1LjU0NTUgMS4wNDg1IDAuNDA2NTggMy43MDIgMS4yNzMyIDMuOTA1MyAyLjQxODEgMC4xODc0NCAxLjIxNTYtNi43ODg0IDMuMDA1NS01LjcyODEgNS4yNjEyIDAuNjA2NDggMS40MjI3IDEuNzc2NCAyLjcxNTEgMi42NDY2IDMuNzE1NiAxLjI4MDcgMS42NTk1IDEwLjc1NSA4LjAzNTEgOS40NTgzIDQuMjA0OS0xLjAyNzEtMy43MjM0LTIuMjE0OC03LjQ2ODItMy4xNDU2LTExLjE5Mi0xLjE2NjItNS4zMDY5LTEuNzg2OC0xMC43MjEtMS4xMDItMTYuMTU2IDEuNDIyMy01LjQ1NSA1LjA2OS00LjQyNjUgNy43ODM3LTguMzU4OCAzLjUyNjQtNS43NTA1IDIuMDI5Ni0xMS42MTQgMi4xMjQtMTMuNTc1IDAuMTA3LTEuNzg2OCAxLjU0MDctMS4xODc2IDMuMTg4NC0xLjQzMzcgNC4zODY4LTAuNjQxOTYgNy4wMDgxLTIuMTE4NSA4LjgzNzctNi4yNjk4IDAuNzcwMzUtMS45MjU5IDAuNjIwNTctOS43NTc4IDAuNTI0MjYtMTEuNzggMC4zNjM3OC00LjYzMjggNC4xODM1IDAgNi41NDggMC42NDE5NiAzLjI2MzMgMC44ODgwNSA2Ljg3OTcgMC4yMTM5OSA5LjA3MzEtMi41MDM3IDEuNzU0Ny0yLjM3NTMgMi4wODY0LTIuODg4OCA0LjYxMTQtMC44MDI0NSAyLjY4NTYgMi4yMTQ4IDQuMDk3OSAzLjEzNDkgNy42OTI5IDMuMjc0IDUuNTYzNyAwLjIwMzI5IDguNzczNS02LjI2OTggMTEuMzItNS42Mzg2IDMuNTIwMSAwLjg3NzM1IDMuNjA1NyA1LjQ1NjcgMTAuMjYxIDQuODY4MiAyLjM4Ni0wLjIwMzI5IDMuODMwNC0wLjg2NjY1IDUuNDAzMi0yLjY0MjggMC44ODgwNS0wLjk5NTA1IDEuOTU4LTIuNTAzNyAzLjQzNDUtMi42MjE0IDEuNDY1OC0wLjExNzcgMi4zMjE4IDIuMzY0NiAzLjAwNjUgMy40NDUyIDEuMTkyNiAyLjY3NTUgNC4wMjk1IDMuNjUxMyA2LjIzNzcgMy4zMTY4IDEuOTU4LTAuMTcxMTkgMy44NTQtMS40MTE1IDUuNDI2OC0yLjQ3MDcgMC45OTY3OS0wLjY2MTAyIDEuODI4NC0wLjgxMTI4IDEuOTI1NiAwLjIwNzEgMC4yOTU5MiAyLjIyNzEgMC4wODYyIDcuNzAyNSAwLjE1OTYgOC40ODIxIDAuMTA1NTYgOC40NjA5IDUuMzcgMTAuNTY5IDEzLjIyMyAxMC4zMzMtMC4zMTg3MSAzLjc0NjQgMC4wNTgzIDExLjI4IDUuNDM1MyAxNC41NjIgMy45NDgxIDIuNzYwNCA2LjY2NTcgMS4yNzMyIDYuNzI5OSA3Ljg1MzQgN2UtMyA2LjE5MTQtMC40MzY5MyAxMy4wNjEtMS4yOTQ2IDE4LjE4OS0wLjY5NTQ3IDQuMDQ0NC0xLjI0MTIgNi40ODM4LTIuNTI1MSAxMC4zNzgtMC42NDE5NiAxLjkxNTItMC44MTMxNSAxLjk2ODcgMS40MTIzIDEuMDY5OSA3LjE0NzItMy4xNDU2IDEwLjUzOS0xMS40OCA4LjM1NjItMTguODQyLTAuNDM4NjktMi4wNDM2IDAuODQ1MjUtMS43MjI2IDIuODc4MS0yLjYxMDYgOS41MjQ4LTQuMjM2MyA4LjEyNjQtMTEuMzM1LTAuNzU5NjctMTQuMjczIDExLjk4OC0zLjA5MjYgMTMuODg2LTguOTAwMiA2LjY4NzEtMTUuMzc1IDcuMzA3Ny01LjkxNjggMy42Mzc4LTE2LjE3Ny0yLjgwMzItMTYuOTkxIDEyLjQyMi03LjA5MzcgNS43MzQ5LTIyLjA2Mi01LjEwMzYtMTguNDk5IDQuMTcyOC0xMi4wMzctNS41NjM3LTI2LjIwMy0yMS4xMjEtMTYuODk0IDYuOTY1My0xMS4zNzMgMi4wNjUtMjIuNjYxLTEyLjEwMS0xMC43ODUtMy40NTU5LTE4LjM4Mi0xNS4xNC0xNi41ODQtMjMuOTAyLTUuMDE4IDAuMDk0MzUtMjAuMDc1LTE2LjAwMS0xNy40Mi0xOC4xNDYtMi41ODkyeiIgc3R5bGU9ImZpbGw6IzAwMDsiLz48cGF0aCBkPSJtNS40MzUzIDgwLjUwMmM3LjQ0NjggOS4xMzczIDE1LjYzMiA4Ljg5MTIgMTUuNjMyIDguODkxMnMtNi4wNzcyIDMuNzk4My02LjgzNjkgOS44NzU1Yy0wLjc1OTY2IDYuMDg4IDQuNTU3OSA5LjYyOTUgOC4wOTk0IDEwLjY0NiAzLjU1MjIgMS4wMDU4IDcuMDkzNy0yLjc5MjUgNy4wOTM3LTIuNzkyNXMtNS44MzEyIDEwLjY0Ni0xLjUxOTMgMTUuOTY0YzQuMzAxMiA1LjMxNzYgMTEuOTA4IDMuMDM4NiAxMS45MDggMy4wMzg2cy01LjMyODMgMTAuMTMyIDEuMDA1NyAxNC4xODdjNS44MzEyIDMuNzIzNCAxOC41NDIgNy42NzE1IDIwLjUxMSA4LjI3MDYtNi4wNjY2LTkuNzQ3Mi05LjU3Ni0yMS4yNDktOS41NzYtMzMuNTc1di0wLjA0MjhjMC0zNS4yMDEgMjguNTQ2LTYzLjc0NyA2My43NDctNjMuNzQ3IDM1LjIxMiAwIDYzLjc1OCAyOC41NDYgNjMuNzU4IDYzLjc0NyAwIDEyLjQ3Ni0zLjU4NDMgMjQuMTE2LTkuNzg5OSAzMy45NDloMC41MzQ5NnMxMy45MzEtMS4wMDU3IDE2LjIxLTkuMzcyN2MyLjI3OS04LjM1NjIgMC43NTk2Ny05Ljg3NTYgMC43NTk2Ny05Ljg3NTZzMTAuNjM1IDIuMDMyOSAxMy40MTctNy41OTY2bDIuNzkyNi05LjYyOTVzMTAuMTMyIDAgMTAuODkyLTcuMDgzYzAuNzU5NjMtNy4wOTM3LTcuMDI5NS0xMi40MTEtNy4wMjk1LTEyLjQxMXMxMS40NTkgMC44MjM4NSAxNC40OTgtMTAuNDUzYzEuMDE2NC0zLjc1NTUgMC44MzQ1Ni04LjIxNzEgMC4xMzkxLTEyLjQ5Ny0xNy42NjUtNDEuMTYxLTU4LjU2OS02OS45OTUtMTA2LjE4LTY5Ljk5NS0zMC42MzIgMC02MC4wMzQgMTIuMTg3LTgxLjY3OSAzMy44MzF2MC4wMTA3Yy0xMy4xNzEgMTMuMTcxLTIyLjgzMyAyOS4yMi0yOC4zODYgNDYuNjZ6IiBzdHlsZT0iZmlsbDojMDAwOyIvPjxwYXRoIGQ9Im0xMjkuMzEgMTE0LjE0IDIwLTUuMzdtLTQ3LjY2IDUuMzctMjAtNS4zNyIgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlLXdpZHRoOjQuOTk5OHB4O3N0cm9rZTojMDAwOyIvPjxwYXRoIGQ9Im0xMjIuODMgMTUxLjg4YTEwLjQ5IDEwLjQ4OSAwIDAgMS0xNC42NiAwIiBzdHlsZT0iZmlsbDpub25lO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6Ni4xOTk2cHg7c3Ryb2tlOiMwMDA7Ii8+PC9zdmc+', 1, '2022-12-30 14:26:23', '2022-12-30 15:00:26'),
+(16, 'hugo.latreille@gmail.com', '[]', '$2y$13$VtbwAUYUi3cJ/J/AG4Tt9uMlteW6079iFMY2FXiijBZWCsNzjyYfe', 'Hugo', 0, 'PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMzEgMjMxIj48cGF0aCBkPSJNMzMuODMsMzMuODNhMTE1LjUsMTE1LjUsMCwxLDEsMCwxNjMuMzQsMTE1LjQ5LDExNS40OSwwLDAsMSwwLTE2My4zNFoiIHN0eWxlPSJmaWxsOiMzODY0NjU7Ii8+PHBhdGggZD0ibTExNS41IDUxLjc1YTYzLjc1IDYzLjc1IDAgMCAwLTEwLjUgMTI2LjYzdjE0LjA5YTExNS41IDExNS41IDAgMCAwLTUzLjcyOSAxOS4wMjcgMTE1LjUgMTE1LjUgMCAwIDAgMTI4LjQ2IDAgMTE1LjUgMTE1LjUgMCAwIDAtNTMuNzI5LTE5LjAyOXYtMTQuMDg0YTYzLjc1IDYzLjc1IDAgMCAwIDUzLjI1LTYyLjg4MSA2My43NSA2My43NSAwIDAgMC02My42NS02My43NSA2My43NSA2My43NSAwIDAgMC0wLjA5OTYxIDB6IiBzdHlsZT0iZmlsbDojZmZmM2RjOyIvPjxwYXRoIGQ9Im0xNDEuNzUgMTk1YTExNC43OSAxMTQuNzkgMCAwIDEgMzggMTYuNSAxMTUuNTMgMTE1LjUzIDAgMCAxLTEyOC40NiAwIDExNC43OSAxMTQuNzkgMCAwIDEgMzgtMTYuNSAxMTUuNzcgMTE1Ljc3IDAgMCAxIDE1LjcxLTIuNTN2LTE0LjA5YTYzLjggNjMuOCAwIDAgMCAyMSAwdjE0LjA5YTExNi42IDExNi42IDAgMCAxIDE1Ljc1IDIuNTN6IiBzdHlsZT0iZmlsbDojMDAwOyIvPjxwYXRoIGQ9Im02MC45ODQgMjA1LjY2IDYuMjY3NSAyLjIwNTEgMy40MDc0LTYuODE5IDIuODAxOC0xLjEzNTMtMy45OTExIDcuOTkwNyAyNy4yMjItMy4wODU3IDMuMjU0MS0xMS43MzkgMi4xNDUxLTAuMjY5Mi0zLjI4MzMgMTEuODE5IDIwLjM5My0xLjYwMTEtMTQuMTkxLTE1Ljk0NXYtMi40Mzc5bDE3LjYwNi01LjcyNzQgMy4zODU1LTAuNDczdjEuNDdsLTE5LjE2NyA2LjIyOTUgMTQuNzMxIDE2LjU0MiAxOS44MzktNy43NDMyIDMuMzYzNiAwLjgyMjMtMjEuMzcxIDguMzQgMjAuNTMyIDEzLjg0MiAyLjY3NzctMjEuNjg3IDEuOTQ4MSAwLjU2MDQtMi43NzI2IDIyLjM3OCAwLjA1ODQgMC4wMzY0IDguNTA3NSA0Ljk5MjMtMi40ODA3IDAuODUxNDUtNi40NzE4LTMuNzkxNi0xLjI5ODcgNi4wNjIyLTIuMTUyNCAwLjUzMTI1IDEuMzQyNS02LjI4MDQtMTcuMDM3IDguODM0OC01LjAyNzEgMC4zNTY2MSAyMS41OS0xMS4xOTMtMjAuOTYyLTE0LjEzMy03LjUwMDYgMjUuNDU3LTIuMDcyMS0wLjAzNjQgNy42MzkyLTI1LjkxNS0yMS4wNSAxLjY1MiA5LjAxMDkgMjQuMDUyLTEuNDE1NS0wLjA5NDYtMC40OTYxNS0wLjA0MzctMC4wNzMtN2UtMyAtMC4yMDQzLTAuMDE0NS04LjM2ODgtMjIuMzQyLTEwLjEyNyAxOS4yNDItMS45ODQ2LTAuNTIzOTkgMTAuNTE0LTE5Ljk2Mi0yNi4wNCAyLjk1NDcgMTMuNDI1IDE2LjQxOC0zLjQ0MzgtMS4wNjI1LTEyLjA4My0xNC43ODEtOC4xNjQ1IDUuOTY3NS0xLjkwNDMtMS4wNzcgOC4xMjgtNS45Mzg1LTYuOTg5OC0yLjQ1OTggMi4zMzQ4LTEuMjg4MXptOTIuNTA5LTcuMjU1NiAxNC4yMjggMjAuMDkzLTEuODA5NSAwLjg5NTE0LTE1LjYxNC0yMi4wNDN6IiBzdHlsZT0iZmlsbDojRkZCREVDOyIvPjxwYXRoIGQ9Im0xMDguMzcgMjIuMDE5Yy02LjI2OTgtMTIuODI5LTE3LjE1MS0xMy4zOTYtMTguOTQ5IDEuMTc2OS0xMS40NDgtOS40NTgzLTI2LjAyMS00LjQ4My0yMC4zNjEgMTIuNDIyLTEyLjI1MS03LjkyODItMjQuOTE5IDEuNzc2MS0xNy4wNzYgMjAuODUzLTI3LjA4IDIuMzY0Ni0yMi43MTUgMjQuNzI2LTEwLjExMSAzMS40MzUtOS45MDAyIDMuMzU2Ni0xMC43MDEgOS40MDA2LTguNDY0IDE0LjQ5NyAyLjY1NzQgNC43ODQyIDkuMDEyNiA2LjQ3MzcgMTEuNTQ1IDkuNjUxOS02LjYyNCAwLjU5NDE5LTguNDExMiA1LjYwMTEtNS43NDA0IDkuNTE5MiAxLjY4OTYgMi40Nzg3IDUuMjc1NiA0LjIyMTggOC41OTcxIDUuNTQ1NSAxLjA0ODUgMC40MDY1OCAzLjcwMiAxLjI3MzIgMy45MDUzIDIuNDE4MSAwLjE4NzQ0IDEuMjE1Ni02Ljc4ODQgMy4wMDU1LTUuNzI4MSA1LjI2MTIgMC42MDY0OCAxLjQyMjcgMS43NzY0IDIuNzE1MSAyLjY0NjYgMy43MTU2IDEuMjgwNyAxLjY1OTUgMTAuNzU1IDguMDM1MSA5LjQ1ODMgNC4yMDQ5LTEuMDI3MS0zLjcyMzQtMi4yMTQ4LTcuNDY4Mi0zLjE0NTYtMTEuMTkyLTEuMTY2Mi01LjMwNjktMS43ODY4LTEwLjcyMS0xLjEwMi0xNi4xNTYgMS40MjIzLTUuNDU1IDUuMDY5LTQuNDI2NSA3Ljc4MzctOC4zNTg4IDMuNTI2NC01Ljc1MDUgMi4wMjk2LTExLjYxNCAyLjEyNC0xMy41NzUgMC4xMDctMS43ODY4IDEuNTQwNy0xLjE4NzYgMy4xODg0LTEuNDMzNyA0LjM4NjgtMC42NDE5NiA3LjAwODEtMi4xMTg1IDguODM3Ny02LjI2OTggMC43NzAzNS0xLjkyNTkgMC42MjA1Ny05Ljc1NzggMC41MjQyNi0xMS43OCAwLjM2Mzc4LTQuNjMyOCA0LjE4MzUgMCA2LjU0OCAwLjY0MTk2IDMuMjYzMyAwLjg4ODA1IDYuODc5NyAwLjIxMzk5IDkuMDczMS0yLjUwMzcgMS43NTQ3LTIuMzc1MyAyLjA4NjQtMi44ODg4IDQuNjExNC0wLjgwMjQ1IDIuNjg1NiAyLjIxNDggNC4wOTc5IDMuMTM0OSA3LjY5MjkgMy4yNzQgNS41NjM3IDAuMjAzMjkgOC43NzM1LTYuMjY5OCAxMS4zMi01LjYzODYgMy41MjAxIDAuODc3MzUgMy42MDU3IDUuNDU2NyAxMC4yNjEgNC44NjgyIDIuMzg2LTAuMjAzMjkgMy44MzA0LTAuODY2NjUgNS40MDMyLTIuNjQyOCAwLjg4ODA1LTAuOTk1MDUgMS45NTgtMi41MDM3IDMuNDM0NS0yLjYyMTQgMS40NjU4LTAuMTE3NyAyLjMyMTggMi4zNjQ2IDMuMDA2NSAzLjQ0NTIgMS4xOTI2IDIuNjc1NSA0LjAyOTUgMy42NTEzIDYuMjM3NyAzLjMxNjggMS45NTgtMC4xNzExOSAzLjg1NC0xLjQxMTUgNS40MjY4LTIuNDcwNyAwLjk5Njc5LTAuNjYxMDIgMS44Mjg0LTAuODExMjggMS45MjU2IDAuMjA3MSAwLjI5NTkyIDIuMjI3MSAwLjA4NjIgNy43MDI1IDAuMTU5NiA4LjQ4MjEgMC4xMDU1NiA4LjQ2MDkgNS4zNyAxMC41NjkgMTMuMjIzIDEwLjMzMy0wLjMxODcxIDMuNzQ2NCAwLjA1ODMgMTEuMjggNS40MzUzIDE0LjU2MiAzLjk0ODEgMi43NjA0IDYuNjY1NyAxLjI3MzIgNi43Mjk5IDcuODUzNCA3ZS0zIDYuMTkxNC0wLjQzNjkzIDEzLjA2MS0xLjI5NDYgMTguMTg5LTAuNjk1NDcgNC4wNDQ0LTEuMjQxMiA2LjQ4MzgtMi41MjUxIDEwLjM3OC0wLjY0MTk2IDEuOTE1Mi0wLjgxMzE1IDEuOTY4NyAxLjQxMjMgMS4wNjk5IDcuMTQ3Mi0zLjE0NTYgMTAuNTM5LTExLjQ4IDguMzU2Mi0xOC44NDItMC40Mzg2OS0yLjA0MzYgMC44NDUyNS0xLjcyMjYgMi44NzgxLTIuNjEwNiA5LjUyNDgtNC4yMzYzIDguMTI2NC0xMS4zMzUtMC43NTk2Ny0xNC4yNzMgMTEuOTg4LTMuMDkyNiAxMy44ODYtOC45MDAyIDYuNjg3MS0xNS4zNzUgNy4zMDc3LTUuOTE2OCAzLjYzNzgtMTYuMTc3LTIuODAzMi0xNi45OTEgMTIuNDIyLTcuMDkzNyA1LjczNDktMjIuMDYyLTUuMTAzNi0xOC40OTkgNC4xNzI4LTEyLjAzNy01LjU2MzctMjYuMjAzLTIxLjEyMS0xNi44OTQgNi45NjUzLTExLjM3MyAyLjA2NS0yMi42NjEtMTIuMTAxLTEwLjc4NS0zLjQ1NTktMTguMzgyLTE1LjE0LTE2LjU4NC0yMy45MDItNS4wMTggMC4wOTQzNS0yMC4wNzUtMTYuMDAxLTE3LjQyLTE4LjE0Ni0yLjU4OTJ6IiBzdHlsZT0iZmlsbDojMDAwOyIvPjxwYXRoIGQ9Im01LjQzNTMgODAuNTAyYzcuNDQ2OCA5LjEzNzMgMTUuNjMyIDguODkxMiAxNS42MzIgOC44OTEycy02LjA3NzIgMy43OTgzLTYuODM2OSA5Ljg3NTVjLTAuNzU5NjYgNi4wODggNC41NTc5IDkuNjI5NSA4LjA5OTQgMTAuNjQ2IDMuNTUyMiAxLjAwNTggNy4wOTM3LTIuNzkyNSA3LjA5MzctMi43OTI1cy01LjgzMTIgMTAuNjQ2LTEuNTE5MyAxNS45NjRjNC4zMDEyIDUuMzE3NiAxMS45MDggMy4wMzg2IDExLjkwOCAzLjAzODZzLTUuMzI4MyAxMC4xMzIgMS4wMDU3IDE0LjE4N2M1LjgzMTIgMy43MjM0IDE4LjU0MiA3LjY3MTUgMjAuNTExIDguMjcwNi02LjA2NjYtOS43NDcyLTkuNTc2LTIxLjI0OS05LjU3Ni0zMy41NzV2LTAuMDQyOGMwLTM1LjIwMSAyOC41NDYtNjMuNzQ3IDYzLjc0Ny02My43NDcgMzUuMjEyIDAgNjMuNzU4IDI4LjU0NiA2My43NTggNjMuNzQ3IDAgMTIuNDc2LTMuNTg0MyAyNC4xMTYtOS43ODk5IDMzLjk0OWgwLjUzNDk2czEzLjkzMS0xLjAwNTcgMTYuMjEtOS4zNzI3YzIuMjc5LTguMzU2MiAwLjc1OTY3LTkuODc1NiAwLjc1OTY3LTkuODc1NnMxMC42MzUgMi4wMzI5IDEzLjQxNy03LjU5NjZsMi43OTI2LTkuNjI5NXMxMC4xMzIgMCAxMC44OTItNy4wODNjMC43NTk2My03LjA5MzctNy4wMjk1LTEyLjQxMS03LjAyOTUtMTIuNDExczExLjQ1OSAwLjgyMzg1IDE0LjQ5OC0xMC40NTNjMS4wMTY0LTMuNzU1NSAwLjgzNDU2LTguMjE3MSAwLjEzOTEtMTIuNDk3LTE3LjY2NS00MS4xNjEtNTguNTY5LTY5Ljk5NS0xMDYuMTgtNjkuOTk1LTMwLjYzMiAwLTYwLjAzNCAxMi4xODctODEuNjc5IDMzLjgzMXYwLjAxMDdjLTEzLjE3MSAxMy4xNzEtMjIuODMzIDI5LjIyLTI4LjM4NiA0Ni42NnoiIHN0eWxlPSJmaWxsOiMwMDA7Ii8+PHBhdGggZD0ibTEzMS42NCAxMTQuMDkgNy41ODAxLTcuNTgwMSA3LjU4MDEgNy41ODAxbS02Mi42IDAgNy41ODAxLTcuNTgwMSA3LjU3OTkgNy41ODAxIiBzdHlsZT0iZmlsbDpub25lO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6Ni40OTk4cHg7c3Ryb2tlOiMwMDA7Ii8+PHBhdGggZD0ibTk3LjA2IDE0NC41OWEyMC4xNSAyMC4xNSAwIDAgMCAzNi44OCA0LjUzeiIgc3R5bGU9ImZpbGw6I2ZmZjtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlLXdpZHRoOjIuOTk5OXB4O3N0cm9rZTojMDAwOyIvPjwvc3ZnPg==', 1, '2022-12-30 16:30:40', '2023-01-02 20:09:32'),
+(18, 'mateo.le.duc@hotmail.fr', '[]', '$2y$13$ZU3YF08aT.Pg6c1ZXoPJv.maIxSib0cI.JccgCod2cNH2fVd2kCsS', 'Yelbiri', 0, 'PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMzEgMjMxIj48cGF0aCBkPSJNMzMuODMsMzMuODNhMTE1LjUsMTE1LjUsMCwxLDEsMCwxNjMuMzQsMTE1LjQ5LDExNS40OSwwLDAsMSwwLTE2My4zNFoiIHN0eWxlPSJmaWxsOiNmZjFlYzE7Ii8+PHBhdGggZD0ibTExNS41IDUxLjc1YTYzLjc1IDYzLjc1IDAgMCAwLTEwLjUgMTI2LjYzdjE0LjA5YTExNS41IDExNS41IDAgMCAwLTUzLjcyOSAxOS4wMjcgMTE1LjUgMTE1LjUgMCAwIDAgMTI4LjQ2IDAgMTE1LjUgMTE1LjUgMCAwIDAtNTMuNzI5LTE5LjAyOXYtMTQuMDg0YTYzLjc1IDYzLjc1IDAgMCAwIDUzLjI1LTYyLjg4MSA2My43NSA2My43NSAwIDAgMC02My42NS02My43NSA2My43NSA2My43NSAwIDAgMC0wLjA5OTYxIDB6IiBzdHlsZT0iZmlsbDojZjZiYTk3OyIvPjxwYXRoIGQ9Im0xNDEuODkgMTk1YTExNC43OSAxMTQuNzkgMCAwIDEgMzggMTYuNSAxMTUuNTUgMTE1LjU1IDAgMCAxLTEyOC40NyAwIDExNC43OSAxMTQuNzkgMCAwIDEgMzgtMTYuNWwxNS43NSAxNS43NWgyMXoiIHN0eWxlPSJmaWxsOiMwRDIwNEE7Ii8+PHBhdGggZD0ibTE0Ni40IDE5Ni4xNC0xNy40IDE3LjQ0LTEuMTcgMS4xN2gtMjQuMzRsLTEuMTgtMS4xNy0xNy40My0xNy40NGMxLjQ5LTAuNDEgMy0wLjc5IDQuNTEtMS4xNGw0LjY3LTEgMTIuNzQgMTIuNzRoMTcuNjlsMTIuNzMtMTIuNzQgNC42NyAxYzEuNTIgMC4zNSAzIDAuNzMgNC41MSAxLjE0eiIgc3R5bGU9ImZpbGw6IzAwZmZkZjsiLz48cGF0aCBkPSJtMTA4LjM3IDIyLjAxOWMtNi4yNjk4LTEyLjgyOS0xNy4xNTEtMTMuMzk2LTE4Ljk0OSAxLjE3NjktMTEuNDQ4LTkuNDU4My0yNi4wMjEtNC40ODMtMjAuMzYxIDEyLjQyMi0xMi4yNTEtNy45MjgyLTI0LjkxOSAxLjc3NjEtMTcuMDc2IDIwLjg1My0yNy4wOCAyLjM2NDYtMjIuNzE1IDI0LjcyNi0xMC4xMTEgMzEuNDM1LTkuOTAwMiAzLjM1NjYtMTAuNzAxIDkuNDAwNi04LjQ2NCAxNC40OTcgMi42NTc0IDQuNzg0MiA5LjAxMjYgNi40NzM3IDExLjU0NSA5LjY1MTktNi42MjQgMC41OTQxOS04LjQxMTIgNS42MDExLTUuNzQwNCA5LjUxOTIgMS42ODk2IDIuNDc4NyA1LjI3NTYgNC4yMjE4IDguNTk3MSA1LjU0NTUgMS4wNDg1IDAuNDA2NTggMy43MDIgMS4yNzMyIDMuOTA1MyAyLjQxODEgMC4xODc0NCAxLjIxNTYtNi43ODg0IDMuMDA1NS01LjcyODEgNS4yNjEyIDAuNjA2NDggMS40MjI3IDEuNzc2NCAyLjcxNTEgMi42NDY2IDMuNzE1NiAxLjI4MDcgMS42NTk1IDEwLjc1NSA4LjAzNTEgOS40NTgzIDQuMjA0OS0xLjAyNzEtMy43MjM0LTIuMjE0OC03LjQ2ODItMy4xNDU2LTExLjE5Mi0xLjE2NjItNS4zMDY5LTEuNzg2OC0xMC43MjEtMS4xMDItMTYuMTU2IDEuNDIyMy01LjQ1NSA1LjA2OS00LjQyNjUgNy43ODM3LTguMzU4OCAzLjUyNjQtNS43NTA1IDIuMDI5Ni0xMS42MTQgMi4xMjQtMTMuNTc1IDAuMTA3LTEuNzg2OCAxLjU0MDctMS4xODc2IDMuMTg4NC0xLjQzMzcgNC4zODY4LTAuNjQxOTYgNy4wMDgxLTIuMTE4NSA4LjgzNzctNi4yNjk4IDAuNzcwMzUtMS45MjU5IDAuNjIwNTctOS43NTc4IDAuNTI0MjYtMTEuNzggMC4zNjM3OC00LjYzMjggNC4xODM1IDAgNi41NDggMC42NDE5NiAzLjI2MzMgMC44ODgwNSA2Ljg3OTcgMC4yMTM5OSA5LjA3MzEtMi41MDM3IDEuNzU0Ny0yLjM3NTMgMi4wODY0LTIuODg4OCA0LjYxMTQtMC44MDI0NSAyLjY4NTYgMi4yMTQ4IDQuMDk3OSAzLjEzNDkgNy42OTI5IDMuMjc0IDUuNTYzNyAwLjIwMzI5IDguNzczNS02LjI2OTggMTEuMzItNS42Mzg2IDMuNTIwMSAwLjg3NzM1IDMuNjA1NyA1LjQ1NjcgMTAuMjYxIDQuODY4MiAyLjM4Ni0wLjIwMzI5IDMuODMwNC0wLjg2NjY1IDUuNDAzMi0yLjY0MjggMC44ODgwNS0wLjk5NTA1IDEuOTU4LTIuNTAzNyAzLjQzNDUtMi42MjE0IDEuNDY1OC0wLjExNzcgMi4zMjE4IDIuMzY0NiAzLjAwNjUgMy40NDUyIDEuMTkyNiAyLjY3NTUgNC4wMjk1IDMuNjUxMyA2LjIzNzcgMy4zMTY4IDEuOTU4LTAuMTcxMTkgMy44NTQtMS40MTE1IDUuNDI2OC0yLjQ3MDcgMC45OTY3OS0wLjY2MTAyIDEuODI4NC0wLjgxMTI4IDEuOTI1NiAwLjIwNzEgMC4yOTU5MiAyLjIyNzEgMC4wODYyIDcuNzAyNSAwLjE1OTYgOC40ODIxIDAuMTA1NTYgOC40NjA5IDUuMzcgMTAuNTY5IDEzLjIyMyAxMC4zMzMtMC4zMTg3MSAzLjc0NjQgMC4wNTgzIDExLjI4IDUuNDM1MyAxNC41NjIgMy45NDgxIDIuNzYwNCA2LjY2NTcgMS4yNzMyIDYuNzI5OSA3Ljg1MzQgN2UtMyA2LjE5MTQtMC40MzY5MyAxMy4wNjEtMS4yOTQ2IDE4LjE4OS0wLjY5NTQ3IDQuMDQ0NC0xLjI0MTIgNi40ODM4LTIuNTI1MSAxMC4zNzgtMC42NDE5NiAxLjkxNTItMC44MTMxNSAxLjk2ODcgMS40MTIzIDEuMDY5OSA3LjE0NzItMy4xNDU2IDEwLjUzOS0xMS40OCA4LjM1NjItMTguODQyLTAuNDM4NjktMi4wNDM2IDAuODQ1MjUtMS43MjI2IDIuODc4MS0yLjYxMDYgOS41MjQ4LTQuMjM2MyA4LjEyNjQtMTEuMzM1LTAuNzU5NjctMTQuMjczIDExLjk4OC0zLjA5MjYgMTMuODg2LTguOTAwMiA2LjY4NzEtMTUuMzc1IDcuMzA3Ny01LjkxNjggMy42Mzc4LTE2LjE3Ny0yLjgwMzItMTYuOTkxIDEyLjQyMi03LjA5MzcgNS43MzQ5LTIyLjA2Mi01LjEwMzYtMTguNDk5IDQuMTcyOC0xMi4wMzctNS41NjM3LTI2LjIwMy0yMS4xMjEtMTYuODk0IDYuOTY1My0xMS4zNzMgMi4wNjUtMjIuNjYxLTEyLjEwMS0xMC43ODUtMy40NTU5LTE4LjM4Mi0xNS4xNC0xNi41ODQtMjMuOTAyLTUuMDE4IDAuMDk0MzUtMjAuMDc1LTE2LjAwMS0xNy40Mi0xOC4xNDYtMi41ODkyeiIgc3R5bGU9ImZpbGw6I2Y3ZjdmNzsiLz48cGF0aCBkPSJtNS40MzUzIDgwLjUwMmM3LjQ0NjggOS4xMzczIDE1LjYzMiA4Ljg5MTIgMTUuNjMyIDguODkxMnMtNi4wNzcyIDMuNzk4My02LjgzNjkgOS44NzU1Yy0wLjc1OTY2IDYuMDg4IDQuNTU3OSA5LjYyOTUgOC4wOTk0IDEwLjY0NiAzLjU1MjIgMS4wMDU4IDcuMDkzNy0yLjc5MjUgNy4wOTM3LTIuNzkyNXMtNS44MzEyIDEwLjY0Ni0xLjUxOTMgMTUuOTY0YzQuMzAxMiA1LjMxNzYgMTEuOTA4IDMuMDM4NiAxMS45MDggMy4wMzg2cy01LjMyODMgMTAuMTMyIDEuMDA1NyAxNC4xODdjNS44MzEyIDMuNzIzNCAxOC41NDIgNy42NzE1IDIwLjUxMSA4LjI3MDYtNi4wNjY2LTkuNzQ3Mi05LjU3Ni0yMS4yNDktOS41NzYtMzMuNTc1di0wLjA0MjhjMC0zNS4yMDEgMjguNTQ2LTYzLjc0NyA2My43NDctNjMuNzQ3IDM1LjIxMiAwIDYzLjc1OCAyOC41NDYgNjMuNzU4IDYzLjc0NyAwIDEyLjQ3Ni0zLjU4NDMgMjQuMTE2LTkuNzg5OSAzMy45NDloMC41MzQ5NnMxMy45MzEtMS4wMDU3IDE2LjIxLTkuMzcyN2MyLjI3OS04LjM1NjIgMC43NTk2Ny05Ljg3NTYgMC43NTk2Ny05Ljg3NTZzMTAuNjM1IDIuMDMyOSAxMy40MTctNy41OTY2bDIuNzkyNi05LjYyOTVzMTAuMTMyIDAgMTAuODkyLTcuMDgzYzAuNzU5NjMtNy4wOTM3LTcuMDI5NS0xMi40MTEtNy4wMjk1LTEyLjQxMXMxMS40NTkgMC44MjM4NSAxNC40OTgtMTAuNDUzYzEuMDE2NC0zLjc1NTUgMC44MzQ1Ni04LjIxNzEgMC4xMzkxLTEyLjQ5Ny0xNy42NjUtNDEuMTYxLTU4LjU2OS02OS45OTUtMTA2LjE4LTY5Ljk5NS0zMC42MzIgMC02MC4wMzQgMTIuMTg3LTgxLjY3OSAzMy44MzF2MC4wMTA3Yy0xMy4xNzEgMTMuMTcxLTIyLjgzMyAyOS4yMi0yOC4zODYgNDYuNjZ6IiBzdHlsZT0iZmlsbDpub25lOyIvPjxwYXRoIGQ9Im0xMzMgMTA4LjE3aDE0LjE3bS02My4yNiAwaDE0LjA5bS0yMC42OS04LjkzYTIxLjMxIDIxLjMxIDAgMCAxIDI3LjI5IDBtMjEuOCAwYTIxLjMxIDIxLjMxIDAgMCAxIDI3LjI5IDAiIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS13aWR0aDo0LjgyNDNweDtzdHJva2U6IzAwMDsiLz48cGF0aCBkPSJtMTI3Ljg0IDE0Ni43M2MtMi4yNCA4LjkzLTYuOTIgMTUuMDgtMTIuMzQgMTUuMDhzLTEwLjEtNi4xNS0xMi4zNC0xNS4wOHoiIHN0eWxlPSJmaWxsOiMwMDA7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS13aWR0aDoyLjk5OTlweDtzdHJva2U6bm9uZTsiLz48L3N2Zz4=', 1, '2023-01-04 09:26:17', '2023-01-04 09:29:37'),
+(20, 'mateo.le.duc@outlook.fr', '[]', '$2y$13$Ce/5chjeGlD7ivx/ehke4uAxBKGHzhhnYF3d.RSua0D8/Ax4eIUOy', 'Mat2', 0, 'PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMzEgMjMxIj48cGF0aCBkPSJNMzMuODMsMzMuODNhMTE1LjUsMTE1LjUsMCwxLDEsMCwxNjMuMzQsMTE1LjQ5LDExNS40OSwwLDAsMSwwLTE2My4zNFoiIHN0eWxlPSJmaWxsOiNmZjc1MjA7Ii8+PHBhdGggZD0ibTExNS41IDUxLjc1YTYzLjc1IDYzLjc1IDAgMCAwLTEwLjUgMTI2LjYzdjE0LjA5YTExNS41IDExNS41IDAgMCAwLTUzLjcyOSAxOS4wMjcgMTE1LjUgMTE1LjUgMCAwIDAgMTI4LjQ2IDAgMTE1LjUgMTE1LjUgMCAwIDAtNTMuNzI5LTE5LjAyOXYtMTQuMDg0YTYzLjc1IDYzLjc1IDAgMCAwIDUzLjI1LTYyLjg4MSA2My43NSA2My43NSAwIDAgMC02My42NS02My43NSA2My43NSA2My43NSAwIDAgMC0wLjA5OTYxIDB6IiBzdHlsZT0iZmlsbDojYjI3ZTViOyIvPjxwYXRoIGQ9Im0xNDEuNzUgMTk1YTExNC43OSAxMTQuNzkgMCAwIDEgMzggMTYuNSAxMTUuNTMgMTE1LjUzIDAgMCAxLTEyOC40NiAwIDExNC43OSAxMTQuNzkgMCAwIDEgMzgtMTYuNWwxNS43MSAxNS43NWgyMXoiIHN0eWxlPSJmaWxsOiMzNTRCNjU7Ii8+PHBhdGggZD0ibTg5LjI5MSAxOTVhMTE0Ljc5IDExNC43OSAwIDAgMC0zOC4wMDIgMTYuNSAxMTUuNTMgMTE1LjUzIDAgMCAwIDM4LjAwMiAxNi40ODJ6bTUyLjQzNCAwdjMyLjk4MmExMTUuNTMgMTE1LjUzIDAgMCAwIDM4LTE2LjQ4MiAxMTQuNzkgMTE0Ljc5IDAgMCAwLTM4LTE2LjV6IiBzdHlsZT0iZmlsbDojM0Q4RUJCOyIvPjxwYXRoIGQ9Im0xNTcuMTUgMTk5Ljc1YzAuMjU0OCA3LjQ1MDEgMS41NCAxNC44NTUgNC45NTEyIDIxLjQzMmExMTUuNTMgMTE1LjUzIDAgMCAwIDE3LjYxOS05LjY3OTcgMTE0Ljc5IDExNC43OSAwIDAgMC0yMi41Ny0xMS43NTJ6bS04My4yOTUgMmUtM2ExMTQuNzkgMTE0Ljc5IDAgMCAwLTIyLjU3IDExLjc1IDExNS41MyAxMTUuNTMgMCAwIDAgMTcuNjIxIDkuNjc5N2MzLjQxMS02LjU3NjUgNC42OTQ0LTEzLjk4IDQuOTQ5Mi0yMS40M3oiIHN0eWxlPSJmaWxsOiM4OUQwREE7Ii8+PHBhdGggZD0ibTk5LjE5NyAyMDQuOTd2MmUtM2wxNi4zMDIgMTYuMzAxIDE2LjMwMS0xNi4zMDF2LTJlLTN6IiBzdHlsZT0iZmlsbDojMDBGRkZEOyIvPjxwYXRoIGQ9Im0xMzcuMzggMTEuMTQ4Yy0xMi4yMyAxLjk1OTMtMTguNTExIDE0LjYwNi00My40MzYgOS40OTE1LTExLjI4NS0zLjIwNTQtMTYuNDA2LTMuNTczLTIwLjM4OSAwLjU4NTk0LTQuMTU0OCA0LjMzODQtNy4wMzMgMTIuNDM1LTkuODE4NCAyMS43MDYtMi4xMzU0IDcuNDEzNi0zLjcxODcgMTQuMzgxLTQuNzQ2MSAyMS42NDZoMTEyLjdjLTMuNDg3OC0yNC4yOTMtMTAuODIyLTQzLjI4MS0yNS4xODItNTEuMDYxLTMuNTMxNC0xLjYyMy02LjUyNzQtMi4yOTU5LTkuMTI4OS0yLjM2MTN6IiBzdHlsZT0iZmlsbDojNTgzRDAwOyIvPjxwYXRoIGQ9Im0xMTQuMzcgNDMuMzgzYy0xOS40NDUgMC4wODgtMzguNTI0IDIuMDcyNC01Mi4zNzkgNS42OTkyLTEuMjc2NiA0LjU3OTUtMi40MzE3IDEwLjE2OS0zLjIyODUgMTYuODA3aDExMy4xMWMtMC44MzczMS02LjAxMDctMS45MTY0LTExLjY3NC0zLjMxODQtMTYuOTI0LTE1LjIyOS0zLjg4NDItMzQuODczLTUuNjY5My01NC4xOC01LjU4MnoiIHN0eWxlPSJmaWxsOiNBRjg5MkU7Ii8+PHBhdGggZD0ibTExNS41IDU1Ljc3M2MtNTguMzkgMC0xMDUuNzMgMTUuNDc2LTEwNS43MyAzNC41N2gwLjAzMTJjMCAxMS4yOTUgMTYuNDk2IDIxLjMxOSA0Mi4xMjYgMjcuNjI3LTAuMTAzMzEtNy43NzA0IDIuNzg4LTIxLjkwNCA1LjI3MzQtMzEuMDMxIDYuMDkzNS0xLjcxNjggNi45Mjk0LTEuODk3MSAxMy4xNjctMi45OTE5IDE0Ljg3NC0yLjgyNTYgMjkuOTktNC4yMDM3IDQ1LjEzMy00LjExNTMgMTUuMTQzLTAuMDg4NCAzMC4yNTkgMS4yODk3IDQ1LjEzMyA0LjExNTMgNi4yMzcyIDEuMDk0NyA3LjIwNjUgMS4yNzUxIDEzLjMgMi45OTE5IDIuNDg1NCA5LjEyNjcgNS4zNzY4IDIzLjI2IDUuMjczNCAzMS4wMzEgMjUuNjMtNi4zMDgyIDQxLjk5My0xNi4zMzIgNDEuOTkzLTI3LjYyN2gwLjAzMTJjMC0xOS4wOTMtNDcuMzQtMzQuNTctMTA1LjczLTM0LjU3eiIgc3R5bGU9ImZpbGw6IzQ2MkQwMDsiLz48cGF0aCBkPSJtNzIuMDg4IDgzLjUzM2MtNi45NzY1IDEuMTE0Ny0xMy4zNTcgMi44NTYtMTguNDM5IDQuMzQ3Ny0xLjE4NjEgNy40MTUtMi4wMDM4IDE4Ljg1OC0xLjg5MjYgMjYuMjkzIDQuMzI3OC0wLjYyNzk1IDEwLjE1NS0xLjM2NDQgMTMuMjk1LTEuNjQ2NS0wLjQwNTU0IDAuMzAxOTggMi43MzQ0LTE3LjgyNyA3LjAzNzEtMjguOTk0em04Ni44MjQgMGM0LjMwMjggMTEuMTY3IDcuNDQyNiAyOS4yOTYgNy4wMzcxIDI4Ljk5NCAzLjEzOTYgMC4yODIxMyA4Ljk2NzEgMS4wMTg1IDEzLjI5NSAxLjY0NjUgMC4xMTExOS03LjQzNTEtMC43MDY1Mi0xOC44NzgtMS44OTI2LTI2LjI5My01LjA4MjItMS40OTE2LTExLjQ2My0zLjIzMjktMTguNDM5LTQuMzQ3N3oiIHN0eWxlPSJmaWxsOiNhMGEwYTA7Ii8+PHBhdGggZD0ibTEyOS4zMSAxMTQuMTQgMjAtNS4zN20tNDcuNjYgNS4zNy0yMC01LjM3IiBzdHlsZT0iZmlsbDpub25lO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NC45OTk4cHg7c3Ryb2tlOiMwMDA7Ii8+PHBvbHlnb24gcG9pbnRzPSIxMjEuNjEgMTYwLjc0IDEwOS4zOSAxNjAuNzQgMTE1LjUgMTcxLjMxIiBzdHlsZT0iZmlsbDojZjczYjZjOyIvPjxwYXRoIGQ9Im0xMzIuNjQgMTQ0LjA2YTM0LjQyIDM0LjQyIDAgMCAxLTM0LjI0IDAiIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS13aWR0aDo1Ljk5OThweDtzdHJva2U6IzAwMDsiLz48L3N2Zz4=', 1, '2023-01-04 10:27:02', '2023-01-04 10:28:35');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user_answer`
+--
+
+CREATE TABLE `user_answer` (
+  `id` int(11) NOT NULL,
+  `user_id_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `game_id` int(11) NOT NULL,
+  `answer` longtext NOT NULL,
+  `is_true` tinyint(1) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `user_answer`
+--
+
+INSERT INTO `user_answer` (`id`, `user_id_id`, `question_id`, `game_id`, `answer`, `is_true`, `created_at`, `updated_at`) VALUES
+(14, 4, 12, 8, '', NULL, '2022-12-24 08:23:43', '2022-12-24 08:23:43'),
+(15, 4, 1, 8, '', NULL, '2022-12-24 08:24:03', '2022-12-24 08:24:03'),
+(16, 4, 2, 8, '', NULL, '2022-12-24 08:24:23', '2022-12-24 08:24:23'),
+(17, 4, 10, 8, '', NULL, '2022-12-24 08:24:38', '2022-12-24 08:24:38'),
+(18, 4, 7, 8, '', NULL, '2022-12-24 08:25:08', '2022-12-24 08:25:08'),
+(19, 4, 4, 8, '', NULL, '2022-12-24 08:25:38', '2022-12-24 08:25:38'),
+(20, 4, 11, 8, '', NULL, '2022-12-24 08:26:03', '2022-12-24 08:26:03'),
+(21, 4, 13, 8, '', NULL, '2022-12-24 08:26:18', '2022-12-24 08:26:18'),
+(66, 5, 11, 22, '', NULL, '2022-12-27 09:47:20', '2022-12-27 09:47:20'),
+(68, 5, 13, 24, '', NULL, '2022-12-27 10:49:58', '2022-12-27 10:49:58'),
+(70, 5, 8, 24, '', 0, '2022-12-27 10:50:19', '2022-12-27 11:36:05'),
+(72, 5, 9, 24, '', NULL, '2022-12-27 10:50:39', '2022-12-27 10:50:39'),
+(74, 5, 8, 24, '', NULL, '2022-12-27 11:27:33', '2022-12-27 11:27:33'),
+(76, 5, 9, 24, '', NULL, '2022-12-27 11:27:53', '2022-12-27 11:27:53'),
+(77, 4, 1, 28, '', 1, '2022-12-27 12:07:20', '2022-12-27 12:08:03'),
+(79, 4, 9, 28, '', 1, '2022-12-27 12:07:40', '2022-12-27 12:08:15'),
+(81, 4, 6, 28, '', 1, '2022-12-27 12:07:54', '2022-12-27 12:08:22'),
+(84, 4, 4, 29, '', 0, '2022-12-27 12:42:17', '2022-12-27 12:43:13'),
+(86, 4, 10, 29, '', 1, '2022-12-27 12:42:32', '2022-12-27 12:43:18'),
+(88, 4, 6, 29, '', 1, '2022-12-27 12:42:47', '2022-12-27 12:43:32'),
+(93, 5, 11, 41, 'le monde de Ralf', 1, '2022-12-27 15:09:33', '2022-12-27 15:10:30'),
+(95, 5, 13, 41, 'Jaune attend', 0, '2022-12-27 15:09:48', '2022-12-27 15:10:41'),
+(97, 5, 7, 41, 'Bruno Choë', 0, '2022-12-27 15:10:18', '2022-12-27 15:10:58'),
+(98, 6, 11, 43, 'les mondes de Ralph', 1, '2022-12-27 19:10:29', '2022-12-27 19:13:55'),
+(100, 6, 5, 43, 'la voiture DE JULIE', 1, '2022-12-27 19:10:44', '2022-12-27 19:14:15'),
+(102, 6, 4, 43, 'volcan ', 1, '2022-12-27 19:11:04', '2022-12-27 19:14:27'),
+(104, 6, 8, 43, 'MUNCH', 1, '2022-12-27 19:11:24', '2022-12-27 19:14:40'),
+(106, 6, 9, 43, 'PAPE FRANCOIS ', 1, '2022-12-27 19:11:44', '2022-12-27 19:14:57'),
+(108, 6, 15, 43, 'UNE BALLE', 0, '2022-12-27 19:12:09', '2022-12-27 19:15:22'),
+(110, 6, 16, 43, '', 0, '2022-12-27 19:12:39', '2022-12-27 19:15:45'),
+(112, 6, 6, 43, 'BIEN SUR', 1, '2022-12-27 19:12:54', '2022-12-27 19:16:10'),
+(114, 6, 3, 43, 'LOUTRE', 0, '2022-12-27 19:13:29', '2022-12-27 19:16:21'),
+(116, 6, 13, 43, 'UN POUSSIN DANS UN ASCENSEUR', 0, '2022-12-27 19:13:44', '2022-12-27 19:16:42'),
+(118, 5, 14, 44, 'Chan', 0, '2022-12-27 20:42:59', '2022-12-27 20:44:12'),
+(119, 5, 12, 44, 'Un p\'tit fien', 1, '2022-12-27 20:43:13', '2022-12-27 20:44:20'),
+(120, 5, 10, 44, 'Rascasse', 0, '2022-12-27 20:43:28', '2022-12-27 20:44:26'),
+(121, 5, 5, 44, 'La voiture de Julie', 1, '2022-12-27 20:43:43', '2022-12-27 20:44:33'),
+(122, 5, 1, 44, 'Pas la mienne', 0, '2022-12-27 20:44:03', '2022-12-27 20:44:40'),
+(123, 5, 7, 45, '', 0, '2022-12-27 20:45:32', '2022-12-27 20:47:15'),
+(124, 5, 6, 45, 'Bien sûr ', 0, '2022-12-27 20:45:47', '2022-12-27 20:47:39'),
+(125, 5, 16, 45, 'Ta mère ', 0, '2022-12-27 20:46:17', '2022-12-27 20:47:50'),
+(126, 5, 2, 45, 'J\'sais pas moi, son con les suis', 0, '2022-12-27 20:46:37', '2022-12-27 20:47:57'),
+(127, 5, 8, 45, 'Le peintre jfjf', NULL, '2022-12-27 20:46:57', '2022-12-27 20:46:57'),
+(128, 5, 7, 45, '', NULL, '2022-12-27 20:48:59', '2022-12-27 20:48:59'),
+(129, 5, 6, 45, '', NULL, '2022-12-27 20:49:14', '2022-12-27 20:49:14'),
+(130, 5, 11, 46, 'Gorge de la junglebbbbbbbbbbbbbbbbbbbbbbbbhhhhhbbbbhhhjjj', 0, '2022-12-27 20:49:57', '2022-12-27 20:51:39'),
+(131, 5, 7, 46, 'Moi ', 0, '2022-12-27 20:50:27', '2022-12-27 20:52:16'),
+(132, 5, 10, 46, 'Poisson. ', 1, '2022-12-27 20:50:42', '2022-12-27 20:52:21'),
+(133, 5, 5, 46, 'Fjdbd', 0, '2022-12-27 20:50:57', '2022-12-27 20:52:26'),
+(134, 5, 3, 46, 'Kéké qui se branle ', 0, '2022-12-27 20:51:32', '2022-12-27 20:52:46'),
+(135, 5, 3, 47, 'Cachalot', 1, '2022-12-27 20:53:42', '2022-12-27 20:55:08'),
+(136, 5, 6, 47, 'Les deux évidemment', 0, '2022-12-27 20:53:57', '2022-12-27 20:55:17'),
+(137, 5, 9, 47, '', 1, '2022-12-27 20:54:17', '2022-12-27 20:55:27'),
+(138, 5, 1, 47, '', NULL, '2022-12-27 20:54:37', '2022-12-27 20:54:37'),
+(139, 5, 14, 47, '', NULL, '2022-12-27 20:55:03', '2022-12-27 20:55:03'),
+(148, 4, 13, 50, '', 0, '2022-12-28 08:23:30', '2022-12-28 08:28:58'),
+(150, 4, 3, 50, '', NULL, '2022-12-28 08:24:05', '2022-12-28 08:24:05'),
+(152, 4, 9, 50, '', NULL, '2022-12-28 08:24:25', '2022-12-28 08:24:25'),
+(155, 4, 2, 56, '', 0, '2022-12-28 11:22:16', '2022-12-28 11:24:09'),
+(157, 4, 6, 56, '', 0, '2022-12-28 11:22:30', '2022-12-28 11:24:20'),
+(159, 4, 12, 56, '', 1, '2022-12-28 11:22:45', '2022-12-28 11:24:30'),
+(161, 4, 3, 56, '', 0, '2022-12-28 11:23:21', '2022-12-28 11:24:35'),
+(163, 4, 5, 56, '', 0, '2022-12-28 11:23:36', '2022-12-28 11:24:42'),
+(165, 4, 1, 56, '', 1, '2022-12-28 11:23:56', '2022-12-28 11:24:51'),
+(166, 4, 13, 59, 'Jonathan', 1, '2022-12-30 14:35:40', '2022-12-30 14:37:18'),
+(167, 13, 13, 59, 'jonathan', 1, '2022-12-30 14:35:40', '2022-12-30 14:37:41'),
+(168, 13, 10, 59, 'un blob moche', 1, '2022-12-30 14:35:54', '2022-12-30 14:37:58'),
+(169, 4, 10, 59, 'Mathieu', 1, '2022-12-30 14:35:55', '2022-12-30 14:38:04'),
+(170, 13, 2, 59, 'il font des montres et du chocolat', 0, '2022-12-30 14:36:14', '2022-12-30 14:38:14'),
+(171, 4, 2, 59, 'on s\'en branle', 1, '2022-12-30 14:36:15', '2022-12-30 14:38:18'),
+(172, 13, 9, 59, 'Jean Claude Vandamme', 0, '2022-12-30 14:36:34', '2022-12-30 14:38:29'),
+(173, 4, 9, 59, 'Le pape, 20 fois que je réponds à cette merde', 1, '2022-12-30 14:36:35', '2022-12-30 14:38:34'),
+(174, 13, 8, 59, 'Le murmure', 0, '2022-12-30 14:36:55', '2022-12-30 14:38:43'),
+(175, 4, 8, 59, 'Le pape', 1, '2022-12-30 14:36:55', '2022-12-30 14:38:47'),
+(176, 16, 11, 66, '', NULL, '2022-12-30 16:39:57', '2022-12-30 16:39:57'),
+(177, 16, 4, 66, '', NULL, '2022-12-30 16:40:17', '2022-12-30 16:40:17'),
+(178, 16, 2, 66, '', NULL, '2022-12-30 16:40:37', '2022-12-30 16:40:37'),
+(179, 16, 12, 66, '', NULL, '2022-12-30 16:40:52', '2022-12-30 16:40:52'),
+(180, 16, 3, 66, '', NULL, '2022-12-30 16:41:27', '2022-12-30 16:41:27'),
+(181, 16, 9, 66, '', NULL, '2022-12-30 16:41:47', '2022-12-30 16:41:47'),
+(182, 16, 5, 66, '', NULL, '2022-12-30 16:42:02', '2022-12-30 16:42:02'),
+(183, 16, 8, 66, '', NULL, '2022-12-30 16:42:22', '2022-12-30 16:42:22'),
+(184, 16, 13, 66, '', NULL, '2022-12-30 16:42:37', '2022-12-30 16:42:37'),
+(185, 16, 14, 66, '', NULL, '2022-12-30 16:43:02', '2022-12-30 16:43:02'),
+(186, 16, 16, 66, '', NULL, '2022-12-30 16:43:32', '2022-12-30 16:43:32'),
+(187, 16, 6, 66, '', NULL, '2022-12-30 16:43:47', '2022-12-30 16:43:47'),
+(188, 16, 15, 66, '', NULL, '2022-12-30 16:44:12', '2022-12-30 16:44:12'),
+(189, 16, 7, 66, '', NULL, '2022-12-30 16:44:42', '2022-12-30 16:44:42'),
+(190, 16, 10, 66, '', NULL, '2022-12-30 16:44:57', '2022-12-30 16:44:57'),
+(191, 16, 1, 66, '', NULL, '2022-12-30 16:45:17', '2022-12-30 16:45:17'),
+(192, 4, 1, 75, '', NULL, '2023-01-03 15:19:52', '2023-01-03 15:19:52'),
+(193, 4, 4, 75, '', NULL, '2023-01-03 15:20:11', '2023-01-03 15:20:11'),
+(194, 4, 16, 75, '', NULL, '2023-01-03 15:20:41', '2023-01-03 15:20:41'),
+(195, 4, 6, 75, '', NULL, '2023-01-03 15:20:57', '2023-01-03 15:20:57'),
+(196, 4, 17, 75, '', NULL, '2023-01-03 15:21:20', '2023-01-03 15:21:20'),
+(197, 4, 14, 75, '', NULL, '2023-01-03 15:21:45', '2023-01-03 15:21:45'),
+(198, 4, 10, 75, '', NULL, '2023-01-03 15:22:00', '2023-01-03 15:22:00'),
+(199, 4, 9, 75, '', NULL, '2023-01-03 15:22:20', '2023-01-03 15:22:20'),
+(200, 4, 7, 75, '', NULL, '2023-01-03 15:22:50', '2023-01-03 15:22:50'),
+(201, 4, 15, 75, '', NULL, '2023-01-03 15:23:15', '2023-01-03 15:23:15'),
+(202, 4, 8, 75, '', NULL, '2023-01-03 15:23:35', '2023-01-03 15:23:35'),
+(203, 4, 2, 75, '', NULL, '2023-01-03 15:23:55', '2023-01-03 15:23:55'),
+(204, 4, 5, 75, '', NULL, '2023-01-03 15:24:10', '2023-01-03 15:24:10'),
+(205, 4, 12, 75, '', NULL, '2023-01-03 15:24:25', '2023-01-03 15:24:25'),
+(206, 4, 13, 75, '', NULL, '2023-01-03 15:24:40', '2023-01-03 15:24:40'),
+(207, 4, 11, 75, '', NULL, '2023-01-03 15:25:05', '2023-01-03 15:25:05'),
+(208, 4, 3, 75, '', NULL, '2023-01-03 15:25:40', '2023-01-03 15:25:40'),
+(209, 5, 8, 76, 'Edward truc', 1, '2023-01-04 09:33:33', '2023-01-04 09:35:08'),
+(210, 18, 8, 76, 'picass', 0, '2023-01-04 09:33:35', '2023-01-04 09:35:15'),
+(211, 5, 6, 76, 'Bien sûr ', 1, '2023-01-04 09:33:48', '2023-01-04 09:35:20'),
+(212, 18, 6, 76, 'bien sûr', 1, '2023-01-04 09:33:49', '2023-01-04 09:35:24'),
+(213, 5, 14, 76, 'Suisse', 1, '2023-01-04 09:34:13', '2023-01-04 09:35:30'),
+(214, 18, 14, 76, 'Suisse', 1, '2023-01-04 09:34:13', '2023-01-04 09:35:35'),
+(215, 5, 12, 76, 'Un petit fien ', 1, '2023-01-04 09:34:28', '2023-01-04 09:35:39'),
+(216, 18, 12, 76, 'un petit fien', 1, '2023-01-04 09:34:29', '2023-01-04 09:35:42'),
+(217, 5, 1, 76, 'Bruxelles', 1, '2023-01-04 09:34:49', '2023-01-04 09:35:45'),
+(218, 18, 1, 76, 'bruges con', 0, '2023-01-04 09:34:49', '2023-01-04 09:35:48');
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `answer`
+--
+ALTER TABLE `answer`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `doctrine_migration_versions`
+--
+ALTER TABLE `doctrine_migration_versions`
+  ADD PRIMARY KEY (`version`);
+
+--
+-- Index pour la table `game`
+--
+ALTER TABLE `game`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `game_has_questions`
+--
+ALTER TABLE `game_has_questions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_19D5AF1E48FD905` (`game_id`),
+  ADD KEY `IDX_19D5AF11E27F6BF` (`question_id`);
+
+--
+-- Index pour la table `game_has_user`
+--
+ALTER TABLE `game_has_user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_7B8BF2309D86650F` (`user_id_id`),
+  ADD KEY `IDX_7B8BF230E48FD905` (`game_id`);
+
+--
+-- Index pour la table `media`
+--
+ALTER TABLE `media`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_6A2CA10C1E27F6BF` (`question_id`);
+
+--
+-- Index pour la table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_B6BD307F9D86650F` (`user_id_id`),
+  ADD KEY `IDX_B6BD307FE48FD905` (`game_id`);
+
+--
+-- Index pour la table `messenger_messages`
+--
+ALTER TABLE `messenger_messages`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_75EA56E0FB7336F0` (`queue_name`),
+  ADD KEY `IDX_75EA56E0E3BD61CE` (`available_at`),
+  ADD KEY `IDX_75EA56E016BA31DB` (`delivered_at`);
+
+--
+-- Index pour la table `question`
+--
+ALTER TABLE `question`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_B6F7494EAA334807` (`answer_id`);
+
+--
+-- Index pour la table `refresh_tokens`
+--
+ALTER TABLE `refresh_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UNIQ_9BACE7E1C74F2195` (`refresh_token`);
+
+--
+-- Index pour la table `score`
+--
+ALTER TABLE `score`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_329937519D86650F` (`user_id_id`),
+  ADD KEY `IDX_32993751E48FD905` (`game_id`);
+
+--
+-- Index pour la table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`);
+
+--
+-- Index pour la table `user_answer`
+--
+ALTER TABLE `user_answer`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_BF8F51189D86650F` (`user_id_id`),
+  ADD KEY `IDX_BF8F51181E27F6BF` (`question_id`),
+  ADD KEY `IDX_BF8F5118E48FD905` (`game_id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `answer`
+--
+ALTER TABLE `answer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT pour la table `game`
+--
+ALTER TABLE `game`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+
+--
+-- AUTO_INCREMENT pour la table `game_has_questions`
+--
+ALTER TABLE `game_has_questions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=253;
+
+--
+-- AUTO_INCREMENT pour la table `game_has_user`
+--
+ALTER TABLE `game_has_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
+
+--
+-- AUTO_INCREMENT pour la table `media`
+--
+ALTER TABLE `media`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT pour la table `message`
+--
+ALTER TABLE `message`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
+-- AUTO_INCREMENT pour la table `messenger_messages`
+--
+ALTER TABLE `messenger_messages`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `question`
+--
+ALTER TABLE `question`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT pour la table `refresh_tokens`
+--
+ALTER TABLE `refresh_tokens`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+
+--
+-- AUTO_INCREMENT pour la table `score`
+--
+ALTER TABLE `score`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT pour la table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT pour la table `user_answer`
+--
+ALTER TABLE `user_answer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=219;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `game_has_questions`
+--
+ALTER TABLE `game_has_questions`
+  ADD CONSTRAINT `FK_19D5AF11E27F6BF` FOREIGN KEY (`question_id`) REFERENCES `question` (`id`),
+  ADD CONSTRAINT `FK_19D5AF1E48FD905` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`);
+
+--
+-- Contraintes pour la table `game_has_user`
+--
+ALTER TABLE `game_has_user`
+  ADD CONSTRAINT `FK_7B8BF2309D86650F` FOREIGN KEY (`user_id_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `FK_7B8BF230E48FD905` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`);
+
+--
+-- Contraintes pour la table `media`
+--
+ALTER TABLE `media`
+  ADD CONSTRAINT `FK_6A2CA10C1E27F6BF` FOREIGN KEY (`question_id`) REFERENCES `question` (`id`);
+
+--
+-- Contraintes pour la table `message`
+--
+ALTER TABLE `message`
+  ADD CONSTRAINT `FK_B6BD307F9D86650F` FOREIGN KEY (`user_id_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `FK_B6BD307FE48FD905` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`);
+
+--
+-- Contraintes pour la table `question`
+--
+ALTER TABLE `question`
+  ADD CONSTRAINT `FK_B6F7494EAA334807` FOREIGN KEY (`answer_id`) REFERENCES `answer` (`id`);
+
+--
+-- Contraintes pour la table `score`
+--
+ALTER TABLE `score`
+  ADD CONSTRAINT `FK_329937519D86650F` FOREIGN KEY (`user_id_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `FK_32993751E48FD905` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`);
+
+--
+-- Contraintes pour la table `user_answer`
+--
+ALTER TABLE `user_answer`
+  ADD CONSTRAINT `FK_BF8F51181E27F6BF` FOREIGN KEY (`question_id`) REFERENCES `question` (`id`),
+  ADD CONSTRAINT `FK_BF8F51189D86650F` FOREIGN KEY (`user_id_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `FK_BF8F5118E48FD905` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
