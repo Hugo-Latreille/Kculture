@@ -19,7 +19,7 @@ class VerifyUserController extends AbstractController
   #[Route('/verif/{token}', name: 'verify_user')]
   public function verifyUser($token, JWTService $jwt, UserRepository $userRepository, EntityManagerInterface $em): Response
   {
-
+    dump($jwt->isValid($token), $jwt->isExpired($token), $jwt->check($token, '56465DSfsdsdfZEfze5489Asdkjroze'), $jwt->getPayload($token));
     //On vérifie si le token est valide, n'a pas expiré et n'a pas été modifié
     if ($jwt->isValid($token) && !$jwt->isExpired($token) && $jwt->check($token, '56465DSfsdsdfZEfze5489Asdkjroze')) {
       // On récupère le payload
@@ -27,7 +27,7 @@ class VerifyUserController extends AbstractController
 
       // On récupère le user du token
       $user = $userRepository->findOneBy(['email' => $payload['user_email']]);
-
+      // dd($user->isIsVerified());
       //On vérifie que l'utilisateur existe et n'a pas encore activé son compte
       if ($user && !$user->isIsVerified()) {
         $user->setIsVerified(true);
@@ -36,6 +36,7 @@ class VerifyUserController extends AbstractController
       }
     }
     // Ici un problème se pose dans le token
+    dd("invalide");
     return $this->json("Le lien n'est pas valide", 401);
   }
 }
