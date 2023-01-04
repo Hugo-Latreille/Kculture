@@ -32,7 +32,7 @@ class VerifyUserController extends AbstractController
       if ($user && !$user->isIsVerified()) {
         $user->setIsVerified(true);
         $em->flush($user);
-        return new RedirectResponse('https://www.quasiquiz.net/login');
+        return new RedirectResponse('https://www.quasiquiz.fr/login');
       }
     }
     // Ici un problème se pose dans le token
