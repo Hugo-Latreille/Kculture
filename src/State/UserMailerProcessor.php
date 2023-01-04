@@ -65,7 +65,7 @@ final class UserMailerProcessor implements ProcessorInterface
 
 
     $email = (new TemplatedEmail())
-      ->from('admin@quasiquiz.net')
+      ->from('admin@quasiquiz.fr')
       ->to($user->getEmail())
       ->subject('QuasiQuiz : veuillez vérifier votre email')
       // ->html('<p>See Twig integration for better HTML integration!</p>');
