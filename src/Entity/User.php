@@ -95,7 +95,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Groups(['get:Users', 'post:User'])]
     private ?string $password = null;
 
-    #[Assert\Regex('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/', groups: ['postValidation'])]
+    #[Assert\Regex('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&+-_])[A-Za-z\d@$!%*?&+-_]{6,}$/', groups: ['postValidation'])]
     // #[Groups(['get:Users', 'post:User'])]
     private ?string $plainPassword = null;
 
